@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="0" y="0" width="8" height="630" fill="#1d4ed8"/>
+  <rect x="8" y="0" width="8" height="630" fill="#ffffff"/>
+  <rect x="16" y="0" width="8" height="630" fill="#dc2626"/>
+  <rect x="1176" y="0" width="8" height="630" fill="#16a34a"/>
+  <rect x="1184" y="0" width="8" height="630" fill="#dc2626"/>
+  <rect x="1192" y="0" width="8" height="630" fill="#fbbf24"/>
+  <text x="600" y="255" text-anchor="middle" font-family="system-ui,sans-serif" font-size="74" font-weight="700" fill="#22c55e">SOLIDARITY IMPACT</text>
+  <text x="600" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" fill="#f1f5f9">L'avenir à portée de main</text>
+  <text x="600" y="415" text-anchor="middle" font-family="system-ui,sans-serif" font-size="26" fill="#94a3b8">Association franco-camerounaise — Loi 1901</text>
+  <text x="600" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#64748b">solidarityimpact.org</text>
+</svg>

@@ -1,0 +1,334 @@
+/* =============================================================================
+   globals.css — Tailwind v4 · Tokens de thème, reset, accessibilité
+   Requirements: 3.4, 4.4, 13.1, 13.6
+   ============================================================================= */
+
+@import "tailwindcss";
+
+/* ── Tailwind v4 : dark mode via classe sur <html> ──────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens déclarés dans @theme (Tailwind v4) ──────────────────────── */
+@theme {
+  /* ── Palette logo Solidarity Impact ───────────────────────────────────────
+     Marron principal : #7B3F2A  (texte, illustration mains/arbre)
+     Beige/crème      : #F5EFE6  (fond logo)
+     Déclinaisons générées pour couvrir tous les états UI
+     ─────────────────────────────────────────────────────────────────────── */
+
+  /* Marron principal */
+  --color-brand-50:  #fdf8f5;   /* beige très clair */
+  --color-brand-100: #f5efe6;   /* beige logo */
+  --color-brand-200: #e8d5c4;
+  --color-brand-300: #d4ae92;
+  --color-brand-400: #b87d57;
+  --color-brand-500: #7b3f2a;   /* marron logo — couleur principale */
+  --color-brand-600: #6a3423;   /* hover */
+  --color-brand-700: #562a1c;   /* active / pressed */
+  --color-brand-800: #3e1e13;
+  --color-brand-900: #2a1209;
+
+  /* Accent chaud — orange terre cuite (complémentaire du marron) */
+  --color-accent-400: #d97b4a;
+  --color-accent-500: #c4622e;
+  --color-accent-600: #a84e22;
+}
+
+/* ── Variables CSS custom — tokens light / dark ─────────────────────────────── */
+:root {
+  /* Surfaces */
+  --color-bg-primary:   #F5EFE6;   /* beige logo — fond principal */
+  --color-bg-secondary: #fdf8f5;   /* beige très léger */
+  --color-bg-tertiary:  #ede4d8;   /* beige légèrement plus soutenu */
+
+  /* Texte */
+  --color-text-primary:   #2a1209;  /* marron très foncé */
+  --color-text-secondary: #562a1c;
+  --color-text-muted:     #9a7060;
+
+  /* Bordures */
+  --color-border-default: #e8d5c4;
+  --color-border-subtle:  #f5efe6;
+
+  /* Brand */
+  --color-accent:        #7b3f2a;
+  --color-accent-hover:  #6a3423;
+
+  /* Header */
+  --color-header-bg: rgba(255, 255, 255, 0.95);
+
+  /* Card */
+  --color-card-bg:     #ffffff;
+  --color-card-border: #e8d5c4;
+
+  /* Compatibilité */
+  --background: #F5EFE6;
+  --foreground: #2a1209;
+}
+
+.dark {
+  /* Surfaces */
+  --color-bg-primary:   #1a0e0a;   /* marron très sombre */
+  --color-bg-secondary: #2a1a13;
+  --color-bg-tertiary:  #3d2318;
+
+  /* Texte */
+  --color-text-primary:   #f5efe6;  /* beige logo */
+  --color-text-secondary: #d4ae92;
+  --color-text-muted:     #9a7060;
+
+  /* Bordures */
+  --color-border-default: #3d2318;
+  --color-border-subtle:  #2a1a13;
+
+  /* Header */
+  --color-header-bg: rgba(26, 14, 10, 0.95);
+
+  /* Card */
+  --color-card-bg:     #2a1a13;
+  --color-card-border: #3d2318;
+
+  /* Compatibilité */
+  --background: #1a0e0a;
+  --foreground: #f5efe6;
+}
+
+/* ── Reset de base ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ── Transition globale de thème 300ms — Requirement 3.4 ────────────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+/* Désactiver les transitions pendant le changement de thème (anti-flash) */
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+/* ── Comportement de défilement — Requirement 4.4 ───────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Focus visible — couleur brand ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #7b3f2a;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Classe utilitaire sr-only ───────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip link au focus — Requirement 13.1 */
+.sr-only:focus:not(.sr-only),
+.sr-only:focus-within:not(.sr-only) {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background-color: #562a1c;
+  color: #f5efe6;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Scrollbar invisible sur le modal d'inscription (tous navigateurs) ──────── */
+.scrollbar-none {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge legacy */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari, Opera */
+}
+
+/* ── Animations globales ─────────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(3deg); }
+  66%       { transform: translateY(-6px) rotate(-2deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.8);  opacity: 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes text-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes bounce-in {
+  0%   { transform: scale(0.3);  opacity: 0; }
+  50%  { transform: scale(1.05); opacity: 0.8; }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes slide-up-fade {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(123,63,42,0.3), 0 0 20px rgba(123,63,42,0.1); }
+  50%       { box-shadow: 0 0 20px rgba(123,63,42,0.6), 0 0 40px rgba(123,63,42,0.2); }
+}
+
+/* ── Classes utilitaires animation ──────────────────────────────────────────── */
+
+.animate-float     { animation: float 4s ease-in-out infinite; }
+.animate-float-2   { animation: float 5s ease-in-out infinite 0.5s; }
+.animate-float-3   { animation: float 6s ease-in-out infinite 1s; }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+.animate-glow      { animation: glow-pulse 2s ease-in-out infinite; }
+.animate-shimmer   { animation: shimmer 2.5s linear infinite; background-size: 200% 100%; }
+
+/* ── Effet hover carte premium ───────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(123, 63, 42, 0.15);
+}
+
+/* ── Texte dégradé marron ────────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #7B3F2A 0%, #c4622e 50%, #7B3F2A 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Pulse ring (autour des boutons/badges) ──────────────────────────────────── */
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* ── Underline animée au hover ───────────────────────────────────────────────── */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #7B3F2A;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 2px;
+}
+.animated-underline:hover::after { width: 100%; }
+
+/* ── Bouton ripple ───────────────────────────────────────────────────────────── */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+  opacity: 0;
+}
+.btn-ripple:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: 0s;
+}

@@ -17,7 +17,7 @@ export default function MentionsLegalesPage() {
                 <p style={{ color: '#562a1c' }}>
                   <strong>Solidarity Impact</strong><br />
                   Association régie par la loi du 1er juillet 1901<br />
-                  Siège social : 89 rue de la Fosse aux Bergers – 93250 Villemomble<br />
+                  Siège social : Villemomble<br />
                   Date de fondation : 14 septembre 2025<br />
                   Email : <a href="mailto:contact@solidarityimpact.org"
                     style={{ color: '#7B3F2A' }} className="hover:underline">

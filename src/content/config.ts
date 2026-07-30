@@ -116,7 +116,7 @@ export const siteConfig: SiteConfig = {
   association: {
     name: 'Solidarity Impact',
     foundationDate: '2025-09-14',
-    address: '89 rue de la Fosse aux Bergers',
+    address: '',
     city: 'Villemomble',
     postalCode: '93250',
   },

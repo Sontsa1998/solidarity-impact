@@ -386,7 +386,7 @@ export function HomePage() {
                   T('Reconnue loi 1901, à vocation internationale', 'Recognized non-profit, international purpose'),
                   T('Compatible avec la loi camerounaise N°90/053', 'Compatible with Cameroonian law N°90/053'),
                   T('9 fondateurs élus démocratiquement', '9 democratically elected founders'),
-                  T('Siège : 89 rue de la Fosse aux Bergers, 93250 Villemomble', 'HQ: 89 rue de la Fosse aux Bergers, 93250 Villemomble'),
+                  T('Siège : Villemomble', 'HQ: Villemomble'),
                 ].map((item, idx) => (
                   <motion.li key={idx} className="flex items-start gap-3"
                     initial={{ opacity: 0, x: -20 }}

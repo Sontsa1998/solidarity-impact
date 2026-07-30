@@ -50,7 +50,7 @@ export const en: Translations = {
     foundedDate: 'September 14, 2025',
     foundedPlace: 'Villemomble, Seine-Saint-Denis',
     legalInfo:
-      'Association governed by the law of July 1, 1901, with an international vocation. Registered office: 89 rue de la Fosse aux Bergers – 93250 Villemomble.',
+      'Association governed by the law of July 1, 1901, with an international vocation. Registered office: Villemomble.',
   },
 
   // ── Team ────────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ export const en: Translations = {
   footer: {
     legalMention: 'Non-profit association — International vocation',
     rights: '© {year} Solidarity Impact. All rights reserved.',
-    address: '89 rue de la Fosse aux Bergers – 93250 Villemomble',
+    address: 'Villemomble',
   },
 
   // ── SEO Metadata ────────────────────────────────────────────────────────

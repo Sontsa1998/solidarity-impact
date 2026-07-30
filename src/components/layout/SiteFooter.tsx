@@ -114,7 +114,7 @@ export function SiteFooter() {
               <li className="flex items-start gap-2.5 text-sm" style={{ color: '#b07a60' }}>
                 <MapPinIcon />
                 <address className="not-italic leading-relaxed">
-                  89 rue de la Fosse aux Bergers<br />93250 Villemomble, France
+                  Villemomble, France
                 </address>
               </li>
               <li className="flex items-center gap-2.5 text-sm">

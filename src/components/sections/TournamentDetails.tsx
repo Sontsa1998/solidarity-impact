@@ -7,7 +7,9 @@ import { TeamRegistrationModal } from '@/components/ui/TeamRegistrationModal';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const TOURNAMENT_DATE = new Date('2026-07-16T23:59:59');
+// Coup d'envoi du tournoi : 17 juillet 2027 à 09h00, heure de Paris (UTC+2 en été).
+// Le fuseau explicite garantit le même compte à rebours pour tous les visiteurs.
+const TOURNAMENT_DATE = new Date('2027-07-17T09:00:00+02:00');
 
 const B = '#6B3E2E';
 const BEIGE = '#FDF9F7';
@@ -55,7 +57,7 @@ export function TournamentDetails() {
           <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 font-semibold text-sm"
             style={{ background: 'rgba(253,249,247,0.15)', border: '1px solid rgba(253,249,247,0.3)', color: BEIGE }}>
             <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#F2C94C' }} aria-hidden="true"/>
-            {lang === 'en' ? '🗓️ July 17, 2026 — Villemomble' : '🗓️ 17 Juillet 2026 — Villemomble'}
+            {lang === 'en' ? '🗓️ July 17, 2027 — Villemomble' : '🗓️ 17 Juillet 2027 — Villemomble'}
           </div>
           <h1 id="tournament-title" className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 leading-tight"
             style={{ color: BEIGE, textShadow: '0 2px 16px rgba(0,0,0,0.4)' }}>
@@ -81,7 +83,7 @@ export function TournamentDetails() {
           </h2>
           <Countdown targetDate={tournamentDate} />
           <p className="mt-8 text-sm font-medium" style={{ color: '#86655A' }}>
-            {lang === 'en' ? '📍 Villemomble (93250) · 17 July 2026 from 9:00 AM' : '📍 Villemomble (93250) · 17 Juillet 2026 dès 09h00'}
+            {lang === 'en' ? '📍 Villemomble (93250) · 17 July 2027 from 9:00 AM' : '📍 Villemomble (93250) · 17 Juillet 2027 dès 09h00'}
           </p>
         </div>
       </section>
@@ -203,7 +205,7 @@ export function TournamentDetails() {
           onMouseLeave={e => { e.currentTarget.style.background = B; }}>
           <span className="text-2xl flex-shrink-0" aria-hidden="true">⚽</span>
           <div className="flex flex-col items-start leading-tight">
-            <span className="text-xs font-semibold opacity-75">{lang === 'en' ? 'July 17, 2026' : '17 Juillet 2026'}</span>
+            <span className="text-xs font-semibold opacity-75">{lang === 'en' ? 'July 17, 2027' : '17 Juillet 2027'}</span>
             <span className="text-sm font-black">{lang === 'en' ? 'Register your team now →' : 'Inscris ton équipe maintenant →'}</span>
           </div>
           <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full"

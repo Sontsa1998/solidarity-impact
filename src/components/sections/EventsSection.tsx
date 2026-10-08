@@ -91,7 +91,7 @@ function FootballPosterSVG() {
       </text>
       <text x="200" y="250" textAnchor="middle" fill="rgba(253,249,247,0.7)"
         fontSize="9" fontFamily="system-ui,sans-serif" letterSpacing="1">
-        17 JUILLET 2026 · VILLEMOMBLE
+        17 JUILLET 2027 · VILLEMOMBLE
       </text>
     </svg>
   );
@@ -165,8 +165,8 @@ export function EventsSection() {
                     <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
                     <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                   </svg>
-                  <time dateTime="2026-07-17">
-                    {lang === 'en' ? 'July 17, 2026 · Villemomble (93250)' : '17 Juillet 2026 · Villemomble (93250)'}
+                  <time dateTime="2027-07-17">
+                    {lang === 'en' ? 'July 17, 2027 · Villemomble (93250)' : '17 Juillet 2027 · Villemomble (93250)'}
                   </time>
                 </div>
 

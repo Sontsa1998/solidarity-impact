@@ -707,7 +707,7 @@ export function HomePage() {
                     style={{ background: '#F2C94C', color: '#170D09' }}>
                     {T('À venir', 'Upcoming')}
                   </motion.span>
-                  <span className="text-xs" style={{ color: '#86655A' }}>🗓️ 17 {T('juillet', 'July')} 2026</span>
+                  <span className="text-xs" style={{ color: '#86655A' }}>🗓️ 17 {T('juillet', 'July')} 2027</span>
                 </div>
                 <h3 className="font-black text-lg" style={{ color: '#24140E' }}>
                   {T('Tournoi de Football — 1ère Édition', 'Football Tournament — 1st Edition')}

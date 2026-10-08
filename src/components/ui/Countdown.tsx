@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useI18nContext } from '@/components/providers/I18nProvider';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface TimeLeft {
@@ -37,6 +38,7 @@ interface CountdownProps {
 // ── Composant ─────────────────────────────────────────────────────────────────
 export function Countdown({ targetDate }: CountdownProps) {
   // null = pas encore monté (SSR)
+  const { lang } = useI18nContext();
   const [time, setTime] = useState<TimeLeft | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -46,7 +48,10 @@ export function Countdown({ targetDate }: CountdownProps) {
 
     // Mise à jour chaque seconde
     intervalRef.current = setInterval(() => {
-      setTime(calcTimeLeft(targetDate));
+      const next = calcTimeLeft(targetDate);
+      setTime(next);
+      // Arrêt du minuteur une fois la date atteinte
+      if (next.total <= 0 && intervalRef.current) clearInterval(intervalRef.current);
     }, 1000);
 
     return () => {
@@ -57,19 +62,19 @@ export function Countdown({ targetDate }: CountdownProps) {
   // ── État SSR / avant hydratation ─────────────────────────────────────────
   if (time === null) {
     return (
-      <div className="flex items-center justify-center gap-2 sm:gap-5 flex-wrap py-4">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:flex sm:flex-nowrap sm:items-center sm:justify-center sm:gap-3 lg:gap-5 py-4">
         {['JJ', 'HH', 'MM', 'SS'].map((label, idx) => (
-          <div key={label} className="flex items-center gap-2 sm:gap-5">
+          <div key={label} className="flex items-center justify-center gap-3 lg:gap-5">
             <div className="flex flex-col items-center">
               <div
-                className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[80px] sm:min-w-[110px] lg:min-w-[140px] text-center"
+                className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[110px] sm:min-w-[104px] md:min-w-[120px] lg:min-w-[150px] text-center"
                 style={{
                   background: 'linear-gradient(135deg, #fff 0%, #FBF4EF 100%)',
                   border: '2px solid #EBDDD4',
                   boxShadow: '0 8px 32px rgba(107,62,46,0.10)',
                 }}
               >
-                <span className="block text-5xl sm:text-7xl lg:text-8xl font-black leading-none"
+                <span className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none"
                   style={{ color: '#EBDDD4' }}>
                   --
                 </span>
@@ -80,7 +85,7 @@ export function Countdown({ targetDate }: CountdownProps) {
               </span>
             </div>
             {idx < 3 && (
-              <span className="text-3xl sm:text-5xl lg:text-6xl font-black mb-6 select-none"
+              <span className="hidden sm:inline text-3xl md:text-4xl lg:text-5xl font-black mb-6 select-none"
                 style={{ color: '#EBDDD4' }} aria-hidden="true">:</span>
             )}
           </div>
@@ -95,7 +100,7 @@ export function Countdown({ targetDate }: CountdownProps) {
       <div className="py-8 text-center">
         <div className="text-5xl mb-4" aria-hidden="true">🏆</div>
         <p className="text-2xl sm:text-3xl font-black" style={{ color: '#6B3E2E' }}>
-          Le tournoi a commencé !
+          {lang === 'en' ? 'The tournament has started!' : 'Le tournoi a commencé !'}
         </p>
       </div>
     );
@@ -111,17 +116,19 @@ export function Countdown({ targetDate }: CountdownProps) {
 
   return (
     <div
-      className="flex items-center justify-center gap-2 sm:gap-5 lg:gap-6 flex-wrap py-4"
+      className="grid grid-cols-2 gap-x-4 gap-y-6 sm:flex sm:flex-nowrap sm:items-center sm:justify-center sm:gap-3 lg:gap-5 py-4"
       role="timer"
       aria-live="off"
-      aria-label={`Compte à rebours : ${time.days} jours, ${time.hours} heures, ${time.minutes} minutes, ${time.seconds} secondes`}
+      aria-label={lang === 'en'
+        ? `Countdown: ${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds`
+        : `Compte à rebours : ${time.days} jours, ${time.hours} heures, ${time.minutes} minutes, ${time.seconds} secondes`}
     >
-      {units.map(({ value, labelFr }, idx) => (
-        <div key={labelFr} className="flex items-center gap-2 sm:gap-5 lg:gap-6">
+      {units.map(({ value, labelFr, labelEn }, idx) => (
+        <div key={labelFr} className="flex items-center justify-center gap-3 lg:gap-5">
           <div className="flex flex-col items-center">
             {/* Bloc chiffre */}
             <div
-              className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[80px] sm:min-w-[110px] lg:min-w-[140px] text-center"
+              className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[110px] sm:min-w-[104px] md:min-w-[120px] lg:min-w-[150px] text-center"
               style={{
                 background: 'linear-gradient(135deg, #ffffff 0%, #FBF4EF 100%)',
                 border: '2px solid #EBDDD4',
@@ -129,7 +136,7 @@ export function Countdown({ targetDate }: CountdownProps) {
               }}
             >
               <span
-                className="block text-5xl sm:text-7xl lg:text-8xl font-black leading-none tabular-nums"
+                className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none tabular-nums"
                 style={{
                   color: '#6B3E2E',
                   textShadow: '0 2px 10px rgba(107,62,46,0.18)',
@@ -145,14 +152,14 @@ export function Countdown({ targetDate }: CountdownProps) {
               className="mt-2 text-[10px] sm:text-xs lg:text-sm font-bold uppercase tracking-[0.25em]"
               style={{ color: '#86655A' }}
             >
-              {labelFr}
+              {lang === 'en' ? labelEn : labelFr}
             </span>
           </div>
 
           {/* Séparateur : sauf après le dernier */}
           {idx < 3 && (
             <span
-              className="text-3xl sm:text-5xl lg:text-6xl font-black mb-7 select-none"
+              className="hidden sm:inline text-3xl md:text-4xl lg:text-5xl font-black mb-7 select-none"
               style={{ color: '#D2B8AA' }}
               aria-hidden="true"
             >

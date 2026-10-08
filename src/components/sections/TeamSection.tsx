@@ -20,17 +20,17 @@ export function TeamSection() {
   return (
     <section id="team" aria-labelledby="team-title"
       className="py-20 px-4 sm:px-6 lg:px-8"
-      style={{ background: '#fdf8f5' }}>
+      style={{ background: '#FFFFFF' }}>
       <div className="mx-auto max-w-6xl">
 
         <AnimatedSection animation="slideUp" threshold={0.1} className="mb-14 text-center">
           <h2 id="team-title" className="text-3xl sm:text-4xl font-bold mb-3"
-            style={{ color: '#2a1209' }}>
+            style={{ color: '#24140E' }}>
             {t('team.sectionTitle')}
           </h2>
           <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4"
-            style={{ background: '#7B3F2A' }} />
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#9a7060' }}>
+            style={{ background: '#6B3E2E' }} />
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
             {t('team.sectionSubtitle')}
           </p>
         </AnimatedSection>

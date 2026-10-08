@@ -13,9 +13,9 @@ interface DonationState {
   isSubmitted: boolean;
 }
 
-const B = '#7B3F2A';
-const BEIGE = '#F5EFE6';
-const BORDER = '#e8d5c4';
+const B = '#6B3E2E';
+const BEIGE = '#FDF9F7';
+const BORDER = '#EBDDD4';
 
 export function DonationForm() {
   const { t } = useI18nContext();
@@ -50,7 +50,7 @@ export function DonationForm() {
     return (
       <div role="status" aria-live="polite"
         className="rounded-2xl border p-8 text-center"
-        style={{ background: '#fdf5f0', borderColor: BORDER }}>
+        style={{ background: '#FBF4EF', borderColor: BORDER }}>
         <div className="text-4xl mb-4" aria-hidden="true">🎉</div>
         <p className="text-lg font-semibold" style={{ color: B }}>
           {t('donation.successMessage')}
@@ -63,13 +63,13 @@ export function DonationForm() {
     <form onSubmit={handleSubmit} noValidate aria-label={t('donation.sectionTitle')}>
       {/* Avertissement */}
       <div role="alert" className="mb-6 rounded-xl border px-4 py-3 text-sm"
-        style={{ background: '#fef9f0', borderColor: '#f5c842', color: '#7a5c00' }}>
+        style={{ background: '#FEF8E6', borderColor: '#F2C94C', color: '#7a5c00' }}>
         {t('donation.mockWarning')}
       </div>
 
       {/* Presets */}
       <fieldset className="mb-6">
-        <legend className="mb-3 text-sm font-semibold" style={{ color: '#2a1209' }}>
+        <legend className="mb-3 text-sm font-semibold" style={{ color: '#24140E' }}>
           {t('donation.presetLabel')}
         </legend>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -81,7 +81,7 @@ export function DonationForm() {
                 className="rounded-xl border-2 px-4 py-3 text-base font-semibold transition-all duration-200"
                 style={sel
                   ? { borderColor: B, background: B, color: BEIGE }
-                  : { borderColor: BORDER, background: '#fff', color: '#3d2318' }}
+                  : { borderColor: BORDER, background: '#fff', color: '#3A2219' }}
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = B; }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = BORDER; }}
               >
@@ -98,7 +98,7 @@ export function DonationForm() {
           className="rounded-xl border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 mb-3"
           style={state.isCustom
             ? { borderColor: B, background: B, color: BEIGE }
-            : { borderColor: BORDER, background: '#fff', color: '#3d2318' }}>
+            : { borderColor: BORDER, background: '#fff', color: '#3A2219' }}>
           {t('donation.customLabel')}
         </button>
 
@@ -115,7 +115,7 @@ export function DonationForm() {
                 aria-invalid={state.error !== null}
                 className="w-full rounded-xl border-2 px-4 py-3 pr-12 transition-colors duration-200"
                 style={{
-                  background: '#fff', color: '#2a1209',
+                  background: '#fff', color: '#24140E',
                   borderColor: state.error ? '#dc2626' : BORDER,
                   outline: 'none',
                 }}
@@ -123,7 +123,7 @@ export function DonationForm() {
                 onBlur={e => { e.currentTarget.style.borderColor = state.error ? '#dc2626' : BORDER; }}
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 font-medium"
-                style={{ color: '#9a7060' }} aria-hidden="true">€</span>
+                style={{ color: '#86655A' }} aria-hidden="true">€</span>
             </div>
             {state.error && (
               <span id="donation-error" role="alert" className="mt-2 block text-sm" style={{ color: '#dc2626' }}>
@@ -138,9 +138,9 @@ export function DonationForm() {
       <button type="submit" disabled={!isEnabled()} aria-disabled={!isEnabled()}
         className="w-full rounded-xl px-6 py-4 text-base font-bold transition-all duration-200"
         style={isEnabled()
-          ? { background: B, color: BEIGE, cursor: 'pointer', boxShadow: '0 4px 12px rgba(123,63,42,0.25)' }
-          : { background: '#e8d5c4', color: '#9a7060', cursor: 'not-allowed' }}
-        onMouseEnter={e => { if (isEnabled()) e.currentTarget.style.background = '#6a3423'; }}
+          ? { background: B, color: BEIGE, cursor: 'pointer', boxShadow: '0 4px 12px rgba(107,62,46,0.25)' }
+          : { background: '#EBDDD4', color: '#86655A', cursor: 'not-allowed' }}
+        onMouseEnter={e => { if (isEnabled()) e.currentTarget.style.background = '#5A3426'; }}
         onMouseLeave={e => { if (isEnabled()) e.currentTarget.style.background = B; }}
       >
         {t('donation.buttonText')}

@@ -7,8 +7,9 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { FloatingParticles } from '@/components/ui/FloatingParticles';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { BrandMotif } from '@/components/brand/BrandMotif';
 
-const B = '#7B3F2A', BH = '#6a3423', BEIGE = '#F5EFE6', BEIGE2 = '#fdf8f5', BORDER = '#e8d5c4';
+const B = '#6B3E2E', BH = '#5A3426', BEIGE = '#FDF9F7', BEIGE2 = '#FFFFFF', BORDER = '#EBDDD4';
 
 function HeartIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>; }
 function CheckIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>; }
@@ -16,10 +17,10 @@ function ArrowIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className
 function UsersIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>; }
 
 const MISSIONS = [
-  { emoji: '📚', titleFr: "L'éducation pour tous",          titleEn: "Education for all",          descFr: "Nous finançons des bourses et des fournitures scolaires pour les enfants dans le besoin. Chaque enfant mérite d'apprendre.", descEn: "We fund scholarships and school supplies. Every child deserves to learn.", color: '#fef9c3', accent: '#f59e0b' },
-  { emoji: '🏠', titleFr: "Soutien aux orphelinats",         titleEn: "Orphanage support",           descFr: "Aide matérielle et humaine aux enfants orphelins au Cameroun. Ces enfants ont besoin de nous — et de vous.", descEn: "Material and human support for orphaned children in Cameroon.", color: '#fdf2f8', accent: '#ec4899' },
-  { emoji: '🌍', titleFr: "Actions terrain au Cameroun",     titleEn: "Field operations",            descFr: "Via notre délégation locale, nous agissons directement pour le développement des communautés.", descEn: "Through our local delegation, we act directly for community development.", color: '#f0fdf4', accent: '#22c55e' },
-  { emoji: '🤝', titleFr: "Partenariats internationaux",     titleEn: "International partnerships",  descFr: "Nous construisons des ponts durables entre la France et le Cameroun.", descEn: "We build lasting bridges between France and Cameroon.", color: '#fff7ed', accent: '#f97316' },
+  { emoji: '📚', titleFr: "L'éducation pour tous",          titleEn: "Education for all",          descFr: "Nous finançons des bourses et des fournitures scolaires pour les enfants dans le besoin. Chaque enfant mérite d'apprendre.", descEn: "We fund scholarships and school supplies. Every child deserves to learn.", color: '#FEF6DB', accent: '#D9A82B' },
+  { emoji: '🏠', titleFr: "Soutien aux orphelinats",         titleEn: "Orphanage support",           descFr: "Aide matérielle et humaine aux enfants orphelins au Cameroun. Ces enfants ont besoin de nous — et de vous.", descEn: "Material and human support for orphaned children in Cameroon.", color: '#F6EEE9', accent: '#6B3E2E' },
+  { emoji: '🌍', titleFr: "Actions terrain au Cameroun",     titleEn: "Field operations",            descFr: "Via notre délégation locale, nous agissons directement pour le développement des communautés.", descEn: "Through our local delegation, we act directly for community development.", color: '#EEF7F0', accent: '#3FA45B' },
+  { emoji: '🤝', titleFr: "Partenariats internationaux",     titleEn: "International partnerships",  descFr: "Nous construisons des ponts durables entre la France et le Cameroun.", descEn: "We build lasting bridges between France and Cameroon.", color: '#FEF6DB', accent: '#6B3E2E' },
 ];
 
 const VALUES = [
@@ -99,8 +100,8 @@ function MissionCard({ emoji, title, desc, color, accent, idx, reduced }: {
       >
         {emoji}
       </motion.div>
-      <h3 className="text-lg font-black mb-2" style={{ color: '#2a1209' }}>{title}</h3>
-      <p className="text-sm leading-relaxed" style={{ color: '#562a1c' }}>{desc}</p>
+      <h3 className="text-lg font-black mb-2" style={{ color: '#24140E' }}>{title}</h3>
+      <p className="text-sm leading-relaxed" style={{ color: '#4A2B20' }}>{desc}</p>
     </motion.div>
   );
 }
@@ -124,10 +125,14 @@ export function HomePage() {
       {/* ══ HERO ═══════════════════════════════════════════════════════════════ */}
       <section ref={heroRef} id="hero" aria-labelledby="hero-title"
         className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden px-4 py-24 text-center"
-        style={{ background: 'linear-gradient(135deg, #F5EFE6 0%, #fdf8f5 50%, #ede4d8 100%)' }}>
+        style={{ background: 'linear-gradient(160deg, #FDF9F7 0%, #FDF9F7 50%, #FBEFC8 100%)' }}>
 
         {/* Particules flottantes */}
         <FloatingParticles count={30} />
+
+        {/* Motifs « demi-cercles » de la charte */}
+        <BrandMotif className="absolute top-10 left-6 sm:left-12 w-28 sm:w-40 opacity-80" />
+        <BrandMotif color="#3FA45B" className="absolute bottom-16 right-6 sm:right-12 w-24 sm:w-32 opacity-60" />
 
         {/* Orbes décoratifs avec parallax */}
         {!reduced && (
@@ -159,7 +164,7 @@ export function HomePage() {
 
         {/* Bande drapeaux */}
         <div className="absolute bottom-0 left-0 right-0 h-1 flex opacity-50" aria-hidden="true">
-          {['#1d4ed8','#fff','#dc2626','#16a34a','#dc2626','#fbbf24'].map((c,i) => (
+          {['#1d4ed8','#fff','#dc2626','#3FA45B','#dc2626','#F2C94C'].map((c,i) => (
             <motion.div key={i} className="flex-1" style={{ background: c }}
               initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
               transition={{ delay: 1 + i * 0.08, duration: 0.3 }} />
@@ -192,7 +197,7 @@ export function HomePage() {
           >
             <h1 id="hero-title"
               className="font-black tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05]"
-              style={{ color: '#2a1209' }}>
+              style={{ color: '#24140E' }}>
               {'SOLIDARITY'.split('').map((char, i) => (
                 <motion.span key={i} className="inline-block"
                   initial={{ opacity: 0, y: 40, rotateX: -60 }}
@@ -219,8 +224,8 @@ export function HomePage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.1, duration: 0.6, ease: 'easeOut' }}
-            className="mt-4 text-xl sm:text-2xl font-bold italic"
-            style={{ color: '#562a1c' }}>
+            className="font-display mt-4 text-xl sm:text-2xl font-bold"
+            style={{ color: '#2E7D44' }}>
             « {T("L'avenir à portée de main", 'The future within reach')} »
           </motion.p>
 
@@ -230,7 +235,7 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.6 }}
             className="mt-6 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed"
-            style={{ color: '#7a4a35' }}>
+            style={{ color: '#6E4A3C' }}>
             {T(
               "Nous sommes des Français et des Camerounais unis pour aider les enfants, soutenir les orphelinats et développer les communautés au Cameroun. Ensemble, on change des vies.",
               "French and Cameroonian people united to help children, support orphanages and develop communities in Cameroon. Together, we change lives."
@@ -275,7 +280,7 @@ export function HomePage() {
                 className="flex flex-col items-center gap-1 rounded-2xl py-4 px-3"
                 style={{ background: 'rgba(255,255,255,0.65)', border: `1px solid ${BORDER}` }}>
                 <AnimatedCounter value={value} reduced={reduced} />
-                <span className="text-[11px] sm:text-xs text-center font-medium" style={{ color: '#9a7060' }}>
+                <span className="text-[11px] sm:text-xs text-center font-medium" style={{ color: '#86655A' }}>
                   {T(fr, en)}
                 </span>
               </motion.div>
@@ -287,7 +292,7 @@ export function HomePage() {
         {!reduced && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2" style={{ color: '#d4ae92' }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2" style={{ color: '#D2B8AA' }}
             aria-hidden="true">
             <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.4, repeat: Infinity }}>
               <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none"
@@ -306,7 +311,7 @@ export function HomePage() {
           <motion.div className="absolute right-0 top-0 w-64 h-64 rounded-full opacity-10"
             animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ background: 'radial-gradient(circle, #F5EFE6 0%, transparent 70%)' }}
+            style={{ background: 'radial-gradient(circle, #FDF9F7 0%, transparent 70%)' }}
             aria-hidden="true" />
         )}
         <AnimatedSection animation="fadeIn" threshold={0.2}>
@@ -327,7 +332,7 @@ export function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-6 text-sm font-semibold" style={{ color: '#e8d5c4' }}>
+              className="mt-6 text-sm font-semibold" style={{ color: '#EBDDD4' }}>
               — Solidarity Impact, Villemomble
             </motion.p>
           </div>
@@ -339,13 +344,13 @@ export function HomePage() {
         <div className="max-w-6xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-14">
             <motion.p className="text-sm font-black uppercase tracking-widest mb-3"
-              style={{ color: '#9a7060' }}
+              style={{ color: '#86655A' }}
               initial={{ opacity: 0, letterSpacing: '0.1em' }}
               whileInView={{ opacity: 1, letterSpacing: '0.2em' }}
               viewport={{ once: true }} transition={{ duration: 0.8 }}>
               {T('Ce que nous faisons concrètement', 'What we concretely do')}
             </motion.p>
-            <h2 className="text-3xl sm:text-4xl font-black mb-4" style={{ color: '#2a1209' }}>
+            <h2 className="text-3xl sm:text-4xl font-black mb-4" style={{ color: '#24140E' }}>
               {T('Nos 4 missions principales', 'Our 4 main missions')}
             </h2>
             <motion.div className="mx-auto h-1 rounded-full"
@@ -371,13 +376,13 @@ export function HomePage() {
               <motion.p className="text-sm font-black uppercase tracking-widest mb-3"
                 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5 }}
-                style={{ color: '#9a7060' }}>
+                style={{ color: '#86655A' }}>
                 {T('Notre histoire', 'Our story')}
               </motion.p>
-              <h2 className="text-3xl sm:text-4xl font-black mb-6" style={{ color: '#2a1209' }}>
+              <h2 className="text-3xl sm:text-4xl font-black mb-6" style={{ color: '#24140E' }}>
                 {T("Une association née d'une amitié franco-camerounaise", "Born from a Franco-Cameroonian friendship")}
               </h2>
-              <p className="text-base leading-relaxed mb-5" style={{ color: '#562a1c' }}>
+              <p className="text-base leading-relaxed mb-5" style={{ color: '#4A2B20' }}>
                 {T("Le 14 septembre 2025, à Villemomble, 9 personnes se sont réunies pour créer un lien fort entre la France et le Cameroun, pour aider ceux qui en ont le plus besoin.",
                    "On September 14, 2025, in Villemomble, 9 people gathered to create a bond between France and Cameroon, to help those who need it most.")}
               </p>
@@ -399,7 +404,7 @@ export function HomePage() {
                       transition={{ delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 300 }}>
                       <CheckIcon />
                     </motion.span>
-                    <span className="text-sm" style={{ color: '#562a1c' }}>{item}</span>
+                    <span className="text-sm" style={{ color: '#4A2B20' }}>{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -449,8 +454,8 @@ export function HomePage() {
                       transition={{ delay: idx * 0.08, duration: 0.4 }}
                       className="flex items-start gap-3 pb-3 border-b last:border-0 last:pb-0"
                       style={{ borderColor: BORDER }}>
-                      <span className="text-xs font-black uppercase tracking-wide w-24 flex-shrink-0 pt-0.5" style={{ color: '#9a7060' }}>{k}</span>
-                      <span className="text-sm font-medium" style={{ color: '#2a1209' }}>{v}</span>
+                      <span className="text-xs font-black uppercase tracking-wide w-24 flex-shrink-0 pt-0.5" style={{ color: '#86655A' }}>{k}</span>
+                      <span className="text-sm font-medium" style={{ color: '#24140E' }}>{v}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -466,10 +471,10 @@ export function HomePage() {
       </section>
 
       {/* ══ VALEURS ══════════════════════════════════════════════════════════ */}
-      <section className="py-16 px-4 overflow-hidden" style={{ background: '#fdf8f5' }}>
+      <section className="py-16 px-4 overflow-hidden" style={{ background: '#FFFFFF' }}>
         <div className="max-w-5xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#2a1209' }}>
+            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#24140E' }}>
               {T('Ce en quoi nous croyons', 'What we believe in')}
             </h2>
             <motion.div className="mx-auto h-1 rounded-full"
@@ -491,7 +496,7 @@ export function HomePage() {
                   transition={{ duration: 2, delay: idx * 0.3 + 1, repeat: Infinity, repeatDelay: 5 }}>
                   {emoji}
                 </motion.span>
-                <span className="font-black text-base" style={{ color: '#2a1209' }}>{T(fr, en)}</span>
+                <span className="font-black text-base" style={{ color: '#24140E' }}>{T(fr, en)}</span>
               </motion.div>
             ))}
           </div>
@@ -504,7 +509,7 @@ export function HomePage() {
           <motion.div className="absolute inset-0 opacity-5"
             animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
             transition={{ duration: 10, repeat: Infinity }}
-            style={{ background: 'linear-gradient(45deg, transparent 40%, rgba(245,239,230,0.3) 50%, transparent 60%)', backgroundSize: '200% 200%' }}
+            style={{ background: 'linear-gradient(45deg, transparent 40%, rgba(253,249,247,0.3) 50%, transparent 60%)', backgroundSize: '200% 200%' }}
             aria-hidden="true" />
         )}
         <div className="max-w-5xl mx-auto relative z-10">
@@ -522,7 +527,7 @@ export function HomePage() {
                 transition={{ delay: idx * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={reduced ? {} : { y: -8, scale: 1.03 }}
                 className="rounded-2xl p-6 relative"
-                style={{ background: 'rgba(245,239,230,0.1)', border: '1px solid rgba(245,239,230,0.15)' }}>
+                style={{ background: 'rgba(253,249,247,0.1)', border: '1px solid rgba(253,249,247,0.15)' }}>
                 <motion.div className="text-5xl font-black mb-4"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 0.4, scale: 1 }}
@@ -530,7 +535,7 @@ export function HomePage() {
                   transition={{ delay: idx * 0.12 + 0.3, type: 'spring' }}
                   style={{ color: BEIGE }}>{step}</motion.div>
                 <h3 className="font-black text-base mb-2" style={{ color: BEIGE }}>{T(fr, en)}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(245,239,230,0.7)' }}>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,249,247,0.7)' }}>
                   {T(desc_fr, desc_en)}
                 </p>
                 {/* Connecteur entre étapes */}
@@ -551,7 +556,7 @@ export function HomePage() {
       <section className="py-20 px-4" style={{ background: BEIGE2 }}>
         <div className="max-w-5xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#2a1209' }}>
+            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#24140E' }}>
               {T('Ils ont fondé cette association', 'They founded this association')}
             </h2>
             <motion.div className="mx-auto h-1 rounded-full"
@@ -577,7 +582,7 @@ export function HomePage() {
                   animate={reduced ? {} : { scale: [1, 1.1, 1] }}
                   transition={{ duration: 3, repeat: Infinity, delay: idx * 0.5 }}
                   aria-hidden="true">"</motion.div>
-                <p className="text-base leading-relaxed mb-6 italic" style={{ color: '#562a1c' }}>
+                <p className="text-base leading-relaxed mb-6 italic" style={{ color: '#4A2B20' }}>
                   "{T(textFr, textEn)}"
                 </p>
                 <div className="flex items-center gap-3">
@@ -587,8 +592,8 @@ export function HomePage() {
                     {initials}
                   </motion.div>
                   <div>
-                    <p className="font-black text-sm" style={{ color: '#2a1209' }}>{author}</p>
-                    <p className="text-xs" style={{ color: '#9a7060' }}>{T(roleFr, roleEn)}</p>
+                    <p className="font-black text-sm" style={{ color: '#24140E' }}>{author}</p>
+                    <p className="text-xs" style={{ color: '#86655A' }}>{T(roleFr, roleEn)}</p>
                   </div>
                 </div>
               </motion.div>
@@ -604,13 +609,13 @@ export function HomePage() {
             whileHover={reduced ? {} : { scale: 1.01 }}
             transition={{ type: 'spring', stiffness: 200 }}
             className="max-w-3xl mx-auto rounded-3xl p-10 sm:p-14 text-center shadow-2xl border relative overflow-hidden"
-            style={{ background: `linear-gradient(135deg, ${B} 0%, #562a1c 100%)`, borderColor: 'rgba(245,239,230,0.2)' }}>
+            style={{ background: `linear-gradient(135deg, ${B} 0%, #4A2B20 100%)`, borderColor: 'rgba(253,249,247,0.2)' }}>
             {/* Shimmer effect */}
             {!reduced && (
               <motion.div className="absolute inset-0 opacity-15"
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'easeInOut' }}
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(245,239,230,0.5), transparent)', width: '40%' }}
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(253,249,247,0.5), transparent)', width: '40%' }}
                 aria-hidden="true" />
             )}
             <div className="relative z-10">
@@ -618,7 +623,7 @@ export function HomePage() {
                 animate={reduced ? {} : { scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }} aria-hidden="true">
                 <span>🇫🇷</span>
-                <motion.span className="text-lg" style={{ color: 'rgba(245,239,230,0.5)' }}
+                <motion.span className="text-lg" style={{ color: 'rgba(253,249,247,0.5)' }}
                   animate={reduced ? {} : { opacity: [0.3, 1, 0.3] }}
                   transition={{ duration: 1.5, repeat: Infinity }}>×</motion.span>
                 <span>🇨🇲</span>
@@ -626,7 +631,7 @@ export function HomePage() {
               <h2 className="text-2xl sm:text-4xl font-black mb-4" style={{ color: BEIGE }}>
                 {T("Ensemble, changeons des vies", "Together, let's change lives")}
               </h2>
-              <p className="text-base sm:text-lg mb-8 leading-relaxed" style={{ color: 'rgba(245,239,230,0.85)' }}>
+              <p className="text-base sm:text-lg mb-8 leading-relaxed" style={{ color: 'rgba(253,249,247,0.85)' }}>
                 {T("Un enfant qui reçoit des fournitures scolaires aujourd'hui peut devenir le médecin ou l'ingénieur de demain. Votre geste compte — vraiment.",
                    "A child who receives school supplies today can become tomorrow's doctor or engineer. Your gesture truly matters.")}
               </p>
@@ -640,7 +645,7 @@ export function HomePage() {
                     whileHover={reduced ? {} : { scale: 1.08, y: -3 }}>
                     <Link href="/don"
                       className="btn-ripple block font-bold text-base px-6 py-3 rounded-xl border-2 transition-all duration-200"
-                      style={{ borderColor: 'rgba(245,239,230,0.4)', color: BEIGE, background: 'rgba(245,239,230,0.1)' }}>
+                      style={{ borderColor: 'rgba(253,249,247,0.4)', color: BEIGE, background: 'rgba(253,249,247,0.1)' }}>
                       {amount} €
                     </Link>
                   </motion.div>
@@ -653,7 +658,7 @@ export function HomePage() {
                   </Link>
                 </motion.div>
               </div>
-              <p className="text-xs" style={{ color: 'rgba(245,239,230,0.5)' }}>
+              <p className="text-xs" style={{ color: 'rgba(253,249,247,0.5)' }}>
                 {T('✓ Association reconnue · ✓ Impact direct · ✓ Transparence totale',
                    '✓ Recognized association · ✓ Direct impact · ✓ Full transparency')}
               </p>
@@ -663,10 +668,10 @@ export function HomePage() {
       </section>
 
       {/* ══ PROCHAIN ÉVÉNEMENT ═══════════════════════════════════════════════ */}
-      <section className="py-16 px-4" style={{ background: '#fdf8f5' }}>
+      <section className="py-16 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: '#2a1209' }}>
+            <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: '#24140E' }}>
               {T('Notre prochain grand rendez-vous', 'Our next big event')}
             </h2>
             <motion.div className="mx-auto h-1 rounded-full"
@@ -683,7 +688,7 @@ export function HomePage() {
               className="group flex flex-col sm:flex-row items-center gap-6 rounded-3xl p-6 border shadow-md"
               style={{ background: '#fff', borderColor: BORDER }}>
               <div className="flex-shrink-0 w-full sm:w-32 h-28 sm:h-24 rounded-2xl overflow-hidden flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #1a4a1a, #2d6a2d)' }}>
+                style={{ background: 'linear-gradient(135deg, #1F4A2C, #2E7D44)' }}>
                 <motion.div animate={reduced ? {} : { rotate: [0, -5, 5, -3, 3, 0] }}
                   transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}>
                   <svg viewBox="0 0 100 70" className="w-24 h-16" aria-hidden="true">
@@ -699,15 +704,15 @@ export function HomePage() {
                   <motion.span className="text-xs font-black uppercase px-2 py-0.5 rounded-full"
                     animate={reduced ? {} : { scale: [1, 1.05, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    style={{ background: '#fbbf24', color: '#1a0e0a' }}>
+                    style={{ background: '#F2C94C', color: '#170D09' }}>
                     {T('À venir', 'Upcoming')}
                   </motion.span>
-                  <span className="text-xs" style={{ color: '#9a7060' }}>🗓️ 17 {T('juillet', 'July')} 2026</span>
+                  <span className="text-xs" style={{ color: '#86655A' }}>🗓️ 17 {T('juillet', 'July')} 2026</span>
                 </div>
-                <h3 className="font-black text-lg" style={{ color: '#2a1209' }}>
+                <h3 className="font-black text-lg" style={{ color: '#24140E' }}>
                   {T('Tournoi de Football — 1ère Édition', 'Football Tournament — 1st Edition')}
                 </h3>
-                <p className="text-sm mt-1" style={{ color: '#9a7060' }}>
+                <p className="text-sm mt-1" style={{ color: '#86655A' }}>
                   Villemomble · Île-de-France · {T('Restauration · Musique', 'Food · Music')}
                 </p>
               </div>

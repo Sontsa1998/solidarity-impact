@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useThemeContext } from '@/components/providers/ThemeProvider';
 import { useI18nContext } from '@/components/providers/I18nProvider';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 
 const NAV_LINKS = [
   { href: '/',            labelFr: 'Accueil',      labelEn: 'Home'      },
@@ -64,17 +64,17 @@ function CloseIcon() {
 }
 
 // ─── Couleurs brand (logo) ────────────────────────────────────────────────────
-// Marron #7B3F2A  |  Beige #F5EFE6
+// Marron #6B3E2E  |  Beige #FDF9F7
 const BRAND = {
-  active:      'text-[#7B3F2A] dark:text-[#d4ae92] bg-[#F5EFE6] dark:bg-[#3d2318] font-semibold',
-  hover:       'text-[#562a1c] dark:text-[#d4ae92] hover:bg-[#F5EFE6] dark:hover:bg-[#3d2318]',
-  default:     'text-[#3d2318] dark:text-[#d4ae92]',
-  ctaBg:       'bg-[#7B3F2A] hover:bg-[#6a3423] active:bg-[#562a1c] text-[#F5EFE6]',
-  pill:        'bg-[#F5EFE6] dark:bg-[#3d2318]',
-  pillActive:  'bg-white dark:bg-[#562a1c] text-[#7B3F2A] dark:text-[#d4ae92] shadow-sm',
-  pillDefault: 'text-[#9a7060] dark:text-[#9a7060] hover:text-[#562a1c] dark:hover:text-[#d4ae92]',
-  iconBtn:     'text-[#7B3F2A] dark:text-[#d4ae92] hover:bg-[#F5EFE6] dark:hover:bg-[#3d2318]',
-  focus:       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7B3F2A] focus-visible:ring-offset-1',
+  active:      'text-[#6B3E2E] dark:text-[#D2B8AA] bg-[#FDF9F7] dark:bg-[#3A2219] font-semibold',
+  hover:       'text-[#4A2B20] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]',
+  default:     'text-[#3A2219] dark:text-[#D2B8AA]',
+  ctaBg:       'bg-[#6B3E2E] hover:bg-[#5A3426] active:bg-[#4A2B20] text-[#FDF9F7]',
+  pill:        'bg-[#FDF9F7] dark:bg-[#3A2219]',
+  pillActive:  'bg-white dark:bg-[#4A2B20] text-[#6B3E2E] dark:text-[#D2B8AA] shadow-sm',
+  pillDefault: 'text-[#86655A] dark:text-[#A8836F] hover:text-[#4A2B20] dark:hover:text-[#D2B8AA]',
+  iconBtn:     'text-[#6B3E2E] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]',
+  focus:       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B3E2E] focus-visible:ring-offset-1',
 };
 
 export function Navbar() {
@@ -127,10 +127,10 @@ export function Navbar() {
       role="banner"
       className={[
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        'border-b border-[#e8d5c4] dark:border-[#3d2318]',
+        'border-b border-[#EBDDD4] dark:border-[#3A2219]',
         scrolled
-          ? 'bg-[#fdf8f5]/96 dark:bg-[#1a0e0a]/96 backdrop-blur-md shadow-md'
-          : 'bg-[#F5EFE6] dark:bg-[#1a0e0a]',
+          ? 'bg-[#FFFFFF]/96 dark:bg-[#170D09]/96 backdrop-blur-md shadow-md'
+          : 'bg-[#FDF9F7] dark:bg-[#170D09]',
       ].join(' ')}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,13 +139,15 @@ export function Navbar() {
           {/* Logo + Nom */}
           <Link href="/" className={`flex items-center gap-3 group rounded-lg ${BRAND.focus}`}
             aria-label="Solidarity Impact — Retour à l'accueil">
-            <Image src="/logo.png" alt="Logo Solidarity Impact" width={40} height={40} priority
-              className="h-10 w-10 rounded-full object-cover ring-2 ring-[#e8d5c4] dark:ring-[#3d2318]" />
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className={`font-bold text-base transition-colors group-hover:text-[#7B3F2A] dark:group-hover:text-[#d4ae92] text-[#2a1209] dark:text-[#f5efe6]`}>
-                Solidarity Impact
+            <BrandLogo variant="compact"
+              className="h-12 w-auto text-[#6B3E2E] dark:text-[#F2C94C] transition-transform duration-200 group-hover:scale-105" />
+            <div className="hidden sm:flex flex-col leading-tight border-l border-[#EBDDD4] dark:border-[#3A2219] pl-3">
+              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3FA45B]">
+                {lang === 'en' ? 'The future within reach' : "L'avenir à portée de main"}
               </span>
-              <span className="text-xs text-[#9a7060]">Association franco-camerounaise</span>
+              <span className="text-xs text-[#86655A] dark:text-[#A8836F]">
+                {lang === 'en' ? 'Franco-Cameroonian association' : 'Association franco-camerounaise'}
+              </span>
             </div>
           </Link>
 
@@ -160,7 +162,7 @@ export function Navbar() {
                   className={[
                     'px-3 py-2 rounded-lg text-sm transition-all duration-200',
                     BRAND.focus,
-                    isActive ? BRAND.active : `text-[#562a1c] dark:text-[#d4ae92] hover:text-[#7B3F2A] dark:hover:text-[#f5efe6] ${BRAND.hover}`,
+                    isActive ? BRAND.active : `text-[#4A2B20] dark:text-[#D2B8AA] hover:text-[#6B3E2E] dark:hover:text-[#FDF9F7] ${BRAND.hover}`,
                   ].join(' ')}
                 >
                   {label}
@@ -223,7 +225,7 @@ export function Navbar() {
       {/* Menu mobile */}
       {menuOpen && (
         <div ref={menuRef} id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navigation"
-          className="lg:hidden border-t border-[#e8d5c4] dark:border-[#3d2318] bg-[#F5EFE6] dark:bg-[#1a0e0a] shadow-xl">
+          className="lg:hidden border-t border-[#EBDDD4] dark:border-[#3A2219] bg-[#FDF9F7] dark:bg-[#170D09] shadow-xl">
           <nav aria-label="Navigation mobile" className="px-4 py-3 flex flex-col gap-1">
             {NAV_LINKS.map(({ href, labelFr, labelEn }) => {
               const label = lang === 'en' ? labelEn : labelFr;
@@ -233,14 +235,14 @@ export function Navbar() {
                   aria-current={isActive ? 'page' : undefined}
                   className={[
                     'px-4 py-3 rounded-xl text-base font-medium transition-all duration-200',
-                    isActive ? BRAND.active : `text-[#562a1c] dark:text-[#d4ae92] hover:bg-[#F5EFE6] dark:hover:bg-[#3d2318]`,
+                    isActive ? BRAND.active : `text-[#4A2B20] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]`,
                   ].join(' ')}>
                   {label}
                 </Link>
               );
             })}
           </nav>
-          <div className="px-4 pb-4 flex items-center justify-between border-t border-[#e8d5c4] dark:border-[#3d2318] pt-3">
+          <div className="px-4 pb-4 flex items-center justify-between border-t border-[#EBDDD4] dark:border-[#3A2219] pt-3">
             <div className={`flex items-center gap-0.5 rounded-lg p-0.5 ${BRAND.pill}`}>
               {(['fr', 'en'] as const).map((code) => (
                 <button key={code} type="button" onClick={() => setLang(code)} disabled={lang === code}

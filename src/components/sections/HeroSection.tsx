@@ -38,14 +38,14 @@ export function HeroSection() {
       id="hero"
       aria-labelledby="hero-title"
       className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center overflow-hidden px-4 py-20 text-center"
-      style={{ background: 'linear-gradient(135deg, #F5EFE6 0%, #fdf8f5 50%, #ede4d8 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #FDF9F7 0%, #FFFFFF 50%, #F6EDE7 100%)' }}
     >
       {/* Cercles décoratifs marron/beige */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full opacity-20"
-          style={{ background: 'radial-gradient(circle, #7B3F2A 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, #6B3E2E 0%, transparent 70%)' }} />
         <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full opacity-10"
-          style={{ background: 'radial-gradient(circle, #7B3F2A 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, #6B3E2E 0%, transparent 70%)' }} />
       </div>
 
       <div className="relative mx-auto max-w-4xl">
@@ -54,9 +54,9 @@ export function HeroSection() {
         <motion.div
           custom={0} variants={v} initial="hidden" animate="visible"
           className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium border"
-          style={{ background: '#F5EFE6', borderColor: '#e8d5c4', color: '#7B3F2A' }}
+          style={{ background: '#FDF9F7', borderColor: '#EBDDD4', color: '#6B3E2E' }}
         >
-          <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#7B3F2A' }} aria-hidden="true" />
+          <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#6B3E2E' }} aria-hidden="true" />
           {lang === 'en' ? 'Franco-Cameroonian Association — Law 1901' : 'Association franco-camerounaise — Loi 1901'}
         </motion.div>
 
@@ -65,17 +65,17 @@ export function HeroSection() {
           id="hero-title"
           custom={0.15} variants={v} initial="hidden" animate="visible"
           className="font-bold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight"
-          style={{ color: '#2a1209' }}
+          style={{ color: '#24140E' }}
         >
           SOLIDARITY<br />
-          <span style={{ color: '#7B3F2A' }}>IMPACT</span>
+          <span style={{ color: '#6B3E2E' }}>IMPACT</span>
         </motion.h1>
 
         {/* Tagline */}
         <motion.p
           custom={0.3} variants={v} initial="hidden" animate="visible"
           className="mt-5 text-xl sm:text-2xl font-semibold"
-          style={{ color: '#562a1c' }}
+          style={{ color: '#4A2B20' }}
         >
           {lang === 'en' ? 'The future within reach' : "L'avenir à portée de main"}
         </motion.p>
@@ -84,7 +84,7 @@ export function HeroSection() {
         <motion.p
           custom={0.45} variants={v} initial="hidden" animate="visible"
           className="mt-5 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed"
-          style={{ color: '#9a7060' }}
+          style={{ color: '#86655A' }}
         >
           {lang === 'en'
             ? 'Franco-Cameroonian association committed to education, support for orphanages and local development in Cameroon, based in Villemomble.'
@@ -101,13 +101,13 @@ export function HeroSection() {
             href="/don"
             className="inline-flex items-center gap-2 rounded-xl font-semibold text-base px-8 py-3.5 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
-              background: '#7B3F2A',
-              color: '#F5EFE6',
+              background: '#6B3E2E',
+              color: '#FDF9F7',
               // @ts-expect-error css var
-              '--tw-ring-color': '#7B3F2A',
+              '--tw-ring-color': '#6B3E2E',
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#6a3423')}
-            onMouseLeave={e => (e.currentTarget.style.background = '#7B3F2A')}
+            onMouseEnter={e => (e.currentTarget.style.background = '#5A3426')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#6B3E2E')}
           >
             <span>❤️</span>
             {lang === 'en' ? 'Make a donation' : 'Faire un don'}
@@ -117,8 +117,8 @@ export function HeroSection() {
           <Link
             href="/a-propos"
             className="inline-flex items-center gap-2 rounded-xl font-semibold text-base px-8 py-3.5 border-2 bg-transparent transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-            style={{ borderColor: '#7B3F2A', color: '#7B3F2A' }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#F5EFE6'; }}
+            style={{ borderColor: '#6B3E2E', color: '#6B3E2E' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#FDF9F7'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
           >
             {lang === 'en' ? 'Learn more' : 'En savoir plus'}
@@ -140,8 +140,8 @@ export function HeroSection() {
             { value: '3',    labelFr: "Domaines d'action", labelEn: 'Action areas' },
           ].map(({ value, labelFr, labelEn }) => (
             <div key={value} className="flex flex-col items-center gap-1">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: '#7B3F2A' }}>{value}</span>
-              <span className="text-xs sm:text-sm text-center" style={{ color: '#9a7060' }}>
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: '#6B3E2E' }}>{value}</span>
+              <span className="text-xs sm:text-sm text-center" style={{ color: '#86655A' }}>
                 {lang === 'en' ? labelEn : labelFr}
               </span>
             </div>
@@ -154,7 +154,7 @@ export function HeroSection() {
         <motion.div
           variants={chevronVariants} animate="animate"
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          style={{ color: '#d4ae92' }}
+          style={{ color: '#D2B8AA' }}
           aria-hidden="true"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

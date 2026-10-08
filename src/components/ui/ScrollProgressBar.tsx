@@ -23,16 +23,16 @@ export function ScrollProgressBar() {
     <div
       aria-hidden="true"
       className="fixed top-0 left-0 right-0 z-[100] h-[3px]"
-      style={{ background: 'rgba(123,63,42,0.12)' }}
+      style={{ background: 'rgba(107,62,46,0.12)' }}
     >
       <div
         className="h-full transition-none"
         style={{
           width: `${pct}%`,
-          background: 'linear-gradient(90deg, #7B3F2A, #c4622e, #7B3F2A)',
+          background: 'linear-gradient(90deg, #6B3E2E, #F2C94C, #3FA45B)',
           backgroundSize: '200% 100%',
           animation: 'shimmer 2s linear infinite',
-          boxShadow: '0 0 8px rgba(123,63,42,0.5)',
+          boxShadow: '0 0 8px rgba(107,62,46,0.5)',
         }}
       />
     </div>

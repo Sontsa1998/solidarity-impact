@@ -48,7 +48,7 @@ export function ThemeToggle() {
         'border border-gray-200 dark:border-gray-700',
         'hover:bg-gray-200 dark:hover:bg-gray-700',
         'focus-visible:outline-none',
-        'focus-visible:ring-2 focus-visible:ring-[#7B3F2A] focus-visible:ring-offset-2',
+        'focus-visible:ring-2 focus-visible:ring-[#6B3E2E] focus-visible:ring-offset-2',
         'transition-colors duration-300',
         'cursor-pointer',
         'text-xl',

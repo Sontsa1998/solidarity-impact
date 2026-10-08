@@ -276,6 +276,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .animate-float     { animation: float 4s ease-in-out infinite; }
 .animate-float-2   { animation: float 5s ease-in-out infinite 0.5s; }
 .animate-float-3   { animation: float 6s ease-in-out infinite 1s; }
+/* Zoom lent des photos du moodboard (désactivé si mouvement réduit, cf. plus haut) */
+@keyframes moodboard-zoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+.animate-moodboard-zoom { animation: moodboard-zoom 18s ease-in-out infinite alternate; }
+
 .animate-spin-slow { animation: spin-slow 12s linear infinite; }
 .animate-glow      { animation: glow-pulse 2s ease-in-out infinite; }
 .animate-shimmer   { animation: shimmer 2.5s linear infinite; background-size: 200% 100%; }

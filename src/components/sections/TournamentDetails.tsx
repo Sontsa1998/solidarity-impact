@@ -7,11 +7,13 @@ import { TeamRegistrationModal } from '@/components/ui/TeamRegistrationModal';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const TOURNAMENT_DATE = new Date('2026-07-16T23:59:59');
+// Coup d'envoi du tournoi : 17 juillet 2027 à 09h00, heure de Paris (UTC+2 en été).
+// Le fuseau explicite garantit le même compte à rebours pour tous les visiteurs.
+const TOURNAMENT_DATE = new Date('2027-07-17T09:00:00+02:00');
 
-const B = '#7B3F2A';
-const BEIGE = '#F5EFE6';
-const BORDER = '#e8d5c4';
+const B = '#6B3E2E';
+const BEIGE = '#FDF9F7';
+const BORDER = '#EBDDD4';
 
 const ORGA_CARDS = [
   { icon: '⚽', titleFr: 'Recrutement des équipes',  titleEn: 'Team recruitment',   descFr: 'Les inscriptions sont ouvertes ! Nous recrutons des équipes de 7 à 11 joueurs. Maximum 12 équipes participantes.', descEn: 'Registrations are open! We are recruiting teams of 7 to 11 players. Maximum 12 participating teams.' },
@@ -33,7 +35,7 @@ export function TournamentDetails() {
       {/* HERO */}
       <section aria-labelledby="tournament-title"
         className="relative min-h-[60vh] flex flex-col items-center justify-center overflow-hidden py-20 px-4 text-center"
-        style={{ background: 'linear-gradient(160deg, #1a4a1a 0%, #2d6a2d 35%, #1e3a1e 70%, #0f2010 100%)' }}>
+        style={{ background: 'linear-gradient(160deg, #1F4A2C 0%, #2E7D44 35%, #183A23 70%, #0D2014 100%)' }}>
         <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 800 500"
           preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <rect x="40" y="40" width="720" height="420" fill="none" stroke="white" strokeWidth="2"/>
@@ -53,16 +55,16 @@ export function TournamentDetails() {
         ))}
         <AnimatedSection animation="fadeIn">
           <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 font-semibold text-sm"
-            style={{ background: 'rgba(245,239,230,0.15)', border: '1px solid rgba(245,239,230,0.3)', color: BEIGE }}>
-            <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#fbbf24' }} aria-hidden="true"/>
-            {lang === 'en' ? '🗓️ July 17, 2026 — Villemomble' : '🗓️ 17 Juillet 2026 — Villemomble'}
+            style={{ background: 'rgba(253,249,247,0.15)', border: '1px solid rgba(253,249,247,0.3)', color: BEIGE }}>
+            <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#F2C94C' }} aria-hidden="true"/>
+            {lang === 'en' ? '🗓️ July 17, 2027 — Villemomble' : '🗓️ 17 Juillet 2027 — Villemomble'}
           </div>
           <h1 id="tournament-title" className="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 leading-tight"
             style={{ color: BEIGE, textShadow: '0 2px 16px rgba(0,0,0,0.4)' }}>
-            {lang === 'en' ? <>SOLIDARITY IMPACT<br /><span style={{ color: '#fbbf24' }}>FOOTBALL TOURNAMENT</span></> : <>TOURNOI DE FOOTBALL<br /><span style={{ color: '#fbbf24' }}>SOLIDARITY IMPACT</span></>}
+            {lang === 'en' ? <>SOLIDARITY IMPACT<br /><span style={{ color: '#F2C94C' }}>FOOTBALL TOURNAMENT</span></> : <>TOURNOI DE FOOTBALL<br /><span style={{ color: '#F2C94C' }}>SOLIDARITY IMPACT</span></>}
           </h1>
           <p className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'rgba(245,239,230,0.85)' }}>
+            style={{ color: 'rgba(253,249,247,0.85)' }}>
             {lang === 'en'
               ? 'The first solidarity football tournament. Teams from Île-de-France compete for the trophy. Food stands, music and prizes await you!'
               : "Le premier tournoi de football solidaire. Des équipes d'Île-de-France s'affrontent pour le trophée. Stands de restauration, musique et lots à gagner !"}
@@ -73,28 +75,28 @@ export function TournamentDetails() {
       {/* COUNTDOWN */}
       <section className="py-14 px-4" style={{ background: BEIGE }}>
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#9a7060' }}>
+          <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#86655A' }}>
             {lang === 'en' ? '⏱️ Time remaining before kick-off' : "⏱️ Temps restant avant le coup d'envoi"}
           </p>
           <h2 className="text-2xl sm:text-3xl font-black mb-10" style={{ color: B }}>
             {lang === 'en' ? 'The tournament starts in…' : 'Le tournoi commence dans…'}
           </h2>
           <Countdown targetDate={tournamentDate} />
-          <p className="mt-8 text-sm font-medium" style={{ color: '#9a7060' }}>
-            {lang === 'en' ? '📍 Villemomble (93250) · 17 July 2026 from 9:00 AM' : '📍 Villemomble (93250) · 17 Juillet 2026 dès 09h00'}
+          <p className="mt-8 text-sm font-medium" style={{ color: '#86655A' }}>
+            {lang === 'en' ? '📍 Villemomble (93250) · 17 July 2027 from 9:00 AM' : '📍 Villemomble (93250) · 17 Juillet 2027 dès 09h00'}
           </p>
         </div>
       </section>
 
       {/* ORGANISATION */}
-      <section className="py-16 px-4" style={{ background: '#fdf8f5' }}>
+      <section className="py-16 px-4" style={{ background: '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: B }}>
               {lang === 'en' ? '🏗️ Tournament Organisation' : '🏗️ Organisation du Tournoi'}
             </h2>
             <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: B }}/>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#9a7060' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
               {lang === 'en' ? 'Everything is being prepared to offer you an unforgettable day.' : 'Tout est en cours de préparation pour vous offrir une journée inoubliable.'}
             </p>
           </AnimatedSection>
@@ -105,7 +107,7 @@ export function TournamentDetails() {
                   style={{ background: '#fff', borderColor: BORDER }}>
                   <div className="text-4xl mb-3" aria-hidden="true">{icon}</div>
                   <h3 className="text-base font-bold mb-2" style={{ color: B }}>{lang === 'en' ? titleEn : titleFr}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#562a1c' }}>{lang === 'en' ? descEn : descFr}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#4A2B20' }}>{lang === 'en' ? descEn : descFr}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -115,19 +117,19 @@ export function TournamentDetails() {
 
       {/* PROGRAMME / CALENDRIER */}
       <section className="py-16 px-4"
-        style={{ background: 'linear-gradient(135deg, #1a4a1a 0%, #2d5a2d 100%)' }}>
+        style={{ background: 'linear-gradient(135deg, #1F4A2C 0%, #2A6A3E 100%)' }}>
         <div className="max-w-3xl mx-auto">
           <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: BEIGE }}>
               {lang === 'en' ? '📋 Match Schedule' : '📋 Programme de la Journée'}
             </h2>
-            <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full" style={{ background: '#fbbf24' }}/>
+            <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full" style={{ background: '#F2C94C' }}/>
           </AnimatedSection>
           <div className="relative overflow-hidden rounded-3xl border"
-            style={{ borderColor: 'rgba(245,239,230,0.15)' }}>
+            style={{ borderColor: 'rgba(253,249,247,0.15)' }}>
             <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 600 320"
               preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="600" height="320" fill="#1a4a1a"/>
+              <rect width="600" height="320" fill="#1F4A2C"/>
               <rect x="20" y="20" width="560" height="280" fill="none" stroke="white" strokeWidth="2"/>
               <line x1="20" y1="160" x2="580" y2="160" stroke="white" strokeWidth="2"/>
               <circle cx="300" cy="160" r="50" fill="none" stroke="white" strokeWidth="2"/>
@@ -145,14 +147,14 @@ export function TournamentDetails() {
                 {lang === 'en' ? 'MATCH SCHEDULE\nCOMING SOON' : 'CALENDRIER DE MATCH\nBIENTÔT DISPONIBLE'}
               </h3>
               <p className="mt-6 text-sm sm:text-base font-medium max-w-md mx-auto"
-                style={{ color: 'rgba(245,239,230,0.7)' }}>
+                style={{ color: 'rgba(253,249,247,0.7)' }}>
                 {lang === 'en'
                   ? 'The match schedule will be published once all teams are confirmed.'
                   : 'Le calendrier sera publié dès que toutes les équipes seront confirmées.'}
               </p>
               <div className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm"
-                style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.4)', color: '#fbbf24' }}>
-                <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#fbbf24' }} aria-hidden="true"/>
+                style={{ background: 'rgba(242,201,76,0.15)', border: '1px solid rgba(242,201,76,0.4)', color: '#F2C94C' }}>
+                <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#F2C94C' }} aria-hidden="true"/>
                 {lang === 'en' ? 'Registrations open — 12 teams max' : 'Inscriptions ouvertes — 12 équipes maximum'}
               </div>
             </div>
@@ -164,12 +166,12 @@ export function TournamentDetails() {
       <section className="py-16 px-4" style={{ background: BEIGE }}>
         <AnimatedSection animation="slideUp" threshold={0.2}>
           <div className="max-w-2xl mx-auto rounded-3xl p-8 sm:p-12 text-center shadow-xl border"
-            style={{ background: 'linear-gradient(135deg, #fff 0%, #fdf5f0 100%)', borderColor: BORDER, boxShadow: '0 20px 60px rgba(123,63,42,0.12)' }}>
+            style={{ background: 'linear-gradient(135deg, #fff 0%, #FBF4EF 100%)', borderColor: BORDER, boxShadow: '0 20px 60px rgba(107,62,46,0.12)' }}>
             <div className="text-6xl mb-4" aria-hidden="true">⚽</div>
             <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: B }}>
               {lang === 'en' ? 'Want to participate?' : 'Envie de participer ?'}
             </h2>
-            <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: '#562a1c' }}>
+            <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: '#4A2B20' }}>
               {lang === 'en'
                 ? 'Register your team now. Places are limited to 12 teams!'
                 : 'Inscris ton équipe dès maintenant. Les places sont limitées à 12 équipes !'}
@@ -177,12 +179,12 @@ export function TournamentDetails() {
             <button type="button" onClick={() => setModalOpen(true)}
               className="inline-flex items-center gap-3 font-black text-base px-8 py-4 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1"
               style={{ background: B, color: BEIGE }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#6a3423'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
               onMouseLeave={e => { e.currentTarget.style.background = B; }}>
               <span className="text-xl" aria-hidden="true">🏆</span>
               {lang === 'en' ? 'Register my team now' : 'Inscrire mon équipe maintenant'}
             </button>
-            <p className="mt-6 text-xs font-medium" style={{ color: '#9a7060' }}>
+            <p className="mt-6 text-xs font-medium" style={{ color: '#86655A' }}>
               {lang === 'en' ? '✓ Free · ✓ 7 to 11 players · ✓ All levels' : '✓ Gratuit · ✓ 7 à 11 joueurs · ✓ Tous niveaux'}
             </p>
           </div>
@@ -198,16 +200,16 @@ export function TournamentDetails() {
       >
         <button type="button" onClick={() => setModalOpen(true)}
           className="w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl transition-all duration-200 hover:-translate-y-1"
-          style={{ background: B, color: BEIGE, border: '2px solid rgba(245,239,230,0.25)' }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#6a3423'; }}
+          style={{ background: B, color: BEIGE, border: '2px solid rgba(253,249,247,0.25)' }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
           onMouseLeave={e => { e.currentTarget.style.background = B; }}>
           <span className="text-2xl flex-shrink-0" aria-hidden="true">⚽</span>
           <div className="flex flex-col items-start leading-tight">
-            <span className="text-xs font-semibold opacity-75">{lang === 'en' ? 'July 17, 2026' : '17 Juillet 2026'}</span>
+            <span className="text-xs font-semibold opacity-75">{lang === 'en' ? 'July 17, 2027' : '17 Juillet 2027'}</span>
             <span className="text-sm font-black">{lang === 'en' ? 'Register your team now →' : 'Inscris ton équipe maintenant →'}</span>
           </div>
           <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full"
-            style={{ background: '#fbbf24', color: '#1a0e0a' }}>
+            style={{ background: '#F2C94C', color: '#170D09' }}>
             {lang === 'en' ? 'Free' : 'Gratuit'}
           </span>
         </button>

@@ -47,7 +47,7 @@ export function CursorSpotlight() {
       aria-hidden="true"
       className="pointer-events-none fixed top-0 left-0 z-[1] w-[400px] h-[400px] rounded-full"
       style={{
-        background: 'radial-gradient(circle, rgba(123,63,42,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(107,62,46,0.06) 0%, transparent 70%)',
         willChange: 'transform',
       }}
     />

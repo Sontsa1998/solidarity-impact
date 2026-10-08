@@ -35,6 +35,8 @@ export interface Translations {
   };
   about: {
     sectionTitle: string;
+    visionTitle: string;
+    visionText: string;
     missionTitle: string;
     missionText: string;
     valuesTitle: string;
@@ -148,6 +150,10 @@ export const fr: Translations = {
   // ── À propos ────────────────────────────────────────────────────────────
   about: {
     sectionTitle: "À propos",
+    visionTitle: "Notre vision",
+    // Vision de la marque — charte graphique (DossierSI_2026V3)
+    visionText:
+      "Faire de la solidarité franco-camerounaise une force collective, structurée et durable, capable de transformer concrètement les réalités au Cameroun grâce à l'engagement de la diaspora, à des partenariats solides et à un impact mesurable.",
     missionTitle: "Notre mission",
     // Requirement 6.1 — mission officielle des statuts
     missionText:

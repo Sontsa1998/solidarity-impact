@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 import { ClientLayout } from "@/components/providers/ClientLayout";
 
-const poppins = Poppins({
+// Typographies de la charte graphique : Montserrat (titres) · Open Sans (texte)
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-open-sans",
   display: "swap",
 });
 
@@ -42,8 +50,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={poppins.variable} suppressHydrationWarning>
-      <body className={`${poppins.className} antialiased`} suppressHydrationWarning>
+    <html lang="fr" className={`${montserrat.variable} ${openSans.variable}`} suppressHydrationWarning>
+      <body className={`${openSans.className} antialiased`} suppressHydrationWarning>
         {/*
           Skip link accessibilité clavier — doit rester en dehors des providers
           pour être le premier élément focusable de la page.

@@ -36,6 +36,9 @@ export const en: Translations = {
   // ── About ───────────────────────────────────────────────────────────────
   about: {
     sectionTitle: 'About',
+    visionTitle: 'Our vision',
+    visionText:
+      'To make Franco-Cameroonian solidarity a collective, structured and lasting force, able to make a real difference in Cameroon through the commitment of the diaspora, strong partnerships and measurable impact.',
     missionTitle: 'Our mission',
     missionText:
       'Solidarity Impact carries out Franco-Cameroonian solidarity actions in the fields of education, orphanage support, field operations in Cameroon, international partnerships and sustainable solidarity development. We believe that a shared commitment between France and Cameroon can transform lives and build a more equitable future for all.',

@@ -10,87 +10,101 @@
 
 /* ── Design tokens déclarés dans @theme (Tailwind v4) ──────────────────────── */
 @theme {
-  /* ── Palette logo Solidarity Impact ───────────────────────────────────────
-     Marron principal : #7B3F2A  (texte, illustration mains/arbre)
-     Beige/crème      : #F5EFE6  (fond logo)
-     Déclinaisons générées pour couvrir tous les états UI
+  /* ── Charte graphique Solidarity Impact (DossierSI_2026V3) ─────────────────
+     Marron  : #6B3E2E  — couleur principale (logo, textes, boutons)
+     Jaune   : #F2C94C  — accent chaleureux (badges, CTA sur fond sombre)
+     Vert    : #3FA45B  — accent nature / croissance
+     Crème   : #FDF9F7  — fond principal
+     Dégradés : marron→jaune, crème→jaune, vert→jaune
+     Typographies : Montserrat (titres) · Open Sans (texte)
      ─────────────────────────────────────────────────────────────────────── */
 
   /* Marron principal */
-  --color-brand-50:  #fdf8f5;   /* beige très clair */
-  --color-brand-100: #f5efe6;   /* beige logo */
-  --color-brand-200: #e8d5c4;
-  --color-brand-300: #d4ae92;
-  --color-brand-400: #b87d57;
-  --color-brand-500: #7b3f2a;   /* marron logo — couleur principale */
-  --color-brand-600: #6a3423;   /* hover */
-  --color-brand-700: #562a1c;   /* active / pressed */
-  --color-brand-800: #3e1e13;
-  --color-brand-900: #2a1209;
+  --color-brand-50:  #FFFFFF;
+  --color-brand-100: #FDF9F7;   /* crème charte */
+  --color-brand-200: #EBDDD4;
+  --color-brand-300: #D2B8AA;
+  --color-brand-400: #9C6A55;
+  --color-brand-500: #6B3E2E;   /* marron charte — couleur principale */
+  --color-brand-600: #5A3426;   /* hover */
+  --color-brand-700: #4A2B20;   /* active / pressed */
+  --color-brand-800: #36211A;
+  --color-brand-900: #24140E;
 
-  /* Accent chaud — orange terre cuite (complémentaire du marron) */
-  --color-accent-400: #d97b4a;
-  --color-accent-500: #c4622e;
-  --color-accent-600: #a84e22;
+  /* Jaune charte */
+  --color-sun-100: #FEF6DB;
+  --color-sun-500: #F2C94C;
+  --color-sun-600: #D9A82B;
+
+  /* Vert charte */
+  --color-leaf-50:  #EEF7F0;
+  --color-leaf-400: #5DB876;
+  --color-leaf-500: #3FA45B;
+  --color-leaf-600: #348A4C;
+  --color-leaf-700: #2E7D44;
+
+  /* Typographies */
+  --font-sans:    var(--font-open-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-montserrat), system-ui, sans-serif;
 }
 
 /* ── Variables CSS custom — tokens light / dark ─────────────────────────────── */
 :root {
   /* Surfaces */
-  --color-bg-primary:   #F5EFE6;   /* beige logo — fond principal */
-  --color-bg-secondary: #fdf8f5;   /* beige très léger */
-  --color-bg-tertiary:  #ede4d8;   /* beige légèrement plus soutenu */
+  --color-bg-primary:   #FDF9F7;   /* beige logo — fond principal */
+  --color-bg-secondary: #FFFFFF;   /* beige très léger */
+  --color-bg-tertiary:  #F6EDE7;   /* beige légèrement plus soutenu */
 
   /* Texte */
-  --color-text-primary:   #2a1209;  /* marron très foncé */
-  --color-text-secondary: #562a1c;
-  --color-text-muted:     #9a7060;
+  --color-text-primary:   #24140E;  /* marron très foncé */
+  --color-text-secondary: #4A2B20;
+  --color-text-muted:     #86655A;
 
   /* Bordures */
-  --color-border-default: #e8d5c4;
-  --color-border-subtle:  #f5efe6;
+  --color-border-default: #EBDDD4;
+  --color-border-subtle:  #FDF9F7;
 
   /* Brand */
-  --color-accent:        #7b3f2a;
-  --color-accent-hover:  #6a3423;
+  --color-accent:        #6B3E2E;
+  --color-accent-hover:  #5A3426;
 
   /* Header */
   --color-header-bg: rgba(255, 255, 255, 0.95);
 
   /* Card */
   --color-card-bg:     #ffffff;
-  --color-card-border: #e8d5c4;
+  --color-card-border: #EBDDD4;
 
   /* Compatibilité */
-  --background: #F5EFE6;
-  --foreground: #2a1209;
+  --background: #FDF9F7;
+  --foreground: #24140E;
 }
 
 .dark {
   /* Surfaces */
-  --color-bg-primary:   #1a0e0a;   /* marron très sombre */
-  --color-bg-secondary: #2a1a13;
-  --color-bg-tertiary:  #3d2318;
+  --color-bg-primary:   #170D09;   /* marron très sombre */
+  --color-bg-secondary: #24160F;
+  --color-bg-tertiary:  #3A2219;
 
   /* Texte */
-  --color-text-primary:   #f5efe6;  /* beige logo */
-  --color-text-secondary: #d4ae92;
-  --color-text-muted:     #9a7060;
+  --color-text-primary:   #FDF9F7;  /* beige logo */
+  --color-text-secondary: #D2B8AA;
+  --color-text-muted:     #A8836F;
 
   /* Bordures */
-  --color-border-default: #3d2318;
-  --color-border-subtle:  #2a1a13;
+  --color-border-default: #3A2219;
+  --color-border-subtle:  #24160F;
 
   /* Header */
-  --color-header-bg: rgba(26, 14, 10, 0.95);
+  --color-header-bg: rgba(23,13,9, 0.95);
 
   /* Card */
-  --color-card-bg:     #2a1a13;
-  --color-card-border: #3d2318;
+  --color-card-bg:     #24160F;
+  --color-card-border: #3A2219;
 
   /* Compatibilité */
-  --background: #1a0e0a;
-  --foreground: #f5efe6;
+  --background: #170D09;
+  --foreground: #FDF9F7;
 }
 
 /* ── Reset de base ───────────────────────────────────────────────────────────── */
@@ -140,16 +154,21 @@ html {
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-open-sans), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+/* Titres en Montserrat (charte graphique) */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
+
 /* ── Focus visible — couleur brand ──────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #7b3f2a;
+  outline: 2px solid #6B3E2E;
   outline-offset: 2px;
 }
 
@@ -184,8 +203,8 @@ body {
   overflow: visible;
   clip: auto;
   white-space: normal;
-  background-color: #562a1c;
-  color: #f5efe6;
+  background-color: #4A2B20;
+  color: #FDF9F7;
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0.375rem;
@@ -248,8 +267,8 @@ body {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(123,63,42,0.3), 0 0 20px rgba(123,63,42,0.1); }
-  50%       { box-shadow: 0 0 20px rgba(123,63,42,0.6), 0 0 40px rgba(123,63,42,0.2); }
+  0%, 100% { box-shadow: 0 0 8px rgba(107,62,46,0.3), 0 0 20px rgba(107,62,46,0.1); }
+  50%       { box-shadow: 0 0 20px rgba(107,62,46,0.6), 0 0 40px rgba(107,62,46,0.2); }
 }
 
 /* ── Classes utilitaires animation ──────────────────────────────────────────── */
@@ -268,12 +287,12 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 48px rgba(123, 63, 42, 0.15);
+  box-shadow: 0 20px 48px rgba(107,62,46, 0.15);
 }
 
-/* ── Texte dégradé marron ────────────────────────────────────────────────────── */
+/* ── Texte dégradé marron → jaune (charte) ────────────────────────────────────────────────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #7B3F2A 0%, #c4622e 50%, #7B3F2A 100%);
+  background: linear-gradient(135deg, #6B3E2E 0%, #D9A82B 50%, #6B3E2E 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -302,7 +321,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: #7B3F2A;
+  background: #6B3E2E;
   transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 2px;
 }

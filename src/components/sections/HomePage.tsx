@@ -8,6 +8,7 @@ import { FloatingParticles } from '@/components/ui/FloatingParticles';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { BrandMotif } from '@/components/brand/BrandMotif';
+import { MoodboardBackground } from '@/components/brand/MoodboardBackground';
 
 const B = '#6B3E2E', BH = '#5A3426', BEIGE = '#FDF9F7', BEIGE2 = '#FFFFFF', BORDER = '#EBDDD4';
 
@@ -126,6 +127,9 @@ export function HomePage() {
       <section ref={heroRef} id="hero" aria-labelledby="hero-title"
         className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden px-4 py-24 text-center"
         style={{ background: 'linear-gradient(160deg, #FDF9F7 0%, #FDF9F7 50%, #FBEFC8 100%)' }}>
+
+        {/* Moodboard de la charte en arrière-plan */}
+        <MoodboardBackground />
 
         {/* Particules flottantes */}
         <FloatingParticles count={30} />

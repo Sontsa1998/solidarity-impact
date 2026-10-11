@@ -66,9 +66,26 @@ export interface Translations {
     customLabel: string;
     customPlaceholder: string;
     buttonText: string;
-    mockWarning: string;
     errorInvalidAmount: string;
-    successMessage: string;
+    paymentTitle: string;
+    amountLabel: string;
+    changeAmount: string;
+    payWithCard: string;
+    payWithCardHint: string;
+    payWithPaypal: string;
+    payWithPaypalHint: string;
+    redirecting: string;
+    securePayment: string;
+    errorPayment: string;
+    cancelledMessage: string;
+    failedMessage: string;
+    thanksTitle: string;
+    thanksMessage: string;
+    thanksAmount: string;
+    pendingTitle: string;
+    pendingMessage: string;
+    backHome: string;
+    backToDonation: string;
   };
   contact: {
     sectionTitle: string;
@@ -210,14 +227,34 @@ export const fr: Translations = {
     presetLabel: "Choisissez un montant",
     customLabel: "Autre montant",
     customPlaceholder: "Montant en euros (ex: 30)",
-    buttonText: "Faire un don",
-    // Requirement 9.7 — avertissement visible
-    mockWarning:
-      "⚠️ Ce module de don est une démonstration. Aucune donnée financière réelle n'est collectée ni traitée.",
+    buttonText: "Continuer vers le paiement",
     errorInvalidAmount:
-      "Veuillez saisir un montant valide (minimum 1 €).",
-    successMessage:
-      "Merci pour votre générosité ! La fonctionnalité de paiement est en cours de déploiement. Votre intérêt nous touche profondément.",
+      "Veuillez saisir un montant valide (entre 1 € et 10 000 €).",
+    paymentTitle: "Choisissez votre mode de paiement",
+    amountLabel: "Montant de votre don",
+    changeAmount: "Modifier le montant",
+    payWithCard: "Carte bancaire",
+    payWithCardHint: "Paiement sécurisé par Stripe (Visa, Mastercard, CB…)",
+    payWithPaypal: "PayPal",
+    payWithPaypalHint: "Payez avec votre compte PayPal ou votre carte",
+    redirecting: "Redirection vers la page de paiement sécurisée…",
+    securePayment:
+      "🔒 Vos coordonnées bancaires sont saisies directement chez Stripe ou PayPal : elles ne transitent jamais par notre site.",
+    errorPayment:
+      "Le paiement n'a pas pu être initié. Veuillez réessayer ou choisir un autre mode de paiement.",
+    cancelledMessage:
+      "Le paiement a été annulé. Aucun montant n'a été débité — vous pouvez réessayer quand vous le souhaitez.",
+    failedMessage:
+      "Le paiement n'a pas pu être finalisé. Aucun montant n'a été débité — veuillez réessayer.",
+    thanksTitle: "Merci pour votre don !",
+    thanksMessage:
+      "Votre générosité nous permet d'agir concrètement pour l'éducation, les orphelinats et le développement local au Cameroun. Vous allez recevoir un reçu de paiement par e-mail.",
+    thanksAmount: "Montant reçu",
+    pendingTitle: "Paiement en cours de traitement",
+    pendingMessage:
+      "Votre paiement est en cours de validation par le prestataire. Vous recevrez une confirmation par e-mail dès qu'il sera finalisé.",
+    backHome: "Retour à l'accueil",
+    backToDonation: "Faire un autre don",
   },
 
   // ── Contact ─────────────────────────────────────────────────────────────

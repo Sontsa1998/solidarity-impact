@@ -18,6 +18,10 @@ export default function PolitiqueConfidentialitePage() {
               content: "L'association Solidarity Impact collecte uniquement les données que vous nous fournissez volontairement via le formulaire de contact (nom, email, message). Ces données sont utilisées exclusivement pour répondre à vos demandes.",
             },
             {
+              title: 'Paiement des dons',
+              content: "Les dons en ligne sont traités par nos prestataires de paiement Stripe (Stripe Payments Europe Ltd.) et PayPal (PayPal (Europe) S.à r.l. et Cie, S.C.A.). Vos coordonnées bancaires sont saisies directement sur leurs pages sécurisées et ne sont jamais collectées ni conservées par l'association. Nous recevons uniquement le montant du don ainsi que les informations transmises par le prestataire (nom et adresse e-mail du donateur) à des fins de suivi comptable.",
+            },
+            {
               title: 'Cookies',
               content: "Ce site utilise des cookies techniques nécessaires à son bon fonctionnement (préférences de thème, langue) ainsi que des cookies analytiques. Vous pouvez gérer vos préférences depuis la bannière de consentement affichée lors de votre première visite.",
             },

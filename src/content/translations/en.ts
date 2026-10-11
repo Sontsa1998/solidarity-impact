@@ -87,12 +87,30 @@ export const en: Translations = {
     presetLabel: 'Choose an amount',
     customLabel: 'Other amount',
     customPlaceholder: 'Amount in euros (e.g. 30)',
-    buttonText: 'Donate',
-    mockWarning:
-      '⚠️ This donation module is a demonstration. No real financial data is collected or processed.',
-    errorInvalidAmount: 'Please enter a valid amount (minimum €1).',
-    successMessage:
-      'Thank you for your generosity! The payment feature is being deployed. Your interest means a great deal to us.',
+    buttonText: 'Continue to payment',
+    errorInvalidAmount: 'Please enter a valid amount (between €1 and €10,000).',
+    paymentTitle: 'Choose your payment method',
+    amountLabel: 'Your donation',
+    changeAmount: 'Change amount',
+    payWithCard: 'Credit / debit card',
+    payWithCardHint: 'Secure payment by Stripe (Visa, Mastercard…)',
+    payWithPaypal: 'PayPal',
+    payWithPaypalHint: 'Pay with your PayPal account or card',
+    redirecting: 'Redirecting to the secure payment page…',
+    securePayment:
+      '🔒 Your card details are entered directly with Stripe or PayPal: they never pass through our website.',
+    errorPayment: 'The payment could not be started. Please try again or choose another payment method.',
+    cancelledMessage: 'The payment was cancelled. Nothing was charged — you can try again whenever you like.',
+    failedMessage: 'The payment could not be completed. Nothing was charged — please try again.',
+    thanksTitle: 'Thank you for your donation!',
+    thanksMessage:
+      'Your generosity helps us take concrete action for education, orphanages and local development in Cameroon. You will receive a payment receipt by email.',
+    thanksAmount: 'Amount received',
+    pendingTitle: 'Payment being processed',
+    pendingMessage:
+      'Your payment is being validated by the payment provider. You will receive an email confirmation once it is complete.',
+    backHome: 'Back to home',
+    backToDonation: 'Make another donation',
   },
 
   // ── Contact ─────────────────────────────────────────────────────────────

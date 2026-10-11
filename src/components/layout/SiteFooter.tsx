@@ -108,7 +108,8 @@ export function SiteFooter() {
               <li className="flex items-start gap-2.5 text-sm" style={{ color: '#A8836F' }}>
                 <MapPinIcon />
                 <address className="not-italic leading-relaxed">
-                  Villemomble, France
+                  89 rue de la Fosse aux Bergers<br />
+                  93250 Villemomble, France
                 </address>
               </li>
               <li className="flex items-center gap-2.5 text-sm">
@@ -157,7 +158,7 @@ export function SiteFooter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-center sm:text-left" style={{ color: '#A8836F' }}>
-              © <span suppressHydrationWarning>{year ?? ''}</span> Solidarity Impact. {lang === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'} — Association loi 1901
+              © <span suppressHydrationWarning>{year ?? ''}</span> Solidarity Impact. {lang === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'} — Association loi 1901 — RNA W931031771 — SIREN 105 826 440
             </p>
             <div className="flex items-center gap-4">
               {LEGAL_LINKS.map(({ href, labelFr, labelEn }) => (

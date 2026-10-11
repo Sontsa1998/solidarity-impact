@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import { siteConfig } from '@/content/config';
 
 export const metadata: Metadata = { title: 'Mentions légales — Solidarity Impact' };
 
 export default function MentionsLegalesPage() {
+  const a = siteConfig.association;
   return (
     <div style={{ background: '#FDF9F7', minHeight: '100vh' }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -16,9 +18,15 @@ export default function MentionsLegalesPage() {
               content: (
                 <p style={{ color: '#4A2B20' }}>
                   <strong>Solidarity Impact</strong><br />
-                  Association régie par la loi du 1er juillet 1901<br />
-                  Siège social : Villemomble<br />
-                  Date de fondation : 14 septembre 2025<br />
+                  Association déclarée, régie par la loi du 1er juillet 1901<br />
+                  Siège social : {a.address}, {a.addressComplement}, {a.postalCode} {a.city}<br />
+                  N° RNA : {a.rnaNumber}<br />
+                  SIREN : {a.sirenNumber} — SIRET du siège : {a.siretNumber}<br />
+                  Code APE : {a.apeCode}<br />
+                  Appartenance au champ de l'Économie Sociale et Solidaire (ESS) : {a.ess ? 'oui' : 'non'}<br />
+                  Date de fondation (AG constitutive) : 14 septembre 2025<br />
+                  Immatriculation au répertoire SIRENE : 28 mai 2026<br />
+                  Directeur de la publication : Florent Landry NWALL, Président<br />
                   Email : <a href="mailto:contact@solidarityimpact.org"
                     style={{ color: '#6B3E2E' }} className="hover:underline">
                     contact@solidarityimpact.org

@@ -25,8 +25,14 @@ export interface SiteConfig {
   association: {
     name: string;
     sirenNumber?: string;
+    siretNumber?: string;
+    rnaNumber?: string;
+    apeCode?: string;
+    ess?: boolean;
     foundationDate: string; // ISO 8601: "YYYY-MM-DD"
+    registrationDate?: string; // ISO 8601 — immatriculation au répertoire SIRENE
     address: string;
+    addressComplement?: string;
     city: string;
     postalCode: string;
   };
@@ -115,8 +121,16 @@ export const teamMembers: TeamMember[] = [
 export const siteConfig: SiteConfig = {
   association: {
     name: 'Solidarity Impact',
+    // Avis de situation au répertoire SIRENE (INSEE) du 04/06/2026
+    sirenNumber: '105 826 440',
+    siretNumber: '105 826 440 00015',
+    rnaNumber: 'W931031771',
+    apeCode: '94.99Z — Autres organisations fonctionnant par adhésion volontaire',
+    ess: true,
     foundationDate: '2025-09-14',
-    address: '',
+    registrationDate: '2026-05-28',
+    address: '89 rue de la Fosse aux Bergers',
+    addressComplement: 'Étage 1, appartement 3',
     city: 'Villemomble',
     postalCode: '93250',
   },

@@ -173,7 +173,7 @@ export const fr: Translations = {
     foundedPlace: "Villemomble, Seine-Saint-Denis",
     // Requirement 6.5 — informations légales
     legalInfo:
-      "Association régie par la loi du 1er juillet 1901, à vocation internationale. Siège social : Villemomble.",
+      "Association déclarée, régie par la loi du 1er juillet 1901, à vocation internationale et relevant de l'Économie Sociale et Solidaire. Siège social : 89 rue de la Fosse aux Bergers, 93250 Villemomble. RNA : W931031771 — SIREN : 105 826 440 — SIRET : 105 826 440 00015 — APE : 94.99Z.",
   },
 
   // ── Équipe ──────────────────────────────────────────────────────────────
@@ -257,7 +257,7 @@ export const fr: Translations = {
     // Token {year} remplacé dynamiquement (Requirement 11.1)
     rights: "© {year} Solidarity Impact. Tous droits réservés.",
     // Requirement 11.2 — adresse du siège social
-    address: "Villemomble",
+    address: "89 rue de la Fosse aux Bergers, 93250 Villemomble",
   },
 
   // ── Métadonnées SEO ─────────────────────────────────────────────────────

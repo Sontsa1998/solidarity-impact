@@ -447,7 +447,9 @@ export function HomePage() {
                   {[
                     { k: T('📋 Statut', '📋 Status'),       v: T('Association loi 1901', 'Non-profit (Law 1901)') },
                     { k: T('🗓️ Fondée le', '🗓️ Founded'),    v: '14 septembre 2025' },
-                    { k: T('📍 Siège', '📍 HQ'),              v: 'Villemomble, 93250' },
+                    { k: T('📍 Siège', '📍 HQ'),              v: '89 rue de la Fosse aux Bergers, 93250 Villemomble' },
+                    { k: T('🏛️ RNA', '🏛️ RNA'),               v: 'W931031771' },
+                    { k: 'SIREN',                              v: '105 826 440' },
                     { k: T('👥 Fondateurs', '👥 Founders'),   v: '9 ' + T('membres élus', 'elected members') },
                     { k: T('📞 Contact', '📞 Contact'),       v: '+33 7 54 39 89 71' },
                   ].map(({ k, v }, idx) => (

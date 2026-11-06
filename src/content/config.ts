@@ -63,6 +63,7 @@ export const teamMembers: TeamMember[] = [
     firstName: 'Florent Landry',
     lastName: 'NWALL',
     role: 'Président & Resp. Communication et Partenariats',
+    photoUrl: '/equipe/president-florent-nwall-avatar.webp',
   },
   {
     id: 'atoko-marcel',

@@ -5,10 +5,10 @@ import { useI18nContext } from '@/components/providers/I18nProvider';
 import { BrandMotif } from '@/components/brand/BrandMotif';
 
 // ── Palette brand ─────────────────────────────────────────────────────────────
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
 const BEIGE_LIGHT = '#FFFFFF';
-const BORDER = '#EBDDD4';
+const BORDER = '#E5E7EB';
 
 function IconBrand({ children }: { children: React.ReactNode }) {
   return <span style={{ color: B }}>{children}</span>;
@@ -49,7 +49,7 @@ export function AboutSection() {
 
         {/* En-tête */}
         <AnimatedSection animation="fadeIn" threshold={0.3} className="text-center mb-16">
-          <h2 id="about-title" className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#24140E' }}>
+          <h2 id="about-title" className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1A1A' }}>
             {t('about.sectionTitle')}
           </h2>
           <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full" style={{ background: B }} />
@@ -67,7 +67,7 @@ export function AboutSection() {
               « {t('about.visionText')} »
             </blockquote>
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-2"
-              style={{ background: 'linear-gradient(90deg, #6B3E2E 0%, #F2C94C 100%)' }} />
+              style={{ background: 'linear-gradient(90deg, #2E7D44 0%, #F2C94C 100%)' }} />
           </figure>
         </AnimatedSection>
 
@@ -77,15 +77,15 @@ export function AboutSection() {
           {/* Colonne gauche */}
           <AnimatedSection animation="slideInLeft" threshold={0.5} className="space-y-10">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#24140E' }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1A1A1A' }}>
                 {t('about.missionTitle')}
               </h3>
-              <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#4A2B20' }}>
+              <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#374151' }}>
                 {t('about.missionText')}
               </p>
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: '#24140E' }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: '#1A1A1A' }}>
                 {t('about.valuesTitle')}
               </h3>
               <ul className="space-y-3" aria-label={t('about.valuesTitle')}>
@@ -93,7 +93,7 @@ export function AboutSection() {
                   <li key={value} className="flex items-center gap-4 p-3 rounded-xl border"
                     style={{ background: BEIGE_LIGHT, borderColor: BORDER }}>
                     <span className="flex-shrink-0">{VALUE_ICONS[index]}</span>
-                    <span className="text-base font-medium" style={{ color: '#3A2219' }}>{value}</span>
+                    <span className="text-base font-medium" style={{ color: '#1F3329' }}>{value}</span>
                   </li>
                 ))}
               </ul>
@@ -104,7 +104,7 @@ export function AboutSection() {
           <AnimatedSection animation="slideInRight" threshold={0.5} className="space-y-8">
             {/* Carte fondation */}
             <div className="rounded-2xl p-8 shadow-sm border" style={{ background: BEIGE_LIGHT, borderColor: BORDER }}>
-              <h3 className="text-lg font-bold mb-6 flex items-center gap-2" style={{ color: '#24140E' }}>
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2" style={{ color: '#1A1A1A' }}>
                 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: B }}>
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                 </svg>
@@ -116,8 +116,8 @@ export function AboutSection() {
                   { key: 'Lieu',  val: t('about.foundedPlace') },
                 ].map(({ key, val }) => (
                   <div key={key} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                    <dt className="text-sm font-semibold uppercase tracking-wide min-w-[5rem]" style={{ color: '#86655A' }}>{key}</dt>
-                    <dd className="text-base font-medium" style={{ color: '#24140E' }}>{val}</dd>
+                    <dt className="text-sm font-semibold uppercase tracking-wide min-w-[5rem]" style={{ color: '#6B7280' }}>{key}</dt>
+                    <dd className="text-base font-medium" style={{ color: '#1A1A1A' }}>{val}</dd>
                   </div>
                 ))}
               </dl>
@@ -125,13 +125,13 @@ export function AboutSection() {
 
             {/* Carte légale */}
             <div className="rounded-2xl p-8 shadow-sm border" style={{ background: '#fff', borderColor: BORDER }}>
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: '#24140E' }}>
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2" style={{ color: '#1A1A1A' }}>
                 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#3FA45B' }}>
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
                 </svg>
                 Informations légales
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#4A2B20' }}>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#374151' }}>
                 {t('about.legalInfo')}
               </p>
             </div>

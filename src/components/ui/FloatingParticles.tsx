@@ -13,7 +13,7 @@ interface Particle {
   color: string;
 }
 
-const COLORS = ['#6B3E2E', '#86655A', '#EBDDD4', '#D2B8AA'];
+const COLORS = ['#2E7D44', '#6B7280', '#E5E7EB', '#9CA3AF'];
 
 export function FloatingParticles({
   count = 28,

@@ -14,7 +14,7 @@ export function TeamCard({ member }: TeamCardProps) {
 
   const hoverAnimation = prefersReduced ? {} : {
     scale: 1.03,
-    boxShadow: '0 16px 36px -6px rgba(107,62,46,0.18), 0 6px 14px -4px rgba(107,62,46,0.10)',
+    boxShadow: '0 16px 36px -6px rgba(46,125,68,0.18), 0 6px 14px -4px rgba(46,125,68,0.10)',
   };
 
   return (
@@ -22,7 +22,7 @@ export function TeamCard({ member }: TeamCardProps) {
       whileHover={hoverAnimation}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className="flex flex-col items-center gap-4 rounded-2xl p-6 shadow-sm border"
-      style={{ background: '#fff', borderColor: '#EBDDD4' }}
+      style={{ background: '#fff', borderColor: '#E5E7EB' }}
     >
       {/* Avatar */}
       <div className="relative size-24 shrink-0">
@@ -30,13 +30,13 @@ export function TeamCard({ member }: TeamCardProps) {
           <Image
             src={photoUrl}
             alt={`Portrait de ${firstName} ${lastName}, ${role}`}
-            fill className="rounded-full object-cover" sizes="96px"
+            fill className="rounded-full object-cover object-top" sizes="96px"
           />
         ) : (
           <div
             aria-label={`Portrait de ${firstName} ${lastName}, ${role}`}
             className="flex size-full items-center justify-center rounded-full text-2xl font-bold select-none"
-            style={{ background: '#6B3E2E', color: '#FDF9F7' }}
+            style={{ background: '#2E7D44', color: '#F7F9F7' }}
           >
             {initials}
           </div>
@@ -45,11 +45,11 @@ export function TeamCard({ member }: TeamCardProps) {
 
       {/* Infos */}
       <div className="flex flex-col items-center gap-1 text-center w-full">
-        <p className="text-base font-semibold break-words w-full" style={{ color: '#24140E' }}>
+        <p className="text-base font-semibold break-words w-full" style={{ color: '#1A1A1A' }}>
           {firstName}{' '}
           <span className="font-bold uppercase tracking-wide">{lastName}</span>
         </p>
-        <p className="text-sm break-words w-full" style={{ color: '#86655A' }}>{role}</p>
+        <p className="text-sm break-words w-full" style={{ color: '#6B7280' }}>{role}</p>
       </div>
     </motion.article>
   );

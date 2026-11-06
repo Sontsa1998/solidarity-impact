@@ -16,11 +16,11 @@ export function ContactSection() {
 
         {/* En-tête */}
         <div className="mb-12 text-center">
-          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#24140E' }}>
+          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#1A1A1A' }}>
             {t('contact.sectionTitle')}
           </h2>
-          <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: '#6B3E2E' }} />
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
+          <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: '#2E7D44' }} />
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             {t('contact.sectionSubtitle')}
           </p>
         </div>
@@ -31,10 +31,10 @@ export function ContactSection() {
             {/* Infos de contact */}
             <div className="flex flex-col gap-8">
               <div>
-                <h3 className="mb-3 text-lg font-semibold" style={{ color: '#24140E' }}>
+                <h3 className="mb-3 text-lg font-semibold" style={{ color: '#1A1A1A' }}>
                   {t('contact.addressTitle')}
                 </h3>
-                <address className="not-italic leading-relaxed" style={{ color: '#4A2B20' }}>
+                <address className="not-italic leading-relaxed" style={{ color: '#374151' }}>
                   <span className="block font-medium">{association.name}</span>
                   <span className="block">{association.address}</span>
                   <span className="block">{association.postalCode} {association.city}</span>
@@ -43,10 +43,10 @@ export function ContactSection() {
 
               {contactInfo.email && (
                 <div>
-                  <h3 className="mb-2 text-lg font-semibold" style={{ color: '#24140E' }}>Email</h3>
+                  <h3 className="mb-2 text-lg font-semibold" style={{ color: '#1A1A1A' }}>Email</h3>
                   <a href={`mailto:${contactInfo.email}`}
                     className="hover:underline break-all transition-colors"
-                    style={{ color: '#6B3E2E' }}>
+                    style={{ color: '#2E7D44' }}>
                     {contactInfo.email}
                   </a>
                 </div>
@@ -54,15 +54,15 @@ export function ContactSection() {
 
               {contactInfo.phone && (
                 <div>
-                  <h3 className="mb-2 text-lg font-semibold" style={{ color: '#24140E' }}>Téléphone</h3>
+                  <h3 className="mb-2 text-lg font-semibold" style={{ color: '#1A1A1A' }}>Téléphone</h3>
                   <a href={`tel:${contactInfo.phone}`} className="hover:underline transition-colors"
-                    style={{ color: '#6B3E2E' }}>
+                    style={{ color: '#2E7D44' }}>
                     {contactInfo.phone}
                   </a>
                 </div>
               )}
 
-              <p className="text-sm italic pl-4 border-l-4" style={{ color: '#86655A', borderColor: '#EBDDD4' }}>
+              <p className="text-sm italic pl-4 border-l-4" style={{ color: '#6B7280', borderColor: '#E5E7EB' }}>
                 {t('footer.legalMention')}
               </p>
             </div>

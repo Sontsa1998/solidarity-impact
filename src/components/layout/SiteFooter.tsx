@@ -4,14 +4,20 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 import { BrandLogo } from '@/components/brand/BrandLogo';
+import { siteConfig } from '@/content/config';
 
 const NAV_LINKS = [
   { href: '/',           labelFr: 'Accueil',      labelEn: 'Home'     },
-  { href: '/a-propos',   labelFr: 'À propos',     labelEn: 'About'    },
-  { href: '/equipe',     labelFr: 'Notre équipe', labelEn: 'Our Team' },
   { href: '/evenements', labelFr: 'Événements',   labelEn: 'Events'   },
   { href: '/don',        labelFr: 'Faire un don', labelEn: 'Donate'   },
   { href: '/contact',    labelFr: 'Contact',      labelEn: 'Contact'  },
+];
+
+const ASSO_LINKS = [
+  { href: '/a-propos',                  labelFr: "À propos de l'association", labelEn: 'About the association' },
+  { href: '/equipe',                    labelFr: 'Notre équipe',              labelEn: 'Our team'              },
+  { href: '/evenements/tournoi-football', labelFr: 'Tournoi de football',     labelEn: 'Football tournament'   },
+  { href: '/don',                       labelFr: 'Nous soutenir',             labelEn: 'Support us'            },
 ];
 
 const LEGAL_LINKS = [
@@ -30,149 +36,98 @@ export function SiteFooter() {
   const { lang } = useI18nContext();
   const [year, setYear] = useState<number | null>(null);
   useEffect(() => { setYear(new Date().getFullYear()); }, []);
+  const T = (fr: string, en: string) => (lang === 'en' ? en : fr);
+
+  // Seuls les réseaux réellement configurés sont affichés (src/content/config.ts)
+  const socials = [
+    { label: 'LinkedIn',  href: siteConfig.socialLinks.linkedin,  Icon: LinkedInIcon  },
+    { label: 'Instagram', href: siteConfig.socialLinks.instagram, Icon: InstagramIcon },
+    { label: 'Facebook',  href: siteConfig.socialLinks.facebook,  Icon: FacebookIcon  },
+  ].filter((s): s is typeof s & { href: string } => Boolean(s.href));
+
+  const linkCls = 'text-sm text-[#4B5563] hover:text-[#2E7D44] dark:text-[#9CA3AF] dark:hover:text-[#5DB876] transition-colors';
+  const titleCls = 'text-sm font-semibold uppercase tracking-[0.08em] mb-5 text-[#1A1A1A] dark:text-white';
 
   return (
-    <footer role="contentinfo" style={{ background: '#24140E', color: '#D2B8AA' }}>
+    <footer role="contentinfo" className="bg-[#F9FAFB] dark:bg-[#0B1510] border-t border-[#EEF0F2] dark:border-[#1F3329]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-      {/* Bande décorative franco-camerounaise */}
-      <div className="h-1 flex" aria-hidden="true">
-        <div className="flex-1" style={{ background: '#1d4ed8' }} />
-        <div className="flex-1" style={{ background: '#ffffff' }} />
-        <div className="flex-1" style={{ background: '#dc2626' }} />
-        <div className="flex-1" style={{ background: '#3FA45B' }} />
-        <div className="flex-1" style={{ background: '#dc2626' }} />
-        <div className="flex-1" style={{ background: '#F2C94C' }} />
-      </div>
-
-      {/* Contenu principal */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-
-          {/* Colonne 1 — Identité */}
-          <div className="lg:col-span-1 flex flex-col gap-5">
-            <Link href="/" className="flex flex-col gap-2 group w-fit" aria-label="Solidarity Impact — Accueil">
-              <BrandLogo className="h-24 w-auto text-[#F2C94C] transition-opacity group-hover:opacity-85" title="Logo Solidarity Impact" />
-              <span className="text-xs" style={{ color: '#A8836F' }}>Loi 1901 — Fondée en 2025</span>
+          {/* Identité */}
+          <div className="flex flex-col gap-4">
+            <Link href="/" className="w-fit" aria-label="Solidarity Impact — Accueil">
+              <BrandLogo variant="compact" className="h-14 w-auto text-[#2E7D44] dark:text-[#5DB876]" title="Logo Solidarity Impact" />
             </Link>
-            <p className="text-sm leading-relaxed" style={{ color: '#A8836F' }}>
-              {lang === 'en'
-                ? "Franco-Cameroonian association committed to education, orphanages and local development."
-                : "Association franco-camerounaise engagée pour l'éducation, les orphelinats et le développement local."}
+            <p className="text-sm leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] max-w-xs">
+              {T("Créée en 2025 par un collectif de Franco-Camerounais, Solidarity Impact agit pour l'éducation, les orphelinats et le développement local au Cameroun.",
+                 'Founded in 2025 by a group of French-Cameroonians, Solidarity Impact works for education, orphanages and local development in Cameroon.')}
             </p>
-            <div className="flex items-center gap-3 mt-1">
-              {[
-                { label: 'Facebook',  Icon: FacebookIcon  },
-                { label: 'Instagram', Icon: InstagramIcon },
-                { label: 'LinkedIn',  Icon: LinkedInIcon  },
-              ].map(({ label, Icon }) => (
-                <a key={label} href="#" aria-label={label}
-                  className="p-1.5 rounded-lg transition-colors"
-                  style={{ color: '#A8836F' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#FDF9F7')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#A8836F')}
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
+            {socials.length > 0 && (
+              <div className="flex items-center gap-3">
+                {socials.map(({ label, href, Icon }) => (
+                  <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center bg-[#EEF7F0] text-[#2E7D44] hover:bg-[#2E7D44] hover:text-white transition-colors dark:bg-[#1F3329] dark:text-[#5DB876]">
+                    <Icon />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Colonne 2 — Navigation */}
+          {/* Navigation */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest mb-5" style={{ color: '#FDF9F7' }}>
-              Navigation
-            </h3>
-            <ul className="flex flex-col gap-2.5">
+            <h3 className={titleCls}>Navigation</h3>
+            <ul className="flex flex-col gap-3">
               {NAV_LINKS.map(({ href, labelFr, labelEn }) => (
-                <li key={href}>
-                  <Link href={href}
-                    className="text-sm flex items-center gap-2 group transition-colors"
-                    style={{ color: '#A8836F' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#FDF9F7')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#A8836F')}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#6B3E2E' }} aria-hidden="true" />
-                    {lang === 'en' ? labelEn : labelFr}
-                  </Link>
-                </li>
+                <li key={href}><Link href={href} className={linkCls}>{T(labelFr, labelEn)}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Colonne 3 — Contact */}
+          {/* L'association */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest mb-5" style={{ color: '#FDF9F7' }}>
-              Contact
-            </h3>
-            <ul className="flex flex-col gap-3.5">
-              <li className="flex items-start gap-2.5 text-sm" style={{ color: '#A8836F' }}>
+            <h3 className={titleCls}>{T("L'association", 'The association')}</h3>
+            <ul className="flex flex-col gap-3">
+              {ASSO_LINKS.map(({ href, labelFr, labelEn }) => (
+                <li key={href}><Link href={href} className={linkCls}>{T(labelFr, labelEn)}</Link></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className={titleCls}>Contact</h3>
+            <ul className="flex flex-col gap-3.5 text-sm text-[#4B5563] dark:text-[#9CA3AF]">
+              <li className="flex items-start gap-2.5">
+                <EnvelopeIcon />
+                <a href="mailto:contact@solidarityimpact.org" className={`${linkCls} break-all`}>contact@solidarityimpact.org</a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <PhoneIcon />
+                <a href="tel:+33754398971" className={linkCls}>+33 7 54 39 89 71</a>
+              </li>
+              <li className="flex items-start gap-2.5">
                 <MapPinIcon />
                 <address className="not-italic leading-relaxed">
-                  89 rue de la Fosse aux Bergers<br />
-                  93250 Villemomble, France
+                  89 rue de la Fosse aux Bergers<br />93250 Villemomble
                 </address>
-              </li>
-              <li className="flex items-center gap-2.5 text-sm">
-                <EnvelopeIcon />
-                <a href="mailto:contact@solidarityimpact.org"
-                  className="transition-colors break-all"
-                  style={{ color: '#A8836F' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#FDF9F7')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#A8836F')}
-                >
-                  contact@solidarityimpact.org
-                </a>
-              </li>
-              <li className="flex items-center gap-2.5 text-sm" style={{ color: '#A8836F' }}>
-                <PhoneIcon />
-                <span>+33 7 54 39 89 71</span>
               </li>
             </ul>
           </div>
-
-          {/* Colonne 4 — Mission */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest mb-5" style={{ color: '#FDF9F7' }}>
-              {lang === 'en' ? 'Our Mission' : 'Notre mission'}
-            </h3>
-            <p className="text-sm leading-relaxed mb-5" style={{ color: '#A8836F' }}>
-              {lang === 'en'
-                ? "Supporting education, orphanages and local development between France and Cameroon."
-                : "Soutenir l'éducation, les orphelinats et le développement local entre la France et le Cameroun."}
-            </p>
-            <Link href="/don"
-              className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-              style={{ background: '#6B3E2E', color: '#FDF9F7' }}
-              onMouseEnter={e => (e.currentTarget.style.background = '#5A3426')}
-              onMouseLeave={e => (e.currentTarget.style.background = '#6B3E2E')}
-            >
-              <span>❤️</span>
-              {lang === 'en' ? 'Make a donation' : 'Faire un don'}
-            </Link>
-          </div>
         </div>
-      </div>
 
-      {/* Barre copyright */}
-      <div style={{ borderTop: '1px solid #3A2219' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-center sm:text-left" style={{ color: '#A8836F' }}>
-              © <span suppressHydrationWarning>{year ?? ''}</span> Solidarity Impact. {lang === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'} — Association loi 1901 — RNA W931031771 — SIREN 105 826 440
-            </p>
-            <div className="flex items-center gap-4">
-              {LEGAL_LINKS.map(({ href, labelFr, labelEn }) => (
-                <Link key={href} href={href}
-                  className="text-xs transition-colors"
-                  style={{ color: '#A8836F' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#FDF9F7')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#A8836F')}
-                >
-                  {lang === 'en' ? labelEn : labelFr}
-                </Link>
-              ))}
-            </div>
+        {/* Copyright */}
+        <div className="mt-14 pt-6 border-t border-[#E5E7EB] dark:border-[#1F3329] flex flex-col items-center gap-3 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+            {LEGAL_LINKS.map(({ href, labelFr, labelEn }) => (
+              <Link key={href} href={href} className="text-xs text-[#6B7280] hover:text-[#2E7D44] transition-colors">
+                {T(labelFr, labelEn)}
+              </Link>
+            ))}
           </div>
+          <p className="text-xs text-[#6B7280] dark:text-[#9CA3AF]">
+            © <span suppressHydrationWarning>{year ?? ''}</span> Solidarity Impact. {T('Tous droits réservés.', 'All rights reserved.')} · {T('Association loi 1901', 'Non-profit (law 1901)')} · RNA W931031771 · SIREN 105 826 440
+          </p>
         </div>
       </div>
     </footer>

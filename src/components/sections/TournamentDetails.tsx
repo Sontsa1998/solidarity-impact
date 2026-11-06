@@ -11,9 +11,9 @@ import { useI18nContext } from '@/components/providers/I18nProvider';
 // Le fuseau explicite garantit le même compte à rebours pour tous les visiteurs.
 const TOURNAMENT_DATE = new Date('2027-07-17T09:00:00+02:00');
 
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
-const BORDER = '#EBDDD4';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
+const BORDER = '#E5E7EB';
 
 const ORGA_CARDS = [
   { icon: '⚽', titleFr: 'Recrutement des équipes',  titleEn: 'Team recruitment',   descFr: 'Les inscriptions sont ouvertes ! Nous recrutons des équipes de 7 à 11 joueurs. Maximum 12 équipes participantes.', descEn: 'Registrations are open! We are recruiting teams of 7 to 11 players. Maximum 12 participating teams.' },
@@ -55,7 +55,7 @@ export function TournamentDetails() {
         ))}
         <AnimatedSection animation="fadeIn">
           <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 font-semibold text-sm"
-            style={{ background: 'rgba(253,249,247,0.15)', border: '1px solid rgba(253,249,247,0.3)', color: BEIGE }}>
+            style={{ background: 'rgba(247,249,247,0.15)', border: '1px solid rgba(247,249,247,0.3)', color: BEIGE }}>
             <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#F2C94C' }} aria-hidden="true"/>
             {lang === 'en' ? '🗓️ July 17, 2027 — Villemomble' : '🗓️ 17 Juillet 2027 — Villemomble'}
           </div>
@@ -64,7 +64,7 @@ export function TournamentDetails() {
             {lang === 'en' ? <>SOLIDARITY IMPACT<br /><span style={{ color: '#F2C94C' }}>FOOTBALL TOURNAMENT</span></> : <>TOURNOI DE FOOTBALL<br /><span style={{ color: '#F2C94C' }}>SOLIDARITY IMPACT</span></>}
           </h1>
           <p className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'rgba(253,249,247,0.85)' }}>
+            style={{ color: 'rgba(247,249,247,0.85)' }}>
             {lang === 'en'
               ? 'The first solidarity football tournament. Teams from Île-de-France compete for the trophy. Food stands, music and prizes await you!'
               : "Le premier tournoi de football solidaire. Des équipes d'Île-de-France s'affrontent pour le trophée. Stands de restauration, musique et lots à gagner !"}
@@ -75,14 +75,14 @@ export function TournamentDetails() {
       {/* COUNTDOWN */}
       <section className="py-14 px-4" style={{ background: BEIGE }}>
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#86655A' }}>
+          <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#6B7280' }}>
             {lang === 'en' ? '⏱️ Time remaining before kick-off' : "⏱️ Temps restant avant le coup d'envoi"}
           </p>
           <h2 className="text-2xl sm:text-3xl font-black mb-10" style={{ color: B }}>
             {lang === 'en' ? 'The tournament starts in…' : 'Le tournoi commence dans…'}
           </h2>
           <Countdown targetDate={tournamentDate} />
-          <p className="mt-8 text-sm font-medium" style={{ color: '#86655A' }}>
+          <p className="mt-8 text-sm font-medium" style={{ color: '#6B7280' }}>
             {lang === 'en' ? '📍 Villemomble (93250) · 17 July 2027 from 9:00 AM' : '📍 Villemomble (93250) · 17 Juillet 2027 dès 09h00'}
           </p>
         </div>
@@ -96,7 +96,7 @@ export function TournamentDetails() {
               {lang === 'en' ? '🏗️ Tournament Organisation' : '🏗️ Organisation du Tournoi'}
             </h2>
             <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: B }}/>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
               {lang === 'en' ? 'Everything is being prepared to offer you an unforgettable day.' : 'Tout est en cours de préparation pour vous offrir une journée inoubliable.'}
             </p>
           </AnimatedSection>
@@ -107,7 +107,7 @@ export function TournamentDetails() {
                   style={{ background: '#fff', borderColor: BORDER }}>
                   <div className="text-4xl mb-3" aria-hidden="true">{icon}</div>
                   <h3 className="text-base font-bold mb-2" style={{ color: B }}>{lang === 'en' ? titleEn : titleFr}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#4A2B20' }}>{lang === 'en' ? descEn : descFr}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#374151' }}>{lang === 'en' ? descEn : descFr}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -126,7 +126,7 @@ export function TournamentDetails() {
             <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full" style={{ background: '#F2C94C' }}/>
           </AnimatedSection>
           <div className="relative overflow-hidden rounded-3xl border"
-            style={{ borderColor: 'rgba(253,249,247,0.15)' }}>
+            style={{ borderColor: 'rgba(247,249,247,0.15)' }}>
             <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 600 320"
               preserveAspectRatio="xMidYMid slice" aria-hidden="true">
               <rect width="600" height="320" fill="#1F4A2C"/>
@@ -147,7 +147,7 @@ export function TournamentDetails() {
                 {lang === 'en' ? 'MATCH SCHEDULE\nCOMING SOON' : 'CALENDRIER DE MATCH\nBIENTÔT DISPONIBLE'}
               </h3>
               <p className="mt-6 text-sm sm:text-base font-medium max-w-md mx-auto"
-                style={{ color: 'rgba(253,249,247,0.7)' }}>
+                style={{ color: 'rgba(247,249,247,0.7)' }}>
                 {lang === 'en'
                   ? 'The match schedule will be published once all teams are confirmed.'
                   : 'Le calendrier sera publié dès que toutes les équipes seront confirmées.'}
@@ -166,12 +166,12 @@ export function TournamentDetails() {
       <section className="py-16 px-4" style={{ background: BEIGE }}>
         <AnimatedSection animation="slideUp" threshold={0.2}>
           <div className="max-w-2xl mx-auto rounded-3xl p-8 sm:p-12 text-center shadow-xl border"
-            style={{ background: 'linear-gradient(135deg, #fff 0%, #FBF4EF 100%)', borderColor: BORDER, boxShadow: '0 20px 60px rgba(107,62,46,0.12)' }}>
+            style={{ background: 'linear-gradient(135deg, #fff 0%, #F7F9F7 100%)', borderColor: BORDER, boxShadow: '0 20px 60px rgba(46,125,68,0.12)' }}>
             <div className="text-6xl mb-4" aria-hidden="true">⚽</div>
             <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: B }}>
               {lang === 'en' ? 'Want to participate?' : 'Envie de participer ?'}
             </h2>
-            <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: '#4A2B20' }}>
+            <p className="text-base mb-8 max-w-lg mx-auto" style={{ color: '#374151' }}>
               {lang === 'en'
                 ? 'Register your team now. Places are limited to 12 teams!'
                 : 'Inscris ton équipe dès maintenant. Les places sont limitées à 12 équipes !'}
@@ -179,12 +179,12 @@ export function TournamentDetails() {
             <button type="button" onClick={() => setModalOpen(true)}
               className="inline-flex items-center gap-3 font-black text-base px-8 py-4 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-1"
               style={{ background: B, color: BEIGE }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
               onMouseLeave={e => { e.currentTarget.style.background = B; }}>
               <span className="text-xl" aria-hidden="true">🏆</span>
               {lang === 'en' ? 'Register my team now' : 'Inscrire mon équipe maintenant'}
             </button>
-            <p className="mt-6 text-xs font-medium" style={{ color: '#86655A' }}>
+            <p className="mt-6 text-xs font-medium" style={{ color: '#6B7280' }}>
               {lang === 'en' ? '✓ Free · ✓ 7 to 11 players · ✓ All levels' : '✓ Gratuit · ✓ 7 à 11 joueurs · ✓ Tous niveaux'}
             </p>
           </div>
@@ -200,8 +200,8 @@ export function TournamentDetails() {
       >
         <button type="button" onClick={() => setModalOpen(true)}
           className="w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl transition-all duration-200 hover:-translate-y-1"
-          style={{ background: B, color: BEIGE, border: '2px solid rgba(253,249,247,0.25)' }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+          style={{ background: B, color: BEIGE, border: '2px solid rgba(247,249,247,0.25)' }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
           onMouseLeave={e => { e.currentTarget.style.background = B; }}>
           <span className="text-2xl flex-shrink-0" aria-hidden="true">⚽</span>
           <div className="flex flex-col items-start leading-tight">
@@ -209,7 +209,7 @@ export function TournamentDetails() {
             <span className="text-sm font-black">{lang === 'en' ? 'Register your team now →' : 'Inscris ton équipe maintenant →'}</span>
           </div>
           <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded-full"
-            style={{ background: '#F2C94C', color: '#170D09' }}>
+            style={{ background: '#F2C94C', color: '#0E1A14' }}>
             {lang === 'en' ? 'Free' : 'Gratuit'}
           </span>
         </button>

@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
-const BORDER = '#EBDDD4';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
+const BORDER = '#E5E7EB';
 
 // SVG d'affiche football : terrain vu de dessus avec ballon central
 function FootballPosterSVG() {
@@ -64,7 +64,7 @@ function FootballPosterSVG() {
 
       {/* Ballon central */}
       <circle cx="200" cy="140" r="22" fill="white" opacity="0.95"/>
-      <circle cx="200" cy="140" r="22" fill="none" stroke="#24140E" strokeWidth="1.5"/>
+      <circle cx="200" cy="140" r="22" fill="none" stroke="#1A1A1A" strokeWidth="1.5"/>
 
       {/* Pentagones du ballon */}
       <polygon points="200,118 212,126 208,140 192,140 188,126" fill="#1a1a1a" opacity="0.85"/>
@@ -89,7 +89,7 @@ function FootballPosterSVG() {
         fontSize="11" fontWeight="700" fontFamily="system-ui,sans-serif" letterSpacing="1.5">
         TOURNOI DE FOOTBALL
       </text>
-      <text x="200" y="250" textAnchor="middle" fill="rgba(253,249,247,0.7)"
+      <text x="200" y="250" textAnchor="middle" fill="rgba(247,249,247,0.7)"
         fontSize="9" fontFamily="system-ui,sans-serif" letterSpacing="1">
         17 JUILLET 2027 · VILLEMOMBLE
       </text>
@@ -116,7 +116,7 @@ export function EventsSection() {
             {lang === 'en' ? '🗓️ Our Events' : '🗓️ Nos Événements'}
           </h2>
           <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: B }}/>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             {lang === 'en'
               ? 'Discover all the solidarity actions and events organized by Solidarity Impact.'
               : 'Découvrez toutes les actions solidaires et événements organisés par Solidarity Impact.'}
@@ -129,13 +129,13 @@ export function EventsSection() {
 
             {/* ── Carte : Tournoi de football ── */}
             <motion.div
-              whileHover={{ y: -6, boxShadow: '0 24px 48px rgba(107,62,46,0.18)' }}
+              whileHover={{ y: -6, boxShadow: '0 24px 48px rgba(46,125,68,0.18)' }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
               className="rounded-3xl overflow-hidden border flex flex-col"
               style={{
                 background: '#fff',
                 borderColor: BORDER,
-                boxShadow: '0 4px 20px rgba(107,62,46,0.08)',
+                boxShadow: '0 4px 20px rgba(46,125,68,0.08)',
               }}
             >
               {/* Image affiche football */}
@@ -144,13 +144,13 @@ export function EventsSection() {
 
                 {/* Badge édition */}
                 <div className="absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-black"
-                  style={{ background: '#F2C94C', color: '#170D09' }}>
+                  style={{ background: '#F2C94C', color: '#0E1A14' }}>
                   {lang === 'en' ? '1st Edition' : '1ère Édition'}
                 </div>
 
                 {/* Badge "À venir" */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
-                  style={{ background: 'rgba(107,62,46,0.9)', color: BEIGE }}>
+                  style={{ background: 'rgba(46,125,68,0.9)', color: BEIGE }}>
                   <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: '#F2C94C' }} aria-hidden="true"/>
                   {lang === 'en' ? 'Upcoming' : 'À venir'}
                 </div>
@@ -159,7 +159,7 @@ export function EventsSection() {
               {/* Corps de la carte */}
               <div className="flex flex-col flex-1 p-6 gap-4">
                 {/* Méta date */}
-                <div className="flex items-center gap-2 text-sm" style={{ color: '#86655A' }}>
+                <div className="flex items-center gap-2 text-sm" style={{ color: '#6B7280' }}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
@@ -171,12 +171,12 @@ export function EventsSection() {
                 </div>
 
                 {/* Titre */}
-                <h3 className="text-xl sm:text-2xl font-black leading-tight" style={{ color: '#24140E' }}>
+                <h3 className="text-xl sm:text-2xl font-black leading-tight" style={{ color: '#1A1A1A' }}>
                   {lang === 'en' ? 'Football Tournament — 1st Edition' : 'Tournoi de Football — 1ère Édition'}
                 </h3>
 
                 {/* Description courte */}
-                <p className="text-sm leading-relaxed flex-1" style={{ color: '#4A2B20' }}>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: '#374151' }}>
                   {lang === 'en'
                     ? 'The first solidarity football tournament by Solidarity Impact. Teams from Île-de-France compete for the trophy. Food stands, music and prizes await you!'
                     : "Le premier tournoi de football solidaire de l'association. Des équipes d'Île-de-France s'affrontent pour le trophée, avec stands de restauration, musique et lots à gagner !"}
@@ -197,7 +197,7 @@ export function EventsSection() {
                   href="/evenements/tournoi-football"
                   className="mt-2 flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl font-black text-sm transition-all duration-200 shadow-md hover:shadow-xl hover:-translate-y-0.5 group"
                   style={{ background: B, color: BEIGE }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = B; }}
                 >
                   {lang === 'en' ? 'Click here for more details' : 'Cliquer ici pour plus de détails'}
@@ -217,7 +217,7 @@ export function EventsSection() {
               <h3 className="text-base font-bold mb-2" style={{ color: B }}>
                 {lang === 'en' ? 'More events coming soon' : "D'autres événements arrivent bientôt"}
               </h3>
-              <p className="text-sm" style={{ color: '#86655A' }}>
+              <p className="text-sm" style={{ color: '#6B7280' }}>
                 {lang === 'en'
                   ? "Follow us to stay informed about our upcoming solidarity actions."
                   : "Suivez-nous pour être informé de nos prochaines actions solidaires."}

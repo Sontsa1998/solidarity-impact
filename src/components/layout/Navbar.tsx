@@ -9,7 +9,7 @@ import { BrandLogo } from '@/components/brand/BrandLogo';
 
 const NAV_LINKS = [
   { href: '/',            labelFr: 'Accueil',      labelEn: 'Home'      },
-  { href: '/a-propos',    labelFr: 'À propos',     labelEn: 'About'     },
+  { href: '/a-propos',    labelFr: "L'association",     labelEn: 'About us'  },
   { href: '/equipe',      labelFr: 'Équipe',       labelEn: 'Team'      },
   { href: '/evenements',  labelFr: 'Événements',   labelEn: 'Events'    },
   { href: '/don',         labelFr: 'Faire un don', labelEn: 'Donate'    },
@@ -63,18 +63,16 @@ function CloseIcon() {
   );
 }
 
-// ─── Couleurs brand (logo) ────────────────────────────────────────────────────
-// Marron #6B3E2E  |  Beige #FDF9F7
+// ─── Style : barre blanche épurée, liens centrés, bouton « pilule » vert ─────
 const BRAND = {
-  active:      'text-[#6B3E2E] dark:text-[#D2B8AA] bg-[#FDF9F7] dark:bg-[#3A2219] font-semibold',
-  hover:       'text-[#4A2B20] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]',
-  default:     'text-[#3A2219] dark:text-[#D2B8AA]',
-  ctaBg:       'bg-[#6B3E2E] hover:bg-[#5A3426] active:bg-[#4A2B20] text-[#FDF9F7]',
-  pill:        'bg-[#FDF9F7] dark:bg-[#3A2219]',
-  pillActive:  'bg-white dark:bg-[#4A2B20] text-[#6B3E2E] dark:text-[#D2B8AA] shadow-sm',
-  pillDefault: 'text-[#86655A] dark:text-[#A8836F] hover:text-[#4A2B20] dark:hover:text-[#D2B8AA]',
-  iconBtn:     'text-[#6B3E2E] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]',
-  focus:       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B3E2E] focus-visible:ring-offset-1',
+  link:        'text-[#1A1A1A] dark:text-[#E5E7EB] hover:text-[#2E7D44] dark:hover:text-[#5DB876]',
+  active:      'text-[#2E7D44] dark:text-[#5DB876] font-medium',
+  ctaBg:       'bg-[#2E7D44] hover:bg-[#256B39] active:bg-[#1F5A30] text-white',
+  pill:        'bg-[#F3F4F6] dark:bg-[#1F3329]',
+  pillActive:  'bg-white dark:bg-[#2E7D44] text-[#2E7D44] dark:text-white shadow-sm',
+  pillDefault: 'text-[#6B7280] dark:text-[#9CA3AF] hover:text-[#1A1A1A] dark:hover:text-white',
+  iconBtn:     'text-[#374151] dark:text-[#E5E7EB] hover:bg-[#F3F4F6] dark:hover:bg-[#1F3329]',
+  focus:       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2E7D44] focus-visible:ring-offset-2',
 };
 
 export function Navbar() {
@@ -121,101 +119,79 @@ export function Navbar() {
   }, [menuOpen]);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const links = NAV_LINKS.filter(({ href }) => href !== '/don');
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const donateLabel = lang === 'en' ? 'Donate' : 'Faire un don';
 
   return (
     <header
       role="banner"
       className={[
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        'border-b border-[#EBDDD4] dark:border-[#3A2219]',
-        scrolled
-          ? 'bg-[#FFFFFF]/96 dark:bg-[#170D09]/96 backdrop-blur-md shadow-md'
-          : 'bg-[#FDF9F7] dark:bg-[#170D09]',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-[#0E1A14]',
+        'border-b border-[#EEF0F2] dark:border-[#1F3329]',
+        scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.06)]' : '',
       ].join(' ')}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20 gap-6">
 
-          {/* Logo + Nom */}
-          <Link href="/" className={`flex items-center gap-3 group rounded-lg ${BRAND.focus}`}
+          {/* Logo officiel */}
+          <Link href="/" className={`flex-shrink-0 flex items-center rounded-lg ${BRAND.focus}`}
             aria-label="Solidarity Impact — Retour à l'accueil">
             <BrandLogo variant="compact"
-              className="h-12 w-auto text-[#6B3E2E] dark:text-[#F2C94C] transition-transform duration-200 group-hover:scale-105" />
-            <div className="hidden sm:flex flex-col leading-tight border-l border-[#EBDDD4] dark:border-[#3A2219] pl-3">
-              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3FA45B]">
-                {lang === 'en' ? 'The future within reach' : "L'avenir à portée de main"}
-              </span>
-              <span className="text-xs text-[#86655A] dark:text-[#A8836F]">
-                {lang === 'en' ? 'Franco-Cameroonian association' : 'Association franco-camerounaise'}
-              </span>
-            </div>
+              className="h-14 w-auto text-[#2E7D44] dark:text-[#5DB876] transition-transform duration-200 hover:scale-105" />
           </Link>
 
-          {/* Nav desktop */}
-          <nav aria-label="Navigation principale" className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map(({ href, labelFr, labelEn }) => {
-              const label = lang === 'en' ? labelEn : labelFr;
-              const isActive = pathname === href;
+          {/* Nav desktop, centrée */}
+          <nav aria-label="Navigation principale" className="hidden lg:flex flex-1 items-center justify-center gap-8">
+            {links.map(({ href, labelFr, labelEn }) => {
+              const active = isActive(href);
               return (
                 <Link key={href} href={href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={[
-                    'px-3 py-2 rounded-lg text-sm transition-all duration-200',
-                    BRAND.focus,
-                    isActive ? BRAND.active : `text-[#4A2B20] dark:text-[#D2B8AA] hover:text-[#6B3E2E] dark:hover:text-[#FDF9F7] ${BRAND.hover}`,
-                  ].join(' ')}
-                >
-                  {label}
+                  aria-current={active ? 'page' : undefined}
+                  className={`text-[15px] transition-colors duration-200 rounded ${BRAND.focus} ${active ? BRAND.active : BRAND.link}`}>
+                  {lang === 'en' ? labelEn : labelFr}
                 </Link>
               );
             })}
           </nav>
 
           {/* Actions desktop */}
-          <div className="hidden lg:flex items-center gap-2">
-            {/* Switcher langue */}
-            <div className={`flex items-center gap-0.5 rounded-lg p-0.5 ${BRAND.pill}`}>
+          <div className="hidden lg:flex flex-shrink-0 items-center gap-2">
+            <div className={`flex items-center gap-0.5 rounded-full p-0.5 ${BRAND.pill}`}>
               {(['fr', 'en'] as const).map((code) => (
                 <button key={code} type="button" onClick={() => setLang(code)}
                   disabled={lang === code}
                   aria-current={lang === code ? 'true' : undefined}
-                  className={[
-                    'px-2.5 py-1 text-xs font-semibold rounded-md transition-all duration-200',
-                    lang === code ? BRAND.pillActive : BRAND.pillDefault,
-                    BRAND.focus,
-                  ].join(' ')}>
+                  className={`px-2.5 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${lang === code ? BRAND.pillActive : BRAND.pillDefault} ${BRAND.focus}`}>
                   {code.toUpperCase()}
                 </button>
               ))}
             </div>
 
-            {/* Dark/Light */}
             <button type="button" onClick={toggleTheme}
               aria-label={isDark ? 'Activer le mode clair' : 'Activer le mode sombre'}
               suppressHydrationWarning
-              className={`p-2 rounded-lg transition-all duration-200 ${BRAND.iconBtn} ${BRAND.focus}`}>
+              className={`p-2 rounded-full transition-all duration-200 ${BRAND.iconBtn} ${BRAND.focus}`}>
               <span suppressHydrationWarning>{isDark ? <SunIcon /> : <MoonIcon />}</span>
             </button>
 
-            {/* CTA */}
             <Link href="/don"
-              className={`ml-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-md ${BRAND.ctaBg} ${BRAND.focus}`}>
-              {lang === 'en' ? '❤️ Donate' : '❤️ Faire un don'}
+              className={`ml-2 px-6 py-2.5 text-sm font-semibold rounded-full transition-all duration-200 ${BRAND.ctaBg} ${BRAND.focus}`}>
+              {donateLabel}
             </Link>
           </div>
 
           {/* Mobile */}
-          <div className="flex lg:hidden items-center gap-2">
-            <button type="button" onClick={toggleTheme}
-              aria-label={isDark ? 'Mode clair' : 'Mode sombre'}
-              suppressHydrationWarning
-              className={`p-2 rounded-lg transition-colors ${BRAND.iconBtn}`}>
-              <span suppressHydrationWarning>{isDark ? <SunIcon /> : <MoonIcon />}</span>
-            </button>
+          <div className="flex lg:hidden items-center gap-1">
+            <Link href="/don"
+              className={`mr-1 px-4 py-2 text-sm font-semibold rounded-full ${BRAND.ctaBg} ${BRAND.focus}`}>
+              {donateLabel}
+            </Link>
             <button ref={hamburgerRef} type="button" onClick={() => setMenuOpen(!menuOpen)}
               aria-expanded={menuOpen} aria-controls="mobile-menu"
               aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-              className={`p-2 rounded-lg transition-colors ${BRAND.iconBtn} ${BRAND.focus}`}>
+              className={`p-2 rounded-full transition-colors ${BRAND.iconBtn} ${BRAND.focus}`}>
               {menuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
@@ -225,36 +201,34 @@ export function Navbar() {
       {/* Menu mobile */}
       {menuOpen && (
         <div ref={menuRef} id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navigation"
-          className="lg:hidden border-t border-[#EBDDD4] dark:border-[#3A2219] bg-[#FDF9F7] dark:bg-[#170D09] shadow-xl">
-          <nav aria-label="Navigation mobile" className="px-4 py-3 flex flex-col gap-1">
-            {NAV_LINKS.map(({ href, labelFr, labelEn }) => {
-              const label = lang === 'en' ? labelEn : labelFr;
-              const isActive = pathname === href;
+          className="lg:hidden border-t border-[#EEF0F2] dark:border-[#1F3329] bg-white dark:bg-[#0E1A14] shadow-xl">
+          <nav aria-label="Navigation mobile" className="px-4 py-3 flex flex-col">
+            {links.map(({ href, labelFr, labelEn }) => {
+              const active = isActive(href);
               return (
                 <Link key={href} href={href} onClick={closeMenu}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={[
-                    'px-4 py-3 rounded-xl text-base font-medium transition-all duration-200',
-                    isActive ? BRAND.active : `text-[#4A2B20] dark:text-[#D2B8AA] hover:bg-[#FDF9F7] dark:hover:bg-[#3A2219]`,
-                  ].join(' ')}>
-                  {label}
+                  aria-current={active ? 'page' : undefined}
+                  className={`px-3 py-3 text-base border-b last:border-0 border-[#F3F4F6] dark:border-[#1F3329] ${active ? BRAND.active : BRAND.link}`}>
+                  {lang === 'en' ? labelEn : labelFr}
                 </Link>
               );
             })}
           </nav>
-          <div className="px-4 pb-4 flex items-center justify-between border-t border-[#EBDDD4] dark:border-[#3A2219] pt-3">
-            <div className={`flex items-center gap-0.5 rounded-lg p-0.5 ${BRAND.pill}`}>
+          <div className="px-4 pb-4 pt-2 flex items-center justify-between">
+            <div className={`flex items-center gap-0.5 rounded-full p-0.5 ${BRAND.pill}`}>
               {(['fr', 'en'] as const).map((code) => (
                 <button key={code} type="button" onClick={() => setLang(code)} disabled={lang === code}
-                  className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-all duration-200 ${lang === code ? BRAND.pillActive : BRAND.pillDefault}`}>
+                  className={`px-3 py-1.5 text-sm font-semibold rounded-full transition-all duration-200 ${lang === code ? BRAND.pillActive : BRAND.pillDefault}`}>
                   {code.toUpperCase()}
                 </button>
               ))}
             </div>
-            <Link href="/don" onClick={closeMenu}
-              className={`px-5 py-2.5 text-sm font-semibold rounded-xl transition-colors shadow-sm ${BRAND.ctaBg}`}>
-              {lang === 'en' ? '❤️ Donate' : '❤️ Faire un don'}
-            </Link>
+            <button type="button" onClick={toggleTheme}
+              aria-label={isDark ? 'Mode clair' : 'Mode sombre'}
+              suppressHydrationWarning
+              className={`p-2 rounded-full transition-colors ${BRAND.iconBtn}`}>
+              <span suppressHydrationWarning>{isDark ? <SunIcon /> : <MoonIcon />}</span>
+            </button>
           </div>
         </div>
       )}

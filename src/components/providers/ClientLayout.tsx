@@ -24,7 +24,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       <Navbar />
 
       {/* Contenu principal avec transition de page */}
-      <main id="main-content" className="min-h-screen pt-16">
+      <main id="main-content" className="min-h-screen pt-20">
         <PageTransition>
           {children}
         </PageTransition>

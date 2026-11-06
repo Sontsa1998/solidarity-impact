@@ -3,6 +3,7 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { CookieBanner } from '@/components/ui/CookieBanner';
+import { SocialFab } from '@/components/ui/SocialFab';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight';
 import { ScrollProgressBar } from '@/components/ui/ScrollProgressBar';
@@ -34,6 +35,9 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       <SiteFooter />
 
       {/* Bannière cookies */}
+      {/* Réseaux sociaux : boutons flottants en bas à droite */}
+      <SocialFab />
+
       <CookieBanner />
     </>
   );

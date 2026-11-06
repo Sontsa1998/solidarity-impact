@@ -40,6 +40,7 @@ export interface SiteConfig {
     instagram?: string;
     linkedin?: string;
     twitter?: string;
+    tiktok?: string;
     youtube?: string;
   };
   donationPresets: number[];
@@ -142,7 +143,11 @@ export const siteConfig: SiteConfig = {
   donationPresets: [10, 25, 50, 100],
 
   // Requirement 11.3 — social links hidden when not configured
-  socialLinks: {},
+  socialLinks: {
+    linkedin: 'https://www.linkedin.com/company/solidarity-impact/',
+    instagram: 'https://www.instagram.com/solidarity.impact/',
+    // tiktok: 'https://www.tiktok.com/@…', // à renseigner dès que le compte est disponible
+  },
 
   // Requirement 10.6, 11.1 — contact info (empty until configured)
   contactInfo: {

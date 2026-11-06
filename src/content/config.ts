@@ -67,6 +67,7 @@ export const teamMembers: TeamMember[] = [
     firstName: 'Marcel Parfait',
     lastName: 'ATOKO À NDEM',
     role: 'Vice-Président & Resp. Projets',
+    photoUrl: '/equipe/marcel-atoko-a-ndem-avatar.webp',
   },
   {
     id: 'edimo-will',

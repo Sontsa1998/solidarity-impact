@@ -158,7 +158,7 @@ export const fr: Translations = {
     // Requirement 5.1 — ≤ 200 chars, dimensions FR et CM
     // (156 chars — vérifié)
     subtitle:
-      "Association franco-camerounaise engagée pour l'éducation, l'aide aux orphelinats et le développement local au Cameroun, depuis Villemomble.",
+      "Association franco-camerounaise engagée pour l'éducation, l'emploi, les plus démunis et l'action de terrain au Cameroun, depuis Villemomble.",
     ctaDonate: "Faire un don",
     ctaLearnMore: "En savoir plus",
     scrollIndicator: "Défiler vers le bas",
@@ -174,7 +174,7 @@ export const fr: Translations = {
     missionTitle: "Notre mission",
     // Requirement 6.1 — mission officielle des statuts
     missionText:
-      "Solidarity Impact mène des actions solidaires franco-camerounaises dans les domaines de l'éducation, de l'aide aux orphelinats, des actions terrain au Cameroun, des partenariats internationaux et du développement solidaire durable. Nous croyons qu'un engagement commun entre la France et le Cameroun peut transformer des vies et construire un avenir plus équitable pour tous.",
+      "Solidarity Impact mène des actions solidaires franco-camerounaises dans quatre domaines : l'éducation, les opportunités professionnelles, le soutien aux plus démunis et des actions diverses sur le terrain au Cameroun. Nous croyons qu'un engagement commun entre la France et le Cameroun peut transformer des vies et construire un avenir plus équitable pour tous.",
     valuesTitle: "Nos valeurs",
     // Requirement 6.2 — valeurs exactes des statuts
     values: [
@@ -190,7 +190,7 @@ export const fr: Translations = {
     foundedPlace: "Villemomble, Seine-Saint-Denis",
     // Requirement 6.5 — informations légales
     legalInfo:
-      "Association déclarée, régie par la loi du 1er juillet 1901, à vocation internationale et relevant de l'Économie Sociale et Solidaire. Siège social : 89 rue de la Fosse aux Bergers, 93250 Villemomble. RNA : W931031771 — SIREN : 105 826 440 — SIRET : 105 826 440 00015 — APE : 94.99Z.",
+      "Association déclarée, régie par la loi du 1er juillet 1901, à vocation internationale et relevant de l'Économie Sociale et Solidaire. Siège social : Villemomble. RNA : W931031771 — SIREN : 105 826 440 — SIRET : 105 826 440 00015 — APE : 94.99Z.",
   },
 
   // ── Équipe ──────────────────────────────────────────────────────────────
@@ -221,8 +221,9 @@ export const fr: Translations = {
     // Requirement 9.8 — domaines d'impact
     impactItems: [
       "Éducation : bourses scolaires et fournitures pour les enfants défavorisés",
-      "Aide aux orphelinats : soutien matériel et accompagnement des enfants",
-      "Actions terrain au Cameroun : projets de développement local et solidaire",
+      "Opportunités professionnelles : orientation, formation et accès à l'emploi",
+      "Soutien aux plus démunis : aide matérielle et accompagnement des familles",
+      "Actions diverses sur le terrain : projets concrets menés au Cameroun",
     ],
     presetLabel: "Choisissez un montant",
     customLabel: "Autre montant",
@@ -248,7 +249,7 @@ export const fr: Translations = {
       "Le paiement n'a pas pu être finalisé. Aucun montant n'a été débité — veuillez réessayer.",
     thanksTitle: "Merci pour votre don !",
     thanksMessage:
-      "Votre générosité nous permet d'agir concrètement pour l'éducation, les orphelinats et le développement local au Cameroun. Vous allez recevoir un reçu de paiement par e-mail.",
+      "Votre générosité nous permet d'agir concrètement pour l'éducation, l'emploi, les plus démunis et l'action de terrain au Cameroun. Vous allez recevoir un reçu de paiement par e-mail.",
     thanksAmount: "Montant reçu",
     pendingTitle: "Paiement en cours de traitement",
     pendingMessage:
@@ -294,7 +295,7 @@ export const fr: Translations = {
     // Token {year} remplacé dynamiquement (Requirement 11.1)
     rights: "© {year} Solidarity Impact. Tous droits réservés.",
     // Requirement 11.2 — adresse du siège social
-    address: "89 rue de la Fosse aux Bergers, 93250 Villemomble",
+    address: "Villemomble",
   },
 
   // ── Métadonnées SEO ─────────────────────────────────────────────────────
@@ -303,7 +304,7 @@ export const fr: Translations = {
     title: "Solidarity Impact — Solidarité Franco-Camerounaise",
     // 155 chars — ≤ 160 (Requirement 13.4)
     description:
-      "Association loi 1901 menant des actions solidaires entre la France et le Cameroun : éducation, aide aux orphelinats et développement local.",
+      "Association loi 1901 menant des actions solidaires entre la France et le Cameroun : éducation, opportunités professionnelles, soutien aux plus démunis et actions de terrain.",
   },
 
   // ── Thème ───────────────────────────────────────────────────────────────

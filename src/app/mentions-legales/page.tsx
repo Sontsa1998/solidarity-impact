@@ -19,7 +19,7 @@ export default function MentionsLegalesPage() {
                 <p style={{ color: '#374151' }}>
                   <strong>Solidarity Impact</strong><br />
                   Association déclarée, régie par la loi du 1er juillet 1901<br />
-                  Siège social : {a.address}, {a.addressComplement}, {a.postalCode} {a.city}<br />
+                  Siège social : {a.city}<br />
                   N° RNA : {a.rnaNumber}<br />
                   SIREN : {a.sirenNumber} — SIRET du siège : {a.siretNumber}<br />
                   Code APE : {a.apeCode}<br />

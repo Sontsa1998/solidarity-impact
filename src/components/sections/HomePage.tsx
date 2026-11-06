@@ -25,9 +25,9 @@ function CheckIcon() {
   return <svg {...iconProps} strokeWidth={2.5} className="w-3 h-3"><polyline points="20 6 9 17 4 12" /></svg>;
 }
 function BookIcon()  { return <svg {...iconProps} className="w-5 h-5"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" /></svg>; }
-function HomeIcon()  { return <svg {...iconProps} className="w-5 h-5"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9v12h14V9" /><path d="M10 21v-6h4v6" /></svg>; }
 function GlobeIcon() { return <svg {...iconProps} className="w-5 h-5"><circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18" /></svg>; }
-function HandsIcon() { return <svg {...iconProps} className="w-5 h-5"><path d="M9 17H7A5 5 0 0 1 7 7h2" /><path d="M15 7h2a5 5 0 1 1 0 10h-2" /><line x1="8" y1="12" x2="16" y2="12" /></svg>; }
+function BriefcaseIcon() { return <svg {...iconProps} className="w-5 h-5"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /><path d="M2 13h20" /></svg>; }
+function HeartIcon() { return <svg {...iconProps} className="w-5 h-5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" /></svg>; }
 function UsersIcon() { return <svg {...iconProps} className="w-4 h-4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>; }
 function MailIcon()  { return <svg {...iconProps} className="w-4 h-4"><rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="22 6 12 13 2 6" /></svg>; }
 
@@ -42,14 +42,14 @@ const STATS = [
 const PILLARS = [
   { fr: 'Solidarité',    en: 'Solidarity',  dFr: 'Tendre la main aux enfants et aux familles dans le besoin',    dEn: 'Reaching out to children and families in need'            },
   { fr: 'Éducation',     en: 'Education',   dFr: "Donner à chaque enfant les moyens d'apprendre",                dEn: 'Giving every child the means to learn'                    },
-  { fr: 'Développement', en: 'Development', dFr: 'Agir sur le terrain avec les communautés locales au Cameroun', dEn: 'Working on the ground with local communities in Cameroon' },
+  { fr: 'Engagement',    en: 'Commitment',  dFr: 'Agir sur le terrain avec les communautés locales au Cameroun', dEn: 'Working on the ground with local communities in Cameroon' },
 ];
 
 const MISSIONS = [
   { Icon: BookIcon,  fr: "L'éducation pour tous",       en: 'Education for all',      dFr: 'Bourses, fournitures et matériel scolaire pour que chaque enfant puisse apprendre.',                 dEn: 'Scholarships, supplies and school equipment so every child can learn.' },
-  { Icon: HomeIcon,  fr: 'Soutien aux orphelinats',     en: 'Orphanage support',      dFr: 'Aide matérielle et humaine aux enfants orphelins et aux structures qui les accueillent.',             dEn: 'Material and human support for orphaned children and the homes that care for them.' },
-  { Icon: GlobeIcon, fr: 'Actions terrain au Cameroun', en: 'Field work in Cameroon', dFr: 'Grâce à notre délégation locale, nous agissons directement auprès des communautés.',                 dEn: 'Through our local delegation, we act directly alongside communities.' },
-  { Icon: HandsIcon, fr: 'Partenariats',                en: 'Partnerships',           dFr: 'Des ponts durables entre la France et le Cameroun, avec associations, entreprises et institutions.', dEn: 'Lasting bridges between France and Cameroon with associations, companies and institutions.' },
+  { Icon: BriefcaseIcon, fr: 'Opportunités professionnelles', en: 'Professional opportunities', dFr: "Accompagner les jeunes vers l'emploi : orientation, formation, stages et mise en relation avec des professionnels.", dEn: 'Helping young people into work: guidance, training, internships and connections with professionals.' },
+  { Icon: HeartIcon,     fr: 'Soutien aux plus démunis',      en: 'Support for those in need',  dFr: "Aide matérielle et humaine aux enfants, aux familles et aux personnes en situation de précarité.",                    dEn: 'Material and human support for children, families and people facing hardship.' },
+  { Icon: GlobeIcon,     fr: 'Actions diverses sur le terrain', en: 'Field actions',            dFr: 'Grâce à notre délégation locale, nous menons des actions concrètes et variées auprès des communautés au Cameroun.', dEn: 'Through our local delegation, we carry out concrete and varied actions alongside communities in Cameroon.' },
 ];
 
 const HOW = [
@@ -113,8 +113,8 @@ export function HomePage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed text-white/80">
-              {T("Depuis 2025, Solidarity Impact réunit des Français et des Camerounais autour d'une même conviction : l'éducation, la solidarité et le développement local changent des vies.",
-                 'Since 2025, Solidarity Impact has brought together French and Cameroonian people around one belief: education, solidarity and local development change lives.')}
+              {T("Depuis 2025, Solidarity Impact réunit des Français et des Camerounais autour d'une même conviction : l'éducation, l'emploi et la solidarité changent des vies.",
+                 'Since 2025, Solidarity Impact has brought together French and Cameroonian people around one belief: education, employment and solidarity change lives.')}
             </p>
           </Reveal>
           <Reveal delay={0.24} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -148,8 +148,8 @@ export function HomePage() {
           <Reveal>
             <h2 id="about-title" className="text-3xl sm:text-4xl font-bold">{T('Qui sommes-nous ?', 'Who are we?')}</h2>
             <p className="mt-6 text-lg leading-relaxed text-[#4B5563] dark:text-[#C9CED6]">
-              {T("Solidarity Impact est une association loi 1901 créée en 2025 à Villemomble par un collectif de Franco-Camerounais. Notre objectif : soutenir l'éducation, venir en aide aux orphelinats et accompagner le développement des communautés au Cameroun.",
-                 'Solidarity Impact is a French non-profit founded in 2025 in Villemomble by a group of French-Cameroonians. Our goal: support education, help orphanages and foster community development in Cameroon.')}
+              {T("Solidarity Impact est une association loi 1901 créée en 2025 à Villemomble par un collectif de Franco-Camerounais. Nos missions : l'éducation, les opportunités professionnelles, le soutien aux plus démunis et des actions diverses sur le terrain au Cameroun.",
+                 'Solidarity Impact is a French non-profit founded in 2025 in Villemomble by a group of French-Cameroonians. Our missions: education, professional opportunities, support for the most vulnerable and a range of field actions in Cameroon.')}
             </p>
 
             {/* Frise des piliers */}

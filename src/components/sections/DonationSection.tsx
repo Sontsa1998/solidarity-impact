@@ -4,8 +4,8 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { DonationForm } from '@/components/ui/DonationForm';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const IMPACT_ICONS = ['📚', '🏠', '🌍'] as const;
-const IMPACT_ITEM_COUNT = 3;
+const IMPACT_ICONS = ['📚', '💼', '🤝', '🌍'] as const;
+const IMPACT_ITEM_COUNT = 4;
 
 export function DonationSection() {
   const { t } = useI18nContext();
@@ -41,7 +41,7 @@ export function DonationSection() {
                   <li key={item} className="flex items-start gap-4 rounded-2xl p-5 shadow-sm border"
                     style={{ background: '#fff', borderColor: '#E5E7EB' }}>
                     <span className="flex-shrink-0 text-2xl" aria-hidden="true">
-                      {IMPACT_ICONS[index as 0 | 1 | 2] ?? '✅'}
+                      {IMPACT_ICONS[index as 0 | 1 | 2 | 3] ?? '✅'}
                     </span>
                     <span className="leading-relaxed" style={{ color: '#374151' }}>{item}</span>
                   </li>

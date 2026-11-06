@@ -36,8 +36,7 @@ export function ContactSection() {
                 </h3>
                 <address className="not-italic leading-relaxed" style={{ color: '#374151' }}>
                   <span className="block font-medium">{association.name}</span>
-                  <span className="block">{association.address}</span>
-                  <span className="block">{association.postalCode} {association.city}</span>
+                  <span className="block">{association.city}</span>
                 </address>
               </div>
 
@@ -55,7 +54,7 @@ export function ContactSection() {
               {contactInfo.phone && (
                 <div>
                   <h3 className="mb-2 text-lg font-semibold" style={{ color: '#1A1A1A' }}>Téléphone</h3>
-                  <a href={`tel:${contactInfo.phone}`} className="hover:underline transition-colors"
+                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="hover:underline transition-colors"
                     style={{ color: '#2E7D44' }}>
                     {contactInfo.phone}
                   </a>

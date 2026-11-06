@@ -59,8 +59,8 @@ export function SiteFooter() {
               <BrandLogo variant="compact" className="h-14 w-auto text-[#2E7D44] dark:text-[#5DB876]" title="Logo Solidarity Impact" />
             </Link>
             <p className="text-sm leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] max-w-xs">
-              {T("Créée en 2025 par un collectif de Franco-Camerounais, Solidarity Impact agit pour l'éducation, les orphelinats et le développement local au Cameroun.",
-                 'Founded in 2025 by a group of French-Cameroonians, Solidarity Impact works for education, orphanages and local development in Cameroon.')}
+              {T("Créée en 2025 par un collectif de Franco-Camerounais, Solidarity Impact agit pour l'éducation, les opportunités professionnelles, le soutien aux plus démunis et des actions diverses sur le terrain au Cameroun.",
+                 'Founded in 2025 by a group of French-Cameroonians, Solidarity Impact works for education, professional opportunities, support for the most vulnerable and a range of field actions in Cameroon.')}
             </p>
             {socials.length > 0 && (
               <div className="flex items-center gap-3">
@@ -104,13 +104,11 @@ export function SiteFooter() {
               </li>
               <li className="flex items-start gap-2.5">
                 <PhoneIcon />
-                <a href="tel:+33754398971" className={linkCls}>+33 7 54 39 89 71</a>
+                <a href="tel:+33751075750" className={linkCls}>07 51 07 57 50</a>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPinIcon />
-                <address className="not-italic leading-relaxed">
-                  89 rue de la Fosse aux Bergers<br />93250 Villemomble
-                </address>
+                <address className="not-italic leading-relaxed">Villemomble</address>
               </li>
             </ul>
           </div>

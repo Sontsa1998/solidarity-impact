@@ -87,8 +87,8 @@ export function HeroSection() {
           style={{ color: '#6B7280' }}
         >
           {lang === 'en'
-            ? 'Franco-Cameroonian association committed to education, support for orphanages and local development in Cameroon, based in Villemomble.'
-            : "Association franco-camerounaise engagée pour l'éducation, l'aide aux orphelinats et le développement local au Cameroun, depuis Villemomble."}
+            ? 'Franco-Cameroonian association committed to education, professional opportunities, support for the most vulnerable and field actions in Cameroon, based in Villemomble.'
+            : "Association franco-camerounaise engagée pour l'éducation, les opportunités professionnelles, le soutien aux plus démunis et les actions de terrain au Cameroun, depuis Villemomble."}
         </motion.p>
 
         {/* CTAs */}

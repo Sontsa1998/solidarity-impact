@@ -31,7 +31,7 @@ export default function PolitiqueConfidentialitePage() {
             },
             {
               title: 'Contact DPO',
-              content: "Solidarity Impact — 89 rue de la Fosse aux Bergers, 93250 Villemomble — contact@solidarityimpact.org",
+              content: "Solidarity Impact — Villemomble — contact@solidarityimpact.org",
             },
           ].map(({ title, content }) => (
             <section key={title} className="rounded-2xl border p-6 shadow-sm"

@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     template: "%s — Solidarity Impact",
   },
   description:
-    "Association loi 1901 menant des actions solidaires entre la France et le Cameroun : éducation, orphelinats, développement local.",
+    "Association loi 1901 menant des actions solidaires entre la France et le Cameroun : éducation, opportunités professionnelles, soutien aux plus démunis, actions de terrain.",
   openGraph: {
     title: "Solidarity Impact — Solidarité Franco-Camerounaise",
     description:
-      "Association loi 1901 franco-camerounaise : éducation, aide aux orphelinats et développement local.",
+      "Association loi 1901 franco-camerounaise : éducation, opportunités professionnelles, soutien aux plus démunis et actions de terrain.",
     url: "https://solidarityimpact.org",
     siteName: "Solidarity Impact",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Solidarity Impact" }],

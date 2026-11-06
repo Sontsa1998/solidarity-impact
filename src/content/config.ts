@@ -41,6 +41,7 @@ export interface SiteConfig {
     linkedin?: string;
     twitter?: string;
     tiktok?: string;
+    helloasso?: string;
     youtube?: string;
   };
   donationPresets: number[];
@@ -146,6 +147,7 @@ export const siteConfig: SiteConfig = {
   socialLinks: {
     linkedin: 'https://www.linkedin.com/company/solidarity-impact/',
     instagram: 'https://www.instagram.com/solidarity.impact/',
+    helloasso: 'https://www.helloasso.com/associations/solidarity-impact',
     // tiktok: 'https://www.tiktok.com/@…', // à renseigner dès que le compte est disponible
   },
 

@@ -35,10 +35,20 @@ function TikTokIcon() {
   );
 }
 
+/** HelloAsso : plateforme de dons et d'adhésions associatives (icône cœur) */
+function HelloAssoIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+      <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.9 4.5 6.6 4.1c2.1-.2 3.9.9 5.4 2.8 1.5-1.9 3.3-3 5.4-2.8 3.7.4 5.7 4.3 4.2 7.7C19.5 16.4 12 21 12 21Z" />
+    </svg>
+  );
+}
+
 const NETWORKS = [
   { key: 'linkedin',  label: 'LinkedIn',  Icon: LinkedInIcon  },
   { key: 'instagram', label: 'Instagram', Icon: InstagramIcon },
   { key: 'tiktok',    label: 'TikTok',    Icon: TikTokIcon    },
+  { key: 'helloasso', label: 'HelloAsso', Icon: HelloAssoIcon },
 ] as const;
 
 export function SocialFab() {
@@ -62,7 +72,7 @@ export function SocialFab() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={lang === 'en' ? `${label} (opens in a new tab)` : `${label} (nouvel onglet)`}
-          className="group relative flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#2E7D44] text-white shadow-[0_6px_20px_rgba(18,33,26,0.28)] ring-2 ring-white/70 dark:ring-[#0E1A14] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#256B39] hover:shadow-[0_10px_26px_rgba(18,33,26,0.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#F2C94C]"
+          className="group relative flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#2E7D44] text-white shadow-[0_6px_20px_rgba(18,33,26,0.28)] ring-2 ring-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#256B39] hover:shadow-[0_10px_26px_rgba(18,33,26,0.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#F2C94C]"
         >
           <Icon />
           {/* Étiquette au survol (ordinateur) */}

@@ -69,24 +69,24 @@ export function Countdown({ targetDate }: CountdownProps) {
               <div
                 className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[110px] sm:min-w-[104px] md:min-w-[120px] lg:min-w-[150px] text-center"
                 style={{
-                  background: 'linear-gradient(135deg, #fff 0%, #FBF4EF 100%)',
-                  border: '2px solid #EBDDD4',
-                  boxShadow: '0 8px 32px rgba(107,62,46,0.10)',
+                  background: 'linear-gradient(135deg, #fff 0%, #F7F9F7 100%)',
+                  border: '2px solid #E5E7EB',
+                  boxShadow: '0 8px 32px rgba(46,125,68,0.10)',
                 }}
               >
                 <span className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none"
-                  style={{ color: '#EBDDD4' }}>
+                  style={{ color: '#E5E7EB' }}>
                   --
                 </span>
               </div>
               <span className="mt-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]"
-                style={{ color: '#D2B8AA' }}>
+                style={{ color: '#9CA3AF' }}>
                 {label}
               </span>
             </div>
             {idx < 3 && (
               <span className="hidden sm:inline text-3xl md:text-4xl lg:text-5xl font-black mb-6 select-none"
-                style={{ color: '#EBDDD4' }} aria-hidden="true">:</span>
+                style={{ color: '#E5E7EB' }} aria-hidden="true">:</span>
             )}
           </div>
         ))}
@@ -99,7 +99,7 @@ export function Countdown({ targetDate }: CountdownProps) {
     return (
       <div className="py-8 text-center">
         <div className="text-5xl mb-4" aria-hidden="true">🏆</div>
-        <p className="text-2xl sm:text-3xl font-black" style={{ color: '#6B3E2E' }}>
+        <p className="text-2xl sm:text-3xl font-black" style={{ color: '#2E7D44' }}>
           {lang === 'en' ? 'The tournament has started!' : 'Le tournoi a commencé !'}
         </p>
       </div>
@@ -130,16 +130,16 @@ export function Countdown({ targetDate }: CountdownProps) {
             <div
               className="rounded-2xl px-4 py-3 sm:px-6 sm:py-4 min-w-[110px] sm:min-w-[104px] md:min-w-[120px] lg:min-w-[150px] text-center"
               style={{
-                background: 'linear-gradient(135deg, #ffffff 0%, #FBF4EF 100%)',
-                border: '2px solid #EBDDD4',
-                boxShadow: '0 8px 32px rgba(107,62,46,0.12), inset 0 1px 0 rgba(255,255,255,0.9)',
+                background: 'linear-gradient(135deg, #ffffff 0%, #F7F9F7 100%)',
+                border: '2px solid #E5E7EB',
+                boxShadow: '0 8px 32px rgba(46,125,68,0.12), inset 0 1px 0 rgba(255,255,255,0.9)',
               }}
             >
               <span
                 className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-none tabular-nums"
                 style={{
-                  color: '#6B3E2E',
-                  textShadow: '0 2px 10px rgba(107,62,46,0.18)',
+                  color: '#2E7D44',
+                  textShadow: '0 2px 10px rgba(46,125,68,0.18)',
                   fontVariantNumeric: 'tabular-nums',
                   fontFeatureSettings: '"tnum"',
                 }}
@@ -150,7 +150,7 @@ export function Countdown({ targetDate }: CountdownProps) {
             {/* Label */}
             <span
               className="mt-2 text-[10px] sm:text-xs lg:text-sm font-bold uppercase tracking-[0.25em]"
-              style={{ color: '#86655A' }}
+              style={{ color: '#6B7280' }}
             >
               {lang === 'en' ? labelEn : labelFr}
             </span>
@@ -160,7 +160,7 @@ export function Countdown({ targetDate }: CountdownProps) {
           {idx < 3 && (
             <span
               className="hidden sm:inline text-3xl md:text-4xl lg:text-5xl font-black mb-7 select-none"
-              style={{ color: '#D2B8AA' }}
+              style={{ color: '#9CA3AF' }}
               aria-hidden="true"
             >
               :

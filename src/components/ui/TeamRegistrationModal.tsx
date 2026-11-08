@@ -121,16 +121,16 @@ interface TeamRegistrationModalProps {
   onClose: () => void;
 }
 
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
-const BORDER = '#EBDDD4';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
+const BORDER = '#E5E7EB';
 
 const inputStyle = {
   background: 'rgba(255,255,255,0.9)',
   border: `1.5px solid ${BORDER}`,
   borderRadius: '0.5rem',
   padding: '0.6rem 0.875rem',
-  color: '#24140E',
+  color: '#1A1A1A',
   width: '100%',
   outline: 'none',
   fontSize: '0.9rem',
@@ -204,7 +204,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
       {/* Overlay */}
       <div
         className="fixed inset-0 z-[9990]"
-        style={{ background: 'rgba(23,13,9,0.75)', backdropFilter: 'blur(4px)' }}
+        style={{ background: 'rgba(14,26,20,0.75)', backdropFilter: 'blur(4px)' }}
         onClick={handleClose}
         aria-hidden="true"
       />
@@ -223,7 +223,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
           <div className="absolute inset-0 overflow-hidden rounded-3xl">
             <FootballPitchBg />
             {/* Voile semi-transparent pour la lisibilité */}
-            <div className="absolute inset-0" style={{ background: 'rgba(253,249,247,0.88)' }} />
+            <div className="absolute inset-0" style={{ background: 'rgba(247,249,247,0.88)' }} />
           </div>
 
           {/* Contenu */}
@@ -234,11 +234,11 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
 
             {/* Header */}
             <div className="sticky top-0 z-10 px-6 pt-6 pb-4 flex items-start justify-between"
-              style={{ background: 'rgba(253,249,247,0.97)', borderBottom: `1px solid ${BORDER}` }}>
+              style={{ background: 'rgba(247,249,247,0.97)', borderBottom: `1px solid ${BORDER}` }}>
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-2xl" aria-hidden="true">⚽</span>
-                  <p className="text-xs font-bold uppercase tracking-widest" style={{ color: '#86655A' }}>
+                  <p className="text-xs font-bold uppercase tracking-widest" style={{ color: '#6B7280' }}>
                     Tournoi Solidarity Impact — 17 Juillet 2025
                   </p>
                 </div>
@@ -262,14 +262,14 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                 <h3 className="text-2xl font-black mb-3" style={{ color: B }}>
                   Équipe « {form.teamName} » inscrite !
                 </h3>
-                <p className="text-base mb-6" style={{ color: '#4A2B20' }}>
+                <p className="text-base mb-6" style={{ color: '#374151' }}>
                   Votre demande a bien été enregistrée. Notre équipe vous contactera prochainement
                   au <strong>{form.contact}</strong> pour confirmer votre participation.
                 </p>
                 <button onClick={handleClose}
                   className="px-8 py-3 rounded-xl font-bold text-base transition-colors"
                   style={{ background: B, color: BEIGE }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = B; }}>
                   Fermer
                 </button>
@@ -296,7 +296,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                       ) : (
                         <>
                           <span className="text-2xl" aria-hidden="true">🏅</span>
-                          <span className="text-[10px] font-semibold mt-1" style={{ color: '#86655A' }}>Logo</span>
+                          <span className="text-[10px] font-semibold mt-1" style={{ color: '#6B7280' }}>Logo</span>
                         </>
                       )}
                     </button>
@@ -305,7 +305,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
 
                     {/* Nom équipe */}
                     <div className="flex-1">
-                      <label htmlFor="team-name" className="block text-sm font-bold mb-1.5" style={{ color: '#24140E' }}>
+                      <label htmlFor="team-name" className="block text-sm font-bold mb-1.5" style={{ color: '#1A1A1A' }}>
                         Nom de l'équipe <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
                       </label>
                       <input ref={firstInputRef} id="team-name" type="text" required
@@ -318,7 +318,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                   {/* Contact + Ville + CP */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="sm:col-span-3">
-                      <label htmlFor="team-contact" className="block text-sm font-bold mb-1.5" style={{ color: '#24140E' }}>
+                      <label htmlFor="team-contact" className="block text-sm font-bold mb-1.5" style={{ color: '#1A1A1A' }}>
                         Numéro de contact <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
                       </label>
                       <input id="team-contact" type="tel" required
@@ -327,7 +327,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                         style={inputStyle} />
                     </div>
                     <div className="sm:col-span-2">
-                      <label htmlFor="team-city" className="block text-sm font-bold mb-1.5" style={{ color: '#24140E' }}>
+                      <label htmlFor="team-city" className="block text-sm font-bold mb-1.5" style={{ color: '#1A1A1A' }}>
                         Ville <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
                       </label>
                       <input id="team-city" type="text" required
@@ -336,7 +336,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                         style={inputStyle} />
                     </div>
                     <div>
-                      <label htmlFor="team-cp" className="block text-sm font-bold mb-1.5" style={{ color: '#24140E' }}>
+                      <label htmlFor="team-cp" className="block text-sm font-bold mb-1.5" style={{ color: '#1A1A1A' }}>
                         Code postal <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
                       </label>
                       <input id="team-cp" type="text" required maxLength={5} pattern="\d{5}"
@@ -417,7 +417,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                 <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t" style={{ borderColor: BORDER }}>
                   <button type="button" onClick={handleClose}
                     className="flex-1 py-3 rounded-xl font-semibold text-sm border-2 transition-colors"
-                    style={{ borderColor: BORDER, color: '#86655A', background: 'transparent' }}
+                    style={{ borderColor: BORDER, color: '#6B7280', background: 'transparent' }}
                     onMouseEnter={e => { e.currentTarget.style.background = BEIGE; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
                     Annuler
@@ -425,7 +425,7 @@ export function TeamRegistrationModal({ isOpen, onClose }: TeamRegistrationModal
                   <button type="submit"
                     className="flex-[2] py-3 rounded-xl font-black text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                     style={{ background: B, color: BEIGE }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = B; }}>
                     ⚽ Inscrire mon équipe au tournoi
                   </button>

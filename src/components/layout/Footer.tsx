@@ -235,9 +235,7 @@ export function Footer() {
 
             {/* Address — Requirement 11.2 */}
             <address className="not-italic text-sm text-gray-400 leading-relaxed">
-              {association.address}
-              <br />
-              {association.postalCode} {association.city}
+              {association.city}
             </address>
           </div>
 

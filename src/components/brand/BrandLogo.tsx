@@ -3,7 +3,7 @@
  *
  * Les tracés proviennent des fichiers donnees/Logos/Logo*.svg et utilisent
  * `currentColor` : la couleur se règle via la propriété CSS `color`
- * (marron #6B3E2E, jaune #F2C94C, vert #3FA45B, blanc…).
+ * (marron #2E7D44, jaune #F2C94C, vert #3FA45B, blanc…).
  *
  * - variant "stacked" (Logo1) : mains centrées au-dessus du nom
  * - variant "compact" (Logo2) : mains décalées au-dessus du « y »

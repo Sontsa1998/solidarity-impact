@@ -19,9 +19,9 @@ interface DonationState {
   paymentError: string | null;
 }
 
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
-const BORDER = '#EBDDD4';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
+const BORDER = '#E5E7EB';
 
 function formatEuros(amount: number, lang: string) {
   return new Intl.NumberFormat(lang === 'en' ? 'en-GB' : 'fr-FR', {
@@ -130,9 +130,9 @@ export function DonationForm() {
         {paymentAlert}
 
         <div className="mb-6 flex items-center justify-between gap-4 rounded-xl px-5 py-4"
-          style={{ background: '#FBF4EF', border: `1px solid ${BORDER}` }}>
+          style={{ background: '#F7F9F7', border: `1px solid ${BORDER}` }}>
           <div>
-            <p className="text-sm font-medium" style={{ color: '#86655A' }}>{t('donation.amountLabel')}</p>
+            <p className="text-sm font-medium" style={{ color: '#6B7280' }}>{t('donation.amountLabel')}</p>
             <p className="text-2xl font-bold" style={{ color: B }}>{formatEuros(amount, lang)}</p>
           </div>
           <button type="button" disabled={state.pending !== null}
@@ -143,7 +143,7 @@ export function DonationForm() {
           </button>
         </div>
 
-        <h3 className="mb-3 text-sm font-semibold" style={{ color: '#24140E' }}>
+        <h3 className="mb-3 text-sm font-semibold" style={{ color: '#1A1A1A' }}>
           {t('donation.paymentTitle')}
         </h3>
 
@@ -157,7 +157,7 @@ export function DonationForm() {
                 style={{
                   borderColor: busy ? B : BORDER,
                   background: '#fff',
-                  color: '#24140E',
+                  color: '#1A1A1A',
                   opacity: state.pending !== null && !busy ? 0.5 : 1,
                 }}
                 onMouseEnter={e => { if (!state.pending) e.currentTarget.style.borderColor = B; }}
@@ -169,7 +169,7 @@ export function DonationForm() {
                 </span>
                 <span className="flex-1">
                   <span className="block text-base font-bold">{m.label}</span>
-                  <span className="block text-sm" style={{ color: '#86655A' }}>
+                  <span className="block text-sm" style={{ color: '#6B7280' }}>
                     {busy ? t('donation.redirecting') : m.hint}
                   </span>
                 </span>
@@ -179,7 +179,7 @@ export function DonationForm() {
           })}
         </div>
 
-        <p className="mt-6 text-xs leading-relaxed" style={{ color: '#86655A' }}>
+        <p className="mt-6 text-xs leading-relaxed" style={{ color: '#6B7280' }}>
           {t('donation.securePayment')}
         </p>
       </div>
@@ -193,7 +193,7 @@ export function DonationForm() {
 
       {/* Presets */}
       <fieldset className="mb-6">
-        <legend className="mb-3 text-sm font-semibold" style={{ color: '#24140E' }}>
+        <legend className="mb-3 text-sm font-semibold" style={{ color: '#1A1A1A' }}>
           {t('donation.presetLabel')}
         </legend>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -205,7 +205,7 @@ export function DonationForm() {
                 className="rounded-xl border-2 px-4 py-3 text-base font-semibold transition-all duration-200"
                 style={sel
                   ? { borderColor: B, background: B, color: BEIGE }
-                  : { borderColor: BORDER, background: '#fff', color: '#3A2219' }}
+                  : { borderColor: BORDER, background: '#fff', color: '#1F3329' }}
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = B; }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = BORDER; }}
               >
@@ -222,7 +222,7 @@ export function DonationForm() {
           className="rounded-xl border-2 px-4 py-2 text-sm font-semibold transition-all duration-200 mb-3"
           style={state.isCustom
             ? { borderColor: B, background: B, color: BEIGE }
-            : { borderColor: BORDER, background: '#fff', color: '#3A2219' }}>
+            : { borderColor: BORDER, background: '#fff', color: '#1F3329' }}>
           {t('donation.customLabel')}
         </button>
 
@@ -239,7 +239,7 @@ export function DonationForm() {
                 aria-invalid={state.error !== null}
                 className="w-full rounded-xl border-2 px-4 py-3 pr-12 transition-colors duration-200"
                 style={{
-                  background: '#fff', color: '#24140E',
+                  background: '#fff', color: '#1A1A1A',
                   borderColor: state.error ? '#dc2626' : BORDER,
                   outline: 'none',
                 }}
@@ -247,7 +247,7 @@ export function DonationForm() {
                 onBlur={e => { e.currentTarget.style.borderColor = state.error ? '#dc2626' : BORDER; }}
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 font-medium"
-                style={{ color: '#86655A' }} aria-hidden="true">€</span>
+                style={{ color: '#6B7280' }} aria-hidden="true">€</span>
             </div>
             {state.error && (
               <span id="donation-error" role="alert" className="mt-2 block text-sm" style={{ color: '#dc2626' }}>
@@ -262,9 +262,9 @@ export function DonationForm() {
       <button type="submit" disabled={!isEnabled()} aria-disabled={!isEnabled()}
         className="w-full rounded-xl px-6 py-4 text-base font-bold transition-all duration-200"
         style={isEnabled()
-          ? { background: B, color: BEIGE, cursor: 'pointer', boxShadow: '0 4px 12px rgba(107,62,46,0.25)' }
-          : { background: '#EBDDD4', color: '#86655A', cursor: 'not-allowed' }}
-        onMouseEnter={e => { if (isEnabled()) e.currentTarget.style.background = '#5A3426'; }}
+          ? { background: B, color: BEIGE, cursor: 'pointer', boxShadow: '0 4px 12px rgba(46,125,68,0.25)' }
+          : { background: '#E5E7EB', color: '#6B7280', cursor: 'not-allowed' }}
+        onMouseEnter={e => { if (isEnabled()) e.currentTarget.style.background = '#256B39'; }}
         onMouseLeave={e => { if (isEnabled()) e.currentTarget.style.background = B; }}
       >
         {t('donation.buttonText')}

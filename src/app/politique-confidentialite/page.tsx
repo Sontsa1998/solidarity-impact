@@ -4,12 +4,12 @@ export const metadata: Metadata = { title: 'Politique de confidentialité — So
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <div style={{ background: '#FDF9F7', minHeight: '100vh' }}>
+    <div style={{ background: '#F7F9F7', minHeight: '100vh' }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-3xl font-bold mb-2" style={{ color: '#6B3E2E' }}>
+        <h1 className="text-3xl font-bold mb-2" style={{ color: '#2E7D44' }}>
           Politique de confidentialité
         </h1>
-        <div className="w-16 h-1 rounded-full mb-10" style={{ background: '#6B3E2E' }} aria-hidden="true" />
+        <div className="w-16 h-1 rounded-full mb-10" style={{ background: '#2E7D44' }} aria-hidden="true" />
 
         <div className="space-y-8">
           {[
@@ -31,22 +31,22 @@ export default function PolitiqueConfidentialitePage() {
             },
             {
               title: 'Contact DPO',
-              content: "Solidarity Impact — 89 rue de la Fosse aux Bergers, 93250 Villemomble — contact@solidarityimpact.org",
+              content: "Solidarity Impact — Villemomble — contact@solidarityimpact.org",
             },
           ].map(({ title, content }) => (
             <section key={title} className="rounded-2xl border p-6 shadow-sm"
-              style={{ background: '#fff', borderColor: '#EBDDD4' }}>
-              <h2 className="text-xl font-semibold mb-3" style={{ color: '#6B3E2E' }}>{title}</h2>
+              style={{ background: '#fff', borderColor: '#E5E7EB' }}>
+              <h2 className="text-xl font-semibold mb-3" style={{ color: '#2E7D44' }}>{title}</h2>
               {title === 'Vos droits' ? (
-                <p style={{ color: '#4A2B20' }} className="leading-relaxed">
+                <p style={{ color: '#374151' }} className="leading-relaxed">
                   Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Pour exercer ces droits, contactez-nous à :{' '}
                   <a href="mailto:contact@solidarityimpact.org"
-                    style={{ color: '#6B3E2E' }} className="hover:underline">
+                    style={{ color: '#2E7D44' }} className="hover:underline">
                     contact@solidarityimpact.org
                   </a>
                 </p>
               ) : (
-                <p style={{ color: '#4A2B20' }} className="leading-relaxed">{content}</p>
+                <p style={{ color: '#374151' }} className="leading-relaxed">{content}</p>
               )}
             </section>
           ))}

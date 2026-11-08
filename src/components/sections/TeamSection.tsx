@@ -25,12 +25,12 @@ export function TeamSection() {
 
         <AnimatedSection animation="slideUp" threshold={0.1} className="mb-14 text-center">
           <h2 id="team-title" className="text-3xl sm:text-4xl font-bold mb-3"
-            style={{ color: '#24140E' }}>
+            style={{ color: '#1A1A1A' }}>
             {t('team.sectionTitle')}
           </h2>
           <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4"
-            style={{ background: '#6B3E2E' }} />
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#86655A' }}>
+            style={{ background: '#2E7D44' }} />
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             {t('team.sectionSubtitle')}
           </p>
         </AnimatedSection>

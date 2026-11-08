@@ -27,7 +27,7 @@ export const en: Translations = {
     title: 'SOLIDARITY IMPACT',
     tagline: 'The future within reach',
     subtitle:
-      'A Franco-Cameroonian association committed to education, orphanage support and local development in Cameroon, based in Villemomble.',
+      'A Franco-Cameroonian association committed to education, jobs, the most vulnerable and field action in Cameroon, based in Villemomble.',
     ctaDonate: 'Donate',
     ctaLearnMore: 'Learn more',
     scrollIndicator: 'Scroll down',
@@ -41,7 +41,7 @@ export const en: Translations = {
       'To make Franco-Cameroonian solidarity a collective, structured and lasting force, able to make a real difference in Cameroon through the commitment of the diaspora, strong partnerships and measurable impact.',
     missionTitle: 'Our mission',
     missionText:
-      'Solidarity Impact carries out Franco-Cameroonian solidarity actions in the fields of education, orphanage support, field operations in Cameroon, international partnerships and sustainable solidarity development. We believe that a shared commitment between France and Cameroon can transform lives and build a more equitable future for all.',
+      'Solidarity Impact carries out Franco-Cameroonian solidarity actions in four areas: education, professional opportunities, support for the most vulnerable and a range of field actions in Cameroon. We believe that a shared commitment between France and Cameroon can transform lives and build a more equitable future for all.',
     valuesTitle: 'Our values',
     values: [
       'Solidarity',
@@ -53,7 +53,7 @@ export const en: Translations = {
     foundedDate: 'September 14, 2025',
     foundedPlace: 'Villemomble, Seine-Saint-Denis',
     legalInfo:
-      'Registered association governed by the French law of July 1, 1901, with an international vocation, part of the Social and Solidarity Economy (ESS). Registered office: 89 rue de la Fosse aux Bergers, 93250 Villemomble, France. RNA: W931031771 — SIREN: 105 826 440 — SIRET: 105 826 440 00015 — APE: 94.99Z.',
+      'Registered association governed by the French law of July 1, 1901, with an international vocation, part of the Social and Solidarity Economy (ESS). Registered office: Villemomble, France. RNA: W931031771 — SIREN: 105 826 440 — SIRET: 105 826 440 00015 — APE: 94.99Z.',
   },
 
   // ── Team ────────────────────────────────────────────────────────────────
@@ -81,8 +81,9 @@ export const en: Translations = {
     impactTitle: 'The impact of your donation',
     impactItems: [
       'Education: scholarships and supplies for underprivileged children',
-      'Orphanage support: material assistance and care for children',
-      'Field operations in Cameroon: local and solidarity development projects',
+      'Professional opportunities: guidance, training and access to employment',
+      'Support for the most vulnerable: material aid and support for families',
+      'Field actions: concrete projects carried out in Cameroon',
     ],
     presetLabel: 'Choose an amount',
     customLabel: 'Other amount',
@@ -104,7 +105,7 @@ export const en: Translations = {
     failedMessage: 'The payment could not be completed. Nothing was charged — please try again.',
     thanksTitle: 'Thank you for your donation!',
     thanksMessage:
-      'Your generosity helps us take concrete action for education, orphanages and local development in Cameroon. You will receive a payment receipt by email.',
+      'Your generosity helps us take concrete action for education, jobs, the most vulnerable and field action in Cameroon. You will receive a payment receipt by email.',
     thanksAmount: 'Amount received',
     pendingTitle: 'Payment being processed',
     pendingMessage:
@@ -148,14 +149,14 @@ export const en: Translations = {
   footer: {
     legalMention: 'Non-profit association — International vocation',
     rights: '© {year} Solidarity Impact. All rights reserved.',
-    address: '89 rue de la Fosse aux Bergers, 93250 Villemomble',
+    address: 'Villemomble',
   },
 
   // ── SEO Metadata ────────────────────────────────────────────────────────
   meta: {
     title: 'Solidarity Impact — Franco-Cameroonian Solidarity',
     description:
-      'Non-profit association conducting solidarity actions between France and Cameroon: education, orphanage support and local development.',
+      'Non-profit association conducting solidarity actions between France and Cameroon: education, professional opportunities, support for the most vulnerable and field actions.',
   },
 
   // ── Theme ───────────────────────────────────────────────────────────────

@@ -10,26 +10,28 @@
 
 /* ── Design tokens déclarés dans @theme (Tailwind v4) ──────────────────────── */
 @theme {
-  /* ── Charte graphique Solidarity Impact (DossierSI_2026V3) ─────────────────
-     Marron  : #6B3E2E  — couleur principale (logo, textes, boutons)
-     Jaune   : #F2C94C  — accent chaleureux (badges, CTA sur fond sombre)
-     Vert    : #3FA45B  — accent nature / croissance
-     Crème   : #FDF9F7  — fond principal
-     Dégradés : marron→jaune, crème→jaune, vert→jaune
-     Typographies : Montserrat (titres) · Open Sans (texte)
+  /* ── Identité visuelle Solidarity Impact ───────────────────────────────────
+     Style épuré inspiré des grands réseaux associatifs : fonds blancs,
+     bandeaux vert très sombre, accents verts, boutons « pilule ».
+     Vert     : #2E7D44 — couleur principale (boutons, liens, accents)
+     Vert vif : #3FA45B — accent charte (puces, icônes)
+     Nuit     : #12211A — bandeaux sombres (chiffres, appels à l'action)
+     Jaune    : #F2C94C — touche chaleureuse de la charte (dates, badges)
+     Le logo officiel (DossierSI_2026V3) est conservé tel quel.
+     Typographie : Outfit (titres et texte)
      ─────────────────────────────────────────────────────────────────────── */
 
-  /* Marron principal */
-  --color-brand-50:  #FFFFFF;
-  --color-brand-100: #FDF9F7;   /* crème charte */
-  --color-brand-200: #EBDDD4;
-  --color-brand-300: #D2B8AA;
-  --color-brand-400: #9C6A55;
-  --color-brand-500: #6B3E2E;   /* marron charte — couleur principale */
-  --color-brand-600: #5A3426;   /* hover */
-  --color-brand-700: #4A2B20;   /* active / pressed */
-  --color-brand-800: #36211A;
-  --color-brand-900: #24140E;
+  /* Vert principal */
+  --color-brand-50:  #F4FAF5;
+  --color-brand-100: #EEF7F0;
+  --color-brand-200: #D3EBDA;
+  --color-brand-300: #A6D5B3;
+  --color-brand-400: #5DB876;
+  --color-brand-500: #2E7D44;   /* couleur principale */
+  --color-brand-600: #256B39;   /* hover */
+  --color-brand-700: #1F5A30;   /* active / pressed */
+  --color-brand-800: #183A23;
+  --color-brand-900: #12211A;   /* bandeaux sombres */
 
   /* Jaune charte */
   --color-sun-100: #FEF6DB;
@@ -44,67 +46,67 @@
   --color-leaf-700: #2E7D44;
 
   /* Typographies */
-  --font-sans:    var(--font-open-sans), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-montserrat), system-ui, sans-serif;
+  --font-sans:    var(--font-outfit), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
 }
 
 /* ── Variables CSS custom — tokens light / dark ─────────────────────────────── */
 :root {
   /* Surfaces */
-  --color-bg-primary:   #FDF9F7;   /* beige logo — fond principal */
+  --color-bg-primary:   #FFFFFF;   /* fond principal */
   --color-bg-secondary: #FFFFFF;   /* beige très léger */
-  --color-bg-tertiary:  #F6EDE7;   /* beige légèrement plus soutenu */
+  --color-bg-tertiary:  #EEF7F0;   /* beige légèrement plus soutenu */
 
   /* Texte */
-  --color-text-primary:   #24140E;  /* marron très foncé */
-  --color-text-secondary: #4A2B20;
-  --color-text-muted:     #86655A;
+  --color-text-primary:   #1A1A1A;  /* marron très foncé */
+  --color-text-secondary: #374151;
+  --color-text-muted:     #6B7280;
 
   /* Bordures */
-  --color-border-default: #EBDDD4;
-  --color-border-subtle:  #FDF9F7;
+  --color-border-default: #E5E7EB;
+  --color-border-subtle:  #F7F9F7;
 
   /* Brand */
-  --color-accent:        #6B3E2E;
-  --color-accent-hover:  #5A3426;
+  --color-accent:        #2E7D44;
+  --color-accent-hover:  #256B39;
 
   /* Header */
   --color-header-bg: rgba(255, 255, 255, 0.95);
 
   /* Card */
   --color-card-bg:     #ffffff;
-  --color-card-border: #EBDDD4;
+  --color-card-border: #E5E7EB;
 
   /* Compatibilité */
-  --background: #FDF9F7;
-  --foreground: #24140E;
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
 }
 
 .dark {
   /* Surfaces */
-  --color-bg-primary:   #170D09;   /* marron très sombre */
-  --color-bg-secondary: #24160F;
-  --color-bg-tertiary:  #3A2219;
+  --color-bg-primary:   #0E1A14;   /* marron très sombre */
+  --color-bg-secondary: #13231B;
+  --color-bg-tertiary:  #1F3329;
 
   /* Texte */
-  --color-text-primary:   #FDF9F7;  /* beige logo */
-  --color-text-secondary: #D2B8AA;
-  --color-text-muted:     #A8836F;
+  --color-text-primary:   #F7F9F7;  /* beige logo */
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted:     #9CA3AF;
 
   /* Bordures */
-  --color-border-default: #3A2219;
-  --color-border-subtle:  #24160F;
+  --color-border-default: #1F3329;
+  --color-border-subtle:  #13231B;
 
   /* Header */
-  --color-header-bg: rgba(23,13,9, 0.95);
+  --color-header-bg: rgba(14,26,20, 0.95);
 
   /* Card */
-  --color-card-bg:     #24160F;
-  --color-card-border: #3A2219;
+  --color-card-bg:     #13231B;
+  --color-card-border: #1F3329;
 
   /* Compatibilité */
-  --background: #170D09;
-  --foreground: #FDF9F7;
+  --background: #0E1A14;
+  --foreground: #F7F9F7;
 }
 
 /* ── Reset de base ───────────────────────────────────────────────────────────── */
@@ -154,21 +156,29 @@ html {
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-open-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Titres en Montserrat (charte graphique) */
+/* Titres : même famille, plus serrée */
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+/* Fond « pointillé » léger des cartes (style réseau associatif) */
+.bg-dots {
+  background-color: #F4FAF5;
+  background-image: radial-gradient(rgba(46,125,68,0.12) 1px, transparent 1px);
+  background-size: 14px 14px;
 }
 
 /* ── Focus visible — couleur brand ──────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #6B3E2E;
+  outline: 2px solid #2E7D44;
   outline-offset: 2px;
 }
 
@@ -203,8 +213,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   overflow: visible;
   clip: auto;
   white-space: normal;
-  background-color: #4A2B20;
-  color: #FDF9F7;
+  background-color: #12211A;
+  color: #FFFFFF;
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0.375rem;
@@ -267,8 +277,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(107,62,46,0.3), 0 0 20px rgba(107,62,46,0.1); }
-  50%       { box-shadow: 0 0 20px rgba(107,62,46,0.6), 0 0 40px rgba(107,62,46,0.2); }
+  0%, 100% { box-shadow: 0 0 8px rgba(46,125,68,0.3), 0 0 20px rgba(46,125,68,0.1); }
+  50%       { box-shadow: 0 0 20px rgba(46,125,68,0.6), 0 0 40px rgba(46,125,68,0.2); }
 }
 
 /* ── Classes utilitaires animation ──────────────────────────────────────────── */
@@ -291,12 +301,12 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 .card-hover:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 48px rgba(107,62,46, 0.15);
+  box-shadow: 0 20px 48px rgba(46,125,68, 0.15);
 }
 
 /* ── Texte dégradé marron → jaune (charte) ────────────────────────────────────────────────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #6B3E2E 0%, #D9A82B 50%, #6B3E2E 100%);
+  background: linear-gradient(135deg, #2E7D44 0%, #D9A82B 50%, #2E7D44 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -325,7 +335,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   left: 0;
   width: 0;
   height: 2px;
-  background: #6B3E2E;
+  background: #2E7D44;
   transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 2px;
 }

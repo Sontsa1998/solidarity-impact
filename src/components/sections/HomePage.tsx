@@ -1,736 +1,377 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useRef } from 'react';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { FloatingParticles } from '@/components/ui/FloatingParticles';
+import { motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { BrandMotif } from '@/components/brand/BrandMotif';
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { MoodboardBackground } from '@/components/brand/MoodboardBackground';
 
-const B = '#6B3E2E', BH = '#5A3426', BEIGE = '#FDF9F7', BEIGE2 = '#FFFFFF', BORDER = '#EBDDD4';
+// ── Palette (cf. globals.css) ────────────────────────────────────────────────
+const GREEN = '#2E7D44';
+const NIGHT = '#12211A';
 
-function HeartIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>; }
-function CheckIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>; }
-function ArrowIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-transform group-hover:translate-x-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>; }
-function UsersIcon()  { return <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>; }
+// ── Icônes (traits fins, style « outline ») ──────────────────────────────────
+const iconProps = {
+  xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor',
+  strokeWidth: 1.8, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true,
+};
+function ArrowIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return <svg {...iconProps} className={`${className} transition-transform group-hover:translate-x-1`}><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>;
+}
+function CheckIcon() {
+  return <svg {...iconProps} strokeWidth={2.5} className="w-3 h-3"><polyline points="20 6 9 17 4 12" /></svg>;
+}
+function BookIcon()  { return <svg {...iconProps} className="w-5 h-5"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" /></svg>; }
+function GlobeIcon() { return <svg {...iconProps} className="w-5 h-5"><circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18" /></svg>; }
+function BriefcaseIcon() { return <svg {...iconProps} className="w-5 h-5"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /><path d="M2 13h20" /></svg>; }
+function HeartIcon() { return <svg {...iconProps} className="w-5 h-5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z" /></svg>; }
+function UsersIcon() { return <svg {...iconProps} className="w-4 h-4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>; }
+function MailIcon()  { return <svg {...iconProps} className="w-4 h-4"><rect x="2" y="4" width="20" height="16" rx="2" /><polyline points="22 6 12 13 2 6" /></svg>; }
+
+// ── Contenus ─────────────────────────────────────────────────────────────────
+const STATS = [
+  { value: '2025', fr: 'Année de création',  en: 'Year founded'     },
+  { value: '9',    fr: 'Membres fondateurs', en: 'Founding members' },
+  { value: '2',    fr: 'Pays unis',          en: 'Countries united' },
+  { value: '100%', fr: 'Bénévoles',          en: 'Volunteers'       },
+];
+
+const PILLARS = [
+  { fr: 'Solidarité',    en: 'Solidarity',  dFr: 'Tendre la main aux enfants et aux familles dans le besoin',    dEn: 'Reaching out to children and families in need'            },
+  { fr: 'Éducation',     en: 'Education',   dFr: "Donner à chaque enfant les moyens d'apprendre",                dEn: 'Giving every child the means to learn'                    },
+  { fr: 'Engagement',    en: 'Commitment',  dFr: 'Agir sur le terrain avec les communautés locales au Cameroun', dEn: 'Working on the ground with local communities in Cameroon' },
+];
 
 const MISSIONS = [
-  { emoji: '📚', titleFr: "L'éducation pour tous",          titleEn: "Education for all",          descFr: "Nous finançons des bourses et des fournitures scolaires pour les enfants dans le besoin. Chaque enfant mérite d'apprendre.", descEn: "We fund scholarships and school supplies. Every child deserves to learn.", color: '#FEF6DB', accent: '#D9A82B' },
-  { emoji: '🏠', titleFr: "Soutien aux orphelinats",         titleEn: "Orphanage support",           descFr: "Aide matérielle et humaine aux enfants orphelins au Cameroun. Ces enfants ont besoin de nous — et de vous.", descEn: "Material and human support for orphaned children in Cameroon.", color: '#F6EEE9', accent: '#6B3E2E' },
-  { emoji: '🌍', titleFr: "Actions terrain au Cameroun",     titleEn: "Field operations",            descFr: "Via notre délégation locale, nous agissons directement pour le développement des communautés.", descEn: "Through our local delegation, we act directly for community development.", color: '#EEF7F0', accent: '#3FA45B' },
-  { emoji: '🤝', titleFr: "Partenariats internationaux",     titleEn: "International partnerships",  descFr: "Nous construisons des ponts durables entre la France et le Cameroun.", descEn: "We build lasting bridges between France and Cameroon.", color: '#FEF6DB', accent: '#6B3E2E' },
-];
-
-const VALUES = [
-  { emoji: '🤲', fr: 'Solidarité',                  en: 'Solidarity'     },
-  { emoji: '💥', fr: 'Impact social',                en: 'Social impact'  },
-  { emoji: '🇫🇷', fr: 'Lien franco-camerounais',      en: 'Franco-Cameroonian bond' },
-  { emoji: '⚖️', fr: 'Laïcité',                      en: 'Secularism'     },
-  { emoji: '🕊️', fr: 'Apolitisme',                   en: 'Non-partisanship' },
-];
-
-const STATS = [
-  { value: '2025',  fr: 'Année de création',   en: 'Year founded'   },
-  { value: '9',     fr: 'Membres fondateurs',  en: 'Founders'       },
-  { value: '2',     fr: 'Pays concernés',      en: 'Countries'      },
-  { value: '100%',  fr: 'Bénévoles engagés',   en: '100% volunteers' },
+  { Icon: BookIcon,  fr: "L'éducation pour tous",       en: 'Education for all',      dFr: 'Bourses, fournitures et matériel scolaire pour que chaque enfant puisse apprendre.',                 dEn: 'Scholarships, supplies and school equipment so every child can learn.' },
+  { Icon: BriefcaseIcon, fr: 'Opportunités professionnelles', en: 'Professional opportunities', dFr: "Accompagner les jeunes vers l'emploi : orientation, formation, stages et mise en relation avec des professionnels.", dEn: 'Helping young people into work: guidance, training, internships and connections with professionals.' },
+  { Icon: HeartIcon,     fr: 'Soutien aux plus démunis',      en: 'Support for those in need',  dFr: "Aide matérielle et humaine aux enfants, aux familles et aux personnes en situation de précarité.",                    dEn: 'Material and human support for children, families and people facing hardship.' },
+  { Icon: GlobeIcon,     fr: 'Actions diverses sur le terrain', en: 'Field actions',            dFr: 'Grâce à notre délégation locale, nous menons des actions concrètes et variées auprès des communautés au Cameroun.', dEn: 'Through our local delegation, we carry out concrete and varied actions alongside communities in Cameroon.' },
 ];
 
 const HOW = [
-  { step: '01', fr: 'Vous faites un don',             en: 'You donate',            desc_fr: "Choisissez le montant. Même 5 € aident.", desc_en: "Choose any amount. Even €5 helps." },
-  { step: '02', fr: 'Nous identifions les besoins',   en: 'We identify needs',     desc_fr: "Notre délégation terrain identifie les urgences.", desc_en: "Our field delegation identifies urgent needs." },
-  { step: '03', fr: 'L\'argent va là où il faut',     en: 'Money goes where needed', desc_fr: "Chaque euro va à l'action directe.", desc_en: "Every euro goes to direct action." },
-  { step: '04', fr: 'Vous voyez l\'impact',           en: 'You see the impact',    desc_fr: "Nous rendons compte de chaque action.", desc_en: "We report on every action taken." },
+  { fr: 'Vous choisissez le montant de votre don : même 5 € comptent', en: 'You choose your donation amount: even €5 counts'      },
+  { fr: 'Notre délégation sur place identifie les besoins urgents',     en: 'Our local delegation identifies the most urgent needs' },
+  { fr: 'Chaque euro est affecté à une action concrète',               en: 'Every euro goes to a concrete action'                   },
+  { fr: 'Nous rendons compte de chaque action menée',                   en: 'We report back on every action carried out'           },
 ];
 
-// ── Composant AnimatedCounter ─────────────────────────────────────────────────
-function AnimatedCounter({ value, reduced }: { value: string; reduced: boolean }) {
-  if (reduced) return <span>{value}</span>;
+const VALUES = [
+  { fr: 'Solidarité',              en: 'Solidarity'              },
+  { fr: 'Impact social',           en: 'Social impact'           },
+  { fr: 'Lien franco-camerounais', en: 'Franco-Cameroonian bond' },
+  { fr: 'Laïcité',                 en: 'Secularism'              },
+  { fr: 'Apolitisme',              en: 'Non-partisanship'        },
+  { fr: 'Transparence',            en: 'Transparency'            },
+];
+
+// ── Apparition douce au défilement ───────────────────────────────────────────
+function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
+  const reduced = useReducedMotion();
+  if (reduced) return <div className={className}>{children}</div>;
   return (
-    <motion.span
-      initial={{ opacity: 0, scale: 0.5, y: 10 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-    >
-      {value}
-    </motion.span>
-  );
-}
-
-// ── Composant MissionCard avec tilt 3D ────────────────────────────────────────
-function MissionCard({ emoji, title, desc, color, accent, idx, reduced }: {
-  emoji: string; title: string; desc: string; color: string; accent: string; idx: number; reduced: boolean;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reduced) return;
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    card.style.transform = `perspective(600px) rotateY(${x / 25}deg) rotateX(${-y / 25}deg) translateY(-4px)`;
-  };
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transform = 'perspective(600px) rotateY(0deg) rotateX(0deg) translateY(0)';
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ background: color, borderLeft: `4px solid ${accent}`, transformStyle: 'preserve-3d', transition: 'transform 0.2s ease' }}
-      className="rounded-2xl p-7 shadow-sm cursor-default"
-    >
-      <motion.div
-        className="text-4xl mb-3"
-        animate={reduced ? {} : { rotate: [0, -5, 5, -3, 3, 0] }}
-        transition={{ duration: 1.5, delay: idx * 0.2 + 0.8, repeat: Infinity, repeatDelay: 4 }}
-        aria-hidden="true"
-      >
-        {emoji}
-      </motion.div>
-      <h3 className="text-lg font-black mb-2" style={{ color: '#24140E' }}>{title}</h3>
-      <p className="text-sm leading-relaxed" style={{ color: '#4A2B20' }}>{desc}</p>
+    <motion.div className={className}
+      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}>
+      {children}
     </motion.div>
   );
 }
 
-// ── HomePage ──────────────────────────────────────────────────────────────────
+const pillBase    = 'group inline-flex items-center justify-center gap-2 rounded-full font-semibold text-[15px] px-7 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3FA45B]';
+const pillPrimary = `${pillBase} bg-[#2E7D44] hover:bg-[#256B39] text-white`;
+const pillGhost   = `${pillBase} border border-white/40 hover:bg-white/10 text-white`;
+
+// ── Page d'accueil ───────────────────────────────────────────────────────────
 export function HomePage() {
   const { lang } = useI18nContext();
-  const reduced = useReducedMotion();
-  const T = (fr: string, en: string) => lang === 'en' ? en : fr;
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  // Parallax scroll sur le hero
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 120]);
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroYSpring = useSpring(heroY, { stiffness: 60, damping: 20 });
+  const T = (fr: string, en: string) => (lang === 'en' ? en : fr);
 
   return (
-    <div style={{ background: BEIGE }}>
+    <div className="bg-white dark:bg-[#0E1A14] text-[#1A1A1A] dark:text-white">
 
-      {/* ══ HERO ═══════════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} id="hero" aria-labelledby="hero-title"
-        className="relative min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center overflow-hidden px-4 py-24 text-center"
-        style={{ background: 'linear-gradient(160deg, #FDF9F7 0%, #FDF9F7 50%, #FBEFC8 100%)' }}>
+      {/* ══ HERO : photos de la charte sous un voile vert nuit ═════════════════ */}
+      <section id="hero" aria-labelledby="hero-title"
+        className="relative isolate overflow-hidden min-h-[calc(100svh-5rem)] flex items-center justify-center px-4 py-24 text-center">
+        <MoodboardBackground variant="dark" />
 
-        {/* Moodboard de la charte en arrière-plan */}
-        <MoodboardBackground />
+        <div className="relative max-w-4xl mx-auto">
+          <Reveal>
+            <p className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur px-4 py-1.5 text-sm text-white/90">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#F2C94C]" aria-hidden="true" />
+              {T('Association loi 1901 · France & Cameroun', 'Non-profit association · France & Cameroon')}
+            </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 id="hero-title" className="mt-7 text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] text-white">
+              {T("L'avenir des enfants du Cameroun se construit ensemble.", "The future of Cameroon's children is built together.")}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed text-white/80">
+              {T("Depuis 2025, Solidarity Impact réunit des Français et des Camerounais autour d'une même conviction : l'éducation, l'emploi et la solidarité changent des vies.",
+                 'Since 2025, Solidarity Impact has brought together French and Cameroonian people around one belief: education, employment and solidarity change lives.')}
+            </p>
+          </Reveal>
+          <Reveal delay={0.24} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/don" className={pillPrimary}>
+              {T('Faire un don', 'Donate')} <ArrowIcon />
+            </Link>
+            <Link href="/a-propos" className={pillGhost}>
+              {T("Découvrir l'association", 'Discover the association')}
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Particules flottantes */}
-        <FloatingParticles count={30} />
-
-        {/* Motifs « demi-cercles » de la charte */}
-        <BrandMotif className="absolute top-10 left-6 sm:left-12 w-28 sm:w-40 opacity-80" />
-        <BrandMotif color="#3FA45B" className="absolute bottom-16 right-6 sm:right-12 w-24 sm:w-32 opacity-60" />
-
-        {/* Orbes décoratifs avec parallax */}
-        {!reduced && (
-          <>
-            <motion.div
-              style={{ y: heroYSpring, background: `radial-gradient(circle, ${B} 0%, transparent 70%)` }}
-              className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full opacity-20"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              aria-hidden="true"
-            />
-            <motion.div
-              className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full opacity-10"
-              animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-              style={{ background: `radial-gradient(circle, ${B} 0%, transparent 70%)` }}
-              aria-hidden="true"
-            />
-            {/* Anneau rotatif */}
-            <motion.div
-              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full border opacity-5"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              style={{ borderColor: B, borderStyle: 'dashed' }}
-              aria-hidden="true"
-            />
-          </>
-        )}
-
-        {/* Bande drapeaux */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 flex opacity-50" aria-hidden="true">
-          {['#1d4ed8','#fff','#dc2626','#3FA45B','#dc2626','#F2C94C'].map((c,i) => (
-            <motion.div key={i} className="flex-1" style={{ background: c }}
-              initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-              transition={{ delay: 1 + i * 0.08, duration: 0.3 }} />
+      {/* ══ CHIFFRES CLÉS ══════════════════════════════════════════════════════ */}
+      <section aria-label={T('Chiffres clés', 'Key figures')} style={{ background: NIGHT }}>
+        <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 lg:grid-cols-4">
+          {STATS.map(({ value, fr, en }, i) => (
+            <Reveal key={fr} delay={i * 0.06}
+              className={`py-4 text-center border-white/10 ${i % 2 === 1 ? 'border-l' : ''} ${i === 2 ? 'lg:border-l' : ''}`}>
+              <p className="text-4xl sm:text-5xl font-bold text-white">{value}</p>
+              <p className="mt-2 text-sm text-[#9CA3AF]">{T(fr, en)}</p>
+            </Reveal>
           ))}
         </div>
+      </section>
 
-        {/* Contenu hero avec parallax */}
-        <motion.div style={reduced ? {} : { y: heroYSpring, opacity: heroOpacity }}
-          className="relative mx-auto max-w-4xl">
+      {/* ══ QUI SOMMES-NOUS + PRÉSIDENT ════════════════════════════════════════ */}
+      <section aria-labelledby="about-title" className="py-24 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-16 items-center">
 
-          {/* Badge animé */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'backOut' }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold border relative"
-            style={{ background: BEIGE, borderColor: BORDER, color: B }}
-          >
-            <motion.span className="h-2 w-2 rounded-full relative"
-              animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.5, repeat: Infinity }}
-              style={{ background: B }} aria-hidden="true" />
-            {T('Association loi 1901 — Fondée le 14 septembre 2025', 'Non-profit — Founded September 14, 2025')}
-          </motion.div>
+          <Reveal>
+            <h2 id="about-title" className="text-3xl sm:text-4xl font-bold">{T('Qui sommes-nous ?', 'Who are we?')}</h2>
+            <p className="mt-6 text-lg leading-relaxed text-[#4B5563] dark:text-[#C9CED6]">
+              {T("Solidarity Impact est une association loi 1901 créée en 2025 à Villemomble par un collectif de Franco-Camerounais. Nos missions : l'éducation, les opportunités professionnelles, le soutien aux plus démunis et des actions diverses sur le terrain au Cameroun.",
+                 'Solidarity Impact is a French non-profit founded in 2025 in Villemomble by a group of French-Cameroonians. Our missions: education, professional opportunities, support for the most vulnerable and a range of field actions in Cameroon.')}
+            </p>
 
-          {/* Titre avec animation lettre par lettre */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-          >
-            <h1 id="hero-title"
-              className="font-black tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05]"
-              style={{ color: '#24140E' }}>
-              {'SOLIDARITY'.split('').map((char, i) => (
-                <motion.span key={i} className="inline-block"
-                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ delay: 0.3 + i * 0.04, duration: 0.4, ease: 'backOut' }}>
-                  {char}
-                </motion.span>
+            {/* Frise des piliers */}
+            <ol className="mt-10">
+              {PILLARS.map(({ fr, en, dFr, dEn }, i) => (
+                <li key={fr} className="relative pl-10 pb-8 last:pb-0">
+                  {i < PILLARS.length - 1 && (
+                    <span className="absolute left-[9px] top-6 bottom-0 w-px bg-[#D3EBDA] dark:bg-[#1F3329]" aria-hidden="true" />
+                  )}
+                  <span className="absolute left-0 top-1 h-[19px] w-[19px] rounded-full border-2 border-[#3FA45B] bg-white dark:bg-[#0E1A14]" aria-hidden="true" />
+                  <p className="font-semibold">{T(fr, en)}</p>
+                  <p className="mt-1 text-sm text-[#6B7280] dark:text-[#9CA3AF]">{T(dFr, dEn)}</p>
+                </li>
               ))}
-              <br />
-              {'IMPACT'.split('').map((char, i) => (
-                <motion.span key={i} className="inline-block"
-                  initial={{ opacity: 0, y: 40, rotateX: -60 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ delay: 0.7 + i * 0.05, duration: 0.4, ease: 'backOut' }}
-                  style={{ color: B }}>
-                  {char}
-                </motion.span>
-              ))}
-            </h1>
-          </motion.div>
+            </ol>
 
-          {/* Devise avec effet typewriter */}
-          <motion.p
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.6, ease: 'easeOut' }}
-            className="font-display mt-4 text-xl sm:text-2xl font-bold"
-            style={{ color: '#2E7D44' }}>
-            « {T("L'avenir à portée de main", 'The future within reach')} »
-          </motion.p>
+            <Link href="/a-propos" className="group mt-10 inline-flex items-center gap-2 text-sm font-semibold text-[#2E7D44] dark:text-[#5DB876]">
+              {T('En savoir plus', 'Learn more')} <ArrowIcon />
+            </Link>
+          </Reveal>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.3, duration: 0.6 }}
-            className="mt-6 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed"
-            style={{ color: '#6E4A3C' }}>
-            {T(
-              "Nous sommes des Français et des Camerounais unis pour aider les enfants, soutenir les orphelinats et développer les communautés au Cameroun. Ensemble, on change des vies.",
-              "French and Cameroonian people united to help children, support orphanages and develop communities in Cameroon. Together, we change lives."
-            )}
-          </motion.p>
-
-          {/* CTAs avec effets */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.5 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <motion.div whileHover={reduced ? {} : { scale: 1.05 }} whileTap={reduced ? {} : { scale: 0.97 }}>
-              <Link href="/don"
-                className="btn-ripple inline-flex items-center gap-2 rounded-2xl font-black text-base px-8 py-4 shadow-lg animate-glow"
-                style={{ background: B, color: BEIGE }}>
-                <motion.span animate={reduced ? {} : { scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1.2, repeat: Infinity }}>
-                  <HeartIcon />
-                </motion.span>
-                {T('Faire un don maintenant', 'Donate now')}
-              </Link>
-            </motion.div>
-            <motion.div whileHover={reduced ? {} : { scale: 1.04 }} whileTap={reduced ? {} : { scale: 0.97 }}>
-              <Link href="/a-propos"
-                className="group animated-underline inline-flex items-center gap-2 rounded-2xl font-bold text-base px-8 py-4 border-2 bg-transparent transition-all duration-200"
-                style={{ borderColor: B, color: B }}>
-                {T('Qui sommes-nous ?', 'Who are we?')}
-                <ArrowIcon />
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Stats avec bounce-in */}
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {STATS.map(({ value, fr, en }, idx) => (
-              <motion.div key={value}
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 1.7 + idx * 0.1, type: 'spring', stiffness: 200, damping: 15 }}
-                whileHover={reduced ? {} : { scale: 1.08, rotate: 1 }}
-                className="flex flex-col items-center gap-1 rounded-2xl py-4 px-3"
-                style={{ background: 'rgba(255,255,255,0.65)', border: `1px solid ${BORDER}` }}>
-                <AnimatedCounter value={value} reduced={reduced} />
-                <span className="text-[11px] sm:text-xs text-center font-medium" style={{ color: '#86655A' }}>
-                  {T(fr, en)}
+          {/* Portrait du président dans un cadre vert */}
+          <Reveal delay={0.1} className="w-full max-w-sm mx-auto lg:ml-auto">
+            <figure>
+              <div className="relative rounded-xl p-3 sm:p-3.5 shadow-[0_24px_60px_rgba(18,33,26,0.18)]" style={{ background: GREEN }}>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-[#EEF7F0]">
+                  <Image src="/equipe/president-florent-nwall.webp"
+                    alt={T('Florent Landry NWALL, président de Solidarity Impact', 'Florent Landry NWALL, President of Solidarity Impact')}
+                    fill sizes="(min-width: 1024px) 384px, 90vw" className="object-cover object-top" />
+                </div>
+                <span className="absolute -bottom-4 left-6 rounded-full bg-[#F2C94C] px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#12211A] shadow-md">
+                  {T('Président', 'President')}
                 </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Chevron animé */}
-        {!reduced && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2" style={{ color: '#D2B8AA' }}
-            aria-hidden="true">
-            <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 1.4, repeat: Infinity }}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </motion.div>
-          </motion.div>
-        )}
+              </div>
+              <figcaption className="mt-9 flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-lg font-bold leading-snug">
+                    {T('2025, création de Solidarity Impact', '2025, Solidarity Impact is founded')}
+                    <br />
+                    <span className="font-medium text-[#4B5563] dark:text-[#C9CED6]">
+                      {T('par un collectif de Franco‑Camerounais','by a group of French‑Cameroonians')}
+                    </span>
+                  </p>
+                  <p className="mt-3 text-sm text-[#6B7280] dark:text-[#9CA3AF]">
+                    Florent Landry NWALL · {T("Président de l'association", 'President of the association')}
+                  </p>
+                </div>
+                <BrandLogo variant="compact" className="h-10 w-auto flex-shrink-0 text-[#2E7D44] dark:text-[#5DB876]" title="Solidarity Impact" />
+              </figcaption>
+              <p className="mt-6 border-l-[3px] border-[#F2C94C] pl-4 text-lg italic font-medium text-[#2E7D44] dark:text-[#5DB876]">
+                {T('« Unis par deux terres, engagés pour un même avenir. »', '“Two lands united, one shared future.”')}
+              </p>
+            </figure>
+          </Reveal>
+        </div>
       </section>
 
-      {/* ══ ACCROCHE ANIMÉE ══════════════════════════════════════════════════ */}
-      <section className="py-16 px-4 overflow-hidden relative" style={{ background: B }}>
-        {/* Orbe décoratif */}
-        {!reduced && (
-          <motion.div className="absolute right-0 top-0 w-64 h-64 rounded-full opacity-10"
-            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ background: 'radial-gradient(circle, #FDF9F7 0%, transparent 70%)' }}
-            aria-hidden="true" />
-        )}
-        <AnimatedSection animation="fadeIn" threshold={0.2}>
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.p
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: 'backOut' }}
-              className="text-xl sm:text-2xl md:text-3xl font-bold leading-relaxed" style={{ color: BEIGE }}>
-              {T(
-                '"Peu importe d\'où vous venez — si vous avez envie d\'aider, vous êtes chez vous ici."',
-                '"No matter where you come from — if you want to help, you are at home here."'
-              )}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-6 text-sm font-semibold" style={{ color: '#EBDDD4' }}>
-              — Solidarity Impact, Villemomble
-            </motion.p>
-          </div>
-        </AnimatedSection>
-      </section>
-
-      {/* ══ NOS 4 MISSIONS ═══════════════════════════════════════════════════ */}
-      <section className="py-20 px-4" style={{ background: BEIGE2 }}>
+      {/* ══ MISSIONS ═══════════════════════════════════════════════════════════ */}
+      <section aria-labelledby="missions-title" className="py-24 px-4 bg-[#F9FAFB] dark:bg-[#0B1510]">
         <div className="max-w-6xl mx-auto">
-          <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-14">
-            <motion.p className="text-sm font-black uppercase tracking-widest mb-3"
-              style={{ color: '#86655A' }}
-              initial={{ opacity: 0, letterSpacing: '0.1em' }}
-              whileInView={{ opacity: 1, letterSpacing: '0.2em' }}
-              viewport={{ once: true }} transition={{ duration: 0.8 }}>
-              {T('Ce que nous faisons concrètement', 'What we concretely do')}
-            </motion.p>
-            <h2 className="text-3xl sm:text-4xl font-black mb-4" style={{ color: '#24140E' }}>
-              {T('Nos 4 missions principales', 'Our 4 main missions')}
-            </h2>
-            <motion.div className="mx-auto h-1 rounded-full"
-              initial={{ width: 0 }} whileInView={{ width: 64 }} viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ background: B }} aria-hidden="true" />
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {MISSIONS.map(({ emoji, titleFr, titleEn, descFr, descEn, color, accent }, idx) => (
-              <MissionCard key={titleFr} emoji={emoji} title={T(titleFr, titleEn)}
-                desc={T(descFr, descEn)} color={color} accent={accent} idx={idx} reduced={reduced} />
+          <Reveal className="text-center max-w-2xl mx-auto">
+            <h2 id="missions-title" className="text-3xl sm:text-4xl font-bold">{T('Nos missions', 'Our missions')}</h2>
+            <p className="mt-4 text-[#6B7280] dark:text-[#9CA3AF]">
+              {T("Solidarity Impact s'organise autour de 4 axes d'action pour maximiser son impact.",
+                 'Solidarity Impact is organised around 4 areas of action to maximise its impact.')}
+            </p>
+          </Reveal>
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {MISSIONS.map(({ Icon, fr, en, dFr, dEn }, i) => (
+              <Reveal key={fr} delay={i * 0.06}
+                className={`h-full rounded-2xl border border-[#E5E7EB] dark:border-[#1F3329] p-6 transition-shadow hover:shadow-[0_12px_32px_rgba(18,33,26,0.08)] dark:bg-[#12211A] ${i % 2 === 0 ? 'bg-dots' : 'bg-white'}`}>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#EEF7F0] dark:bg-[#1F3329] text-[#2E7D44] dark:text-[#5DB876]">
+                  <Icon />
+                </span>
+                <h3 className="mt-5 font-semibold">{T(fr, en)}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#6B7280] dark:text-[#9CA3AF]">{T(dFr, dEn)}</p>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══ QUI SOMMES-NOUS ══════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 overflow-hidden" style={{ background: BEIGE }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection animation="slideInLeft" threshold={0.2}>
-              <motion.p className="text-sm font-black uppercase tracking-widest mb-3"
-                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.5 }}
-                style={{ color: '#86655A' }}>
-                {T('Notre histoire', 'Our story')}
-              </motion.p>
-              <h2 className="text-3xl sm:text-4xl font-black mb-6" style={{ color: '#24140E' }}>
-                {T("Une association née d'une amitié franco-camerounaise", "Born from a Franco-Cameroonian friendship")}
-              </h2>
-              <p className="text-base leading-relaxed mb-5" style={{ color: '#4A2B20' }}>
-                {T("Le 14 septembre 2025, à Villemomble, 9 personnes se sont réunies pour créer un lien fort entre la France et le Cameroun, pour aider ceux qui en ont le plus besoin.",
-                   "On September 14, 2025, in Villemomble, 9 people gathered to create a bond between France and Cameroon, to help those who need it most.")}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  T('Reconnue loi 1901, à vocation internationale', 'Recognized non-profit, international purpose'),
-                  T('Compatible avec la loi camerounaise N°90/053', 'Compatible with Cameroonian law N°90/053'),
-                  T('9 fondateurs élus démocratiquement', '9 democratically elected founders'),
-                  T('Siège : Villemomble', 'HQ: Villemomble'),
-                ].map((item, idx) => (
-                  <motion.li key={idx} className="flex items-start gap-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1, duration: 0.4 }}>
-                    <motion.span style={{ color: B }}
-                      initial={{ scale: 0 }} whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 300 }}>
+      {/* ══ SOUTENIR : bandeau sombre + carte ══════════════════════════════════ */}
+      <section aria-labelledby="support-title" className="py-24 px-4" style={{ background: NIGHT }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <Reveal>
+            <h2 id="support-title" className="text-3xl sm:text-4xl font-bold text-white">{T('Soutenez nos actions', 'Support our work')}</h2>
+            <p className="mt-4 text-lg leading-relaxed text-[#9CA3AF] max-w-md">
+              {T("Un enfant qui reçoit aujourd'hui des fournitures scolaires peut devenir le médecin ou l'ingénieur de demain. Votre geste compte, vraiment.",
+                 "A child who receives school supplies today can become tomorrow's doctor or engineer. Your gesture truly matters.")}
+            </p>
+            <p className="mt-8 flex items-baseline gap-2 text-white">
+              <span className="text-sm text-[#9CA3AF]">{T('dès', 'from')}</span>
+              <span className="text-6xl font-bold">5 €</span>
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-7 sm:p-9">
+              <span className="inline-block rounded-full bg-[#3FA45B]/20 px-3 py-1 text-xs font-medium text-[#8FD3A2]">
+                {T('Où va votre don', 'Where your donation goes')}
+              </span>
+              <ul className="mt-6 space-y-4">
+                {HOW.map(({ fr, en }) => (
+                  <li key={fr} className="flex items-start gap-3 text-[15px] text-white/85">
+                    <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#3FA45B]/25 text-[#8FD3A2]">
                       <CheckIcon />
-                    </motion.span>
-                    <span className="text-sm" style={{ color: '#4A2B20' }}>{item}</span>
-                  </motion.li>
+                    </span>
+                    {T(fr, en)}
+                  </li>
                 ))}
               </ul>
-              <motion.div whileHover={reduced ? {} : { scale: 1.04 }} whileTap={reduced ? {} : { scale: 0.97 }}>
-                <Link href="/equipe"
-                  className="btn-ripple group inline-flex items-center gap-2 font-black text-base px-6 py-3 rounded-xl shadow-md hover:shadow-lg"
-                  style={{ background: B, color: BEIGE }}>
-                  <UsersIcon />
-                  {T("Rencontrer l'équipe", 'Meet the team')}
-                </Link>
-              </motion.div>
-            </AnimatedSection>
-
-            {/* Carte identité avec effet morphing */}
-            <AnimatedSection animation="slideInRight" threshold={0.2}>
-              <motion.div
-                whileHover={reduced ? {} : { scale: 1.02, rotate: 0.5 }}
-                transition={{ type: 'spring', stiffness: 200 }}
-                className="rounded-3xl overflow-hidden shadow-2xl border" style={{ borderColor: BORDER }}>
-                <div className="p-6 text-center relative overflow-hidden" style={{ background: B }}>
-                  {!reduced && (
-                    <motion.div className="absolute inset-0 opacity-20"
-                      animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-                      transition={{ duration: 5, repeat: Infinity }}
-                      style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)', backgroundSize: '200% 100%' }}
-                      aria-hidden="true" />
-                  )}
-                  <motion.div className="text-5xl mb-3" animate={reduced ? {} : { rotate: [0, -10, 10, -5, 5, 0] }}
-                    transition={{ duration: 2, delay: 1.5 }} aria-hidden="true">🤝</motion.div>
-                  <h3 className="text-xl font-black" style={{ color: BEIGE }}>Solidarity Impact</h3>
-                  <p className="text-sm mt-1 opacity-80" style={{ color: BEIGE }}>
-                    {T('Association à vocation internationale', 'International purpose association')}
-                  </p>
-                </div>
-                <div className="p-6 space-y-3" style={{ background: '#fff' }}>
-                  {[
-                    { k: T('📋 Statut', '📋 Status'),       v: T('Association loi 1901', 'Non-profit (Law 1901)') },
-                    { k: T('🗓️ Fondée le', '🗓️ Founded'),    v: '14 septembre 2025' },
-                    { k: T('📍 Siège', '📍 HQ'),              v: '89 rue de la Fosse aux Bergers, 93250 Villemomble' },
-                    { k: T('🏛️ RNA', '🏛️ RNA'),               v: 'W931031771' },
-                    { k: 'SIREN',                              v: '105 826 440' },
-                    { k: T('👥 Fondateurs', '👥 Founders'),   v: '9 ' + T('membres élus', 'elected members') },
-                    { k: T('📞 Contact', '📞 Contact'),       v: '+33 7 54 39 89 71' },
-                  ].map(({ k, v }, idx) => (
-                    <motion.div key={k}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.08, duration: 0.4 }}
-                      className="flex items-start gap-3 pb-3 border-b last:border-0 last:pb-0"
-                      style={{ borderColor: BORDER }}>
-                      <span className="text-xs font-black uppercase tracking-wide w-24 flex-shrink-0 pt-0.5" style={{ color: '#86655A' }}>{k}</span>
-                      <span className="text-sm font-medium" style={{ color: '#24140E' }}>{v}</span>
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="px-6 py-4" style={{ background: BEIGE }}>
-                  <p className="text-center text-sm font-black italic" style={{ color: B }}>
-                    "{T("L'avenir à portée de main", 'The future within reach')}"
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ VALEURS ══════════════════════════════════════════════════════════ */}
-      <section className="py-16 px-4 overflow-hidden" style={{ background: '#FFFFFF' }}>
-        <div className="max-w-5xl mx-auto">
-          <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#24140E' }}>
-              {T('Ce en quoi nous croyons', 'What we believe in')}
-            </h2>
-            <motion.div className="mx-auto h-1 rounded-full"
-              initial={{ width: 0 }} whileInView={{ width: 64 }} viewport={{ once: true }}
-              transition={{ duration: 0.8 }} style={{ background: B }} aria-hidden="true" />
-          </AnimatedSection>
-          <div className="flex flex-wrap justify-center gap-4">
-            {VALUES.map(({ emoji, fr, en }, idx) => (
-              <motion.div key={fr}
-                initial={{ opacity: 0, scale: 0.6, rotate: -5 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, type: 'spring', stiffness: 200, damping: 12 }}
-                whileHover={reduced ? {} : { scale: 1.1, rotate: 2, y: -4 }}
-                className="flex items-center gap-3 rounded-2xl px-6 py-4 shadow-sm border cursor-default"
-                style={{ background: '#fff', borderColor: BORDER }}>
-                <motion.span className="text-2xl" aria-hidden="true"
-                  animate={reduced ? {} : { rotate: [0, -8, 8, -4, 4, 0] }}
-                  transition={{ duration: 2, delay: idx * 0.3 + 1, repeat: Infinity, repeatDelay: 5 }}>
-                  {emoji}
-                </motion.span>
-                <span className="font-black text-base" style={{ color: '#24140E' }}>{T(fr, en)}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ COMMENT ÇA MARCHE ════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 relative overflow-hidden" style={{ background: B }}>
-        {!reduced && (
-          <motion.div className="absolute inset-0 opacity-5"
-            animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            style={{ background: 'linear-gradient(45deg, transparent 40%, rgba(253,249,247,0.3) 50%, transparent 60%)', backgroundSize: '200% 200%' }}
-            aria-hidden="true" />
-        )}
-        <div className="max-w-5xl mx-auto relative z-10">
-          <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-black" style={{ color: BEIGE }}>
-              {T('Comment votre don aide ?', 'How does your donation help?')}
-            </h2>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {HOW.map(({ step, fr, en, desc_fr, desc_en }, idx) => (
-              <motion.div key={step}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={reduced ? {} : { y: -8, scale: 1.03 }}
-                className="rounded-2xl p-6 relative"
-                style={{ background: 'rgba(253,249,247,0.1)', border: '1px solid rgba(253,249,247,0.15)' }}>
-                <motion.div className="text-5xl font-black mb-4"
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 0.4, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.12 + 0.3, type: 'spring' }}
-                  style={{ color: BEIGE }}>{step}</motion.div>
-                <h3 className="font-black text-base mb-2" style={{ color: BEIGE }}>{T(fr, en)}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(253,249,247,0.7)' }}>
-                  {T(desc_fr, desc_en)}
-                </p>
-                {/* Connecteur entre étapes */}
-                {idx < 3 && !reduced && (
-                  <motion.div className="hidden lg:block absolute top-8 -right-2.5 w-5 h-0.5 opacity-30"
-                    style={{ background: BEIGE }}
-                    initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }}
-                    transition={{ delay: idx * 0.12 + 0.5, duration: 0.3 }}
-                    aria-hidden="true" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ TÉMOIGNAGES ══════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4" style={{ background: BEIGE2 }}>
-        <div className="max-w-5xl mx-auto">
-          <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-black mb-3" style={{ color: '#24140E' }}>
-              {T('Ils ont fondé cette association', 'They founded this association')}
-            </h2>
-            <motion.div className="mx-auto h-1 rounded-full"
-              initial={{ width: 0 }} whileInView={{ width: 64 }} viewport={{ once: true }}
-              transition={{ duration: 0.8 }} style={{ background: B }} aria-hidden="true" />
-          </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { textFr: "Solidarity Impact, c'est une famille. On est venus de France et du Cameroun avec un seul objectif : que les enfants aient une chance.", textEn: "Solidarity Impact is a family. We came from France and Cameroon with one goal: give children a chance.", author: "Florent Landry NWALL", roleFr: "Président & Co-fondateur", roleEn: "President & Co-founder", initials: "FN" },
-              { textFr: "Je crois que l'on peut changer les choses, même à petite échelle. Chaque enfant qui va à l'école grâce à nous, c'est une victoire pour tous.", textEn: "I believe we can change things, even on a small scale. Every child who goes to school because of us is a victory for everyone.", author: "Marcel Parfait ATOKO À NDEM", roleFr: "Vice-Président", roleEn: "Vice-President", initials: "MA" },
-            ].map(({ textFr, textEn, author, roleFr, roleEn, initials }, idx) => (
-              <motion.div key={author}
-                initial={{ opacity: 0, y: 30, rotate: idx === 0 ? -1 : 1 }}
-                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.15, duration: 0.5 }}
-                whileHover={reduced ? {} : { y: -6, rotate: idx === 0 ? -0.5 : 0.5 }}
-                className="rounded-2xl p-7 border shadow-sm relative overflow-hidden"
-                style={{ background: '#fff', borderColor: BORDER }}>
-                {/* Guillemet décoratif animé */}
-                <motion.div className="absolute top-4 right-5 text-6xl font-black opacity-8 select-none"
-                  style={{ color: B, opacity: 0.07, lineHeight: 1 }}
-                  animate={reduced ? {} : { scale: [1, 1.1, 1] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: idx * 0.5 }}
-                  aria-hidden="true">"</motion.div>
-                <p className="text-base leading-relaxed mb-6 italic" style={{ color: '#4A2B20' }}>
-                  "{T(textFr, textEn)}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <motion.div className="w-11 h-11 rounded-full flex items-center justify-center font-black text-sm flex-shrink-0"
-                    style={{ background: B, color: BEIGE }}
-                    whileHover={reduced ? {} : { scale: 1.1, rotate: 5 }}>
-                    {initials}
-                  </motion.div>
-                  <div>
-                    <p className="font-black text-sm" style={{ color: '#24140E' }}>{author}</p>
-                    <p className="text-xs" style={{ color: '#86655A' }}>{T(roleFr, roleEn)}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ CTA DON FINAL ════════════════════════════════════════════════════ */}
-      <section className="py-20 px-4 relative overflow-hidden" style={{ background: BEIGE }}>
-        <AnimatedSection animation="slideUp" threshold={0.2}>
-          <motion.div
-            whileHover={reduced ? {} : { scale: 1.01 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="max-w-3xl mx-auto rounded-3xl p-10 sm:p-14 text-center shadow-2xl border relative overflow-hidden"
-            style={{ background: `linear-gradient(135deg, ${B} 0%, #4A2B20 100%)`, borderColor: 'rgba(253,249,247,0.2)' }}>
-            {/* Shimmer effect */}
-            {!reduced && (
-              <motion.div className="absolute inset-0 opacity-15"
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'easeInOut' }}
-                style={{ background: 'linear-gradient(90deg, transparent, rgba(253,249,247,0.5), transparent)', width: '40%' }}
-                aria-hidden="true" />
-            )}
-            <div className="relative z-10">
-              <motion.div className="flex items-center justify-center gap-2 mb-6 text-3xl"
-                animate={reduced ? {} : { scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }} aria-hidden="true">
-                <span>🇫🇷</span>
-                <motion.span className="text-lg" style={{ color: 'rgba(253,249,247,0.5)' }}
-                  animate={reduced ? {} : { opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}>×</motion.span>
-                <span>🇨🇲</span>
-              </motion.div>
-              <h2 className="text-2xl sm:text-4xl font-black mb-4" style={{ color: BEIGE }}>
-                {T("Ensemble, changeons des vies", "Together, let's change lives")}
-              </h2>
-              <p className="text-base sm:text-lg mb-8 leading-relaxed" style={{ color: 'rgba(253,249,247,0.85)' }}>
-                {T("Un enfant qui reçoit des fournitures scolaires aujourd'hui peut devenir le médecin ou l'ingénieur de demain. Votre geste compte — vraiment.",
-                   "A child who receives school supplies today can become tomorrow's doctor or engineer. Your gesture truly matters.")}
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-                {[10, 25, 50].map((amount, i) => (
-                  <motion.div key={amount}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={reduced ? {} : { scale: 1.08, y: -3 }}>
-                    <Link href="/don"
-                      className="btn-ripple block font-bold text-base px-6 py-3 rounded-xl border-2 transition-all duration-200"
-                      style={{ borderColor: 'rgba(253,249,247,0.4)', color: BEIGE, background: 'rgba(253,249,247,0.1)' }}>
-                      {amount} €
-                    </Link>
-                  </motion.div>
-                ))}
-                <motion.div whileHover={reduced ? {} : { scale: 1.05, y: -3 }}>
-                  <Link href="/don"
-                    className="btn-ripple block font-black text-base px-8 py-3.5 rounded-xl animate-glow"
-                    style={{ background: BEIGE, color: B }}>
-                    {T('Autre montant →', 'Custom amount →')}
-                  </Link>
-                </motion.div>
-              </div>
-              <p className="text-xs" style={{ color: 'rgba(253,249,247,0.5)' }}>
-                {T('✓ Association reconnue · ✓ Impact direct · ✓ Transparence totale',
-                   '✓ Recognized association · ✓ Direct impact · ✓ Full transparency')}
+              <Link href="/don" className={`${pillBase} mt-8 w-full bg-[#3FA45B] hover:bg-[#5DB876] text-[#0B1510]`}>
+                {T('Faire un don maintenant', 'Donate now')} <ArrowIcon />
+              </Link>
+              <p className="mt-4 text-center text-xs text-[#9CA3AF]">
+                {T('Paiement sécurisé par carte bancaire ou PayPal.', 'Secure payment by card or PayPal.')}
               </p>
             </div>
-          </motion.div>
-        </AnimatedSection>
+          </Reveal>
+        </div>
       </section>
 
-      {/* ══ PROCHAIN ÉVÉNEMENT ═══════════════════════════════════════════════ */}
-      <section className="py-16 px-4" style={{ background: '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto">
-          <AnimatedSection animation="fadeIn" threshold={0.1} className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-black mb-3" style={{ color: '#24140E' }}>
-              {T('Notre prochain grand rendez-vous', 'Our next big event')}
-            </h2>
-            <motion.div className="mx-auto h-1 rounded-full"
-              initial={{ width: 0 }} whileInView={{ width: 64 }} viewport={{ once: true }}
-              transition={{ duration: 0.8 }} style={{ background: B }} aria-hidden="true" />
-          </AnimatedSection>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={reduced ? {} : { scale: 1.02, y: -4 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}>
-            <Link href="/evenements/tournoi-football"
-              className="group flex flex-col sm:flex-row items-center gap-6 rounded-3xl p-6 border shadow-md"
-              style={{ background: '#fff', borderColor: BORDER }}>
-              <div className="flex-shrink-0 w-full sm:w-32 h-28 sm:h-24 rounded-2xl overflow-hidden flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #1F4A2C, #2E7D44)' }}>
-                <motion.div animate={reduced ? {} : { rotate: [0, -5, 5, -3, 3, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}>
-                  <svg viewBox="0 0 100 70" className="w-24 h-16" aria-hidden="true">
-                    <rect x="5" y="5" width="90" height="60" fill="none" stroke="white" strokeWidth="1.5" opacity="0.6"/>
-                    <line x1="50" y1="5" x2="50" y2="65" stroke="white" strokeWidth="1.5" opacity="0.6"/>
-                    <circle cx="50" cy="35" r="12" fill="none" stroke="white" strokeWidth="1.5" opacity="0.6"/>
-                    <text x="50" y="39" textAnchor="middle" fill="white" fontSize="14">⚽</text>
-                  </svg>
-                </motion.div>
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                  <motion.span className="text-xs font-black uppercase px-2 py-0.5 rounded-full"
-                    animate={reduced ? {} : { scale: [1, 1.05, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    style={{ background: '#F2C94C', color: '#170D09' }}>
-                    {T('À venir', 'Upcoming')}
-                  </motion.span>
-                  <span className="text-xs" style={{ color: '#86655A' }}>🗓️ 17 {T('juillet', 'July')} 2027</span>
-                </div>
-                <h3 className="font-black text-lg" style={{ color: '#24140E' }}>
-                  {T('Tournoi de Football — 1ère Édition', 'Football Tournament — 1st Edition')}
-                </h3>
-                <p className="text-sm mt-1" style={{ color: '#86655A' }}>
-                  Villemomble · Île-de-France · {T('Restauration · Musique', 'Food · Music')}
-                </p>
-              </div>
-              <motion.div className="flex-shrink-0 flex items-center gap-2 font-black text-sm px-5 py-2.5 rounded-xl"
-                animate={reduced ? {} : { x: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                style={{ background: B, color: BEIGE }}>
-                {T('Voir', 'View')} <ArrowIcon />
-              </motion.div>
+      {/* ══ À LA UNE ═══════════════════════════════════════════════════════════ */}
+      <section aria-labelledby="events-title" className="py-24 px-4 bg-[#F9FAFB] dark:bg-[#0B1510]">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 id="events-title" className="text-3xl sm:text-4xl font-bold">{T('À la une', 'Highlights')}</h2>
+              <p className="mt-3 text-[#6B7280] dark:text-[#9CA3AF]">{T("Les prochains rendez-vous de l'association.", "The association's upcoming events.")}</p>
+            </div>
+            <Link href="/evenements" className="group inline-flex items-center gap-2 text-sm font-semibold text-[#2E7D44] dark:text-[#5DB876]">
+              {T('Tous les événements', 'All events')} <ArrowIcon />
             </Link>
-          </motion.div>
+          </Reveal>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5">
+            {/* Carte principale : tournoi */}
+            <Reveal>
+              <Link href="/evenements/tournoi-football"
+                className="group relative flex h-full min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl p-7 sm:p-8"
+                style={{ background: 'linear-gradient(135deg, #183A23 0%, #2E7D44 100%)' }}>
+                <svg viewBox="0 0 200 120" className="absolute inset-0 h-full w-full opacity-[0.14] transition-transform duration-700 group-hover:scale-105" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g fill="none" stroke="white" strokeWidth="0.8">
+                    <rect x="10" y="10" width="180" height="100" /><line x1="100" y1="10" x2="100" y2="110" />
+                    <circle cx="100" cy="60" r="18" /><rect x="10" y="35" width="28" height="50" /><rect x="162" y="35" width="28" height="50" />
+                  </g>
+                </svg>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" aria-hidden="true" />
+                <div className="relative">
+                  <span className="inline-block rounded-full bg-[#F2C94C] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#12211A]">
+                    {T('À venir', 'Upcoming')}
+                  </span>
+                  <p className="mt-4 text-sm text-white/80">17 {T('juillet', 'July')} 2027 · Villemomble</p>
+                  <h3 className="mt-1 text-2xl sm:text-3xl font-bold text-white">
+                    {T('Tournoi de football solidaire, 1ʳᵉ édition', 'Charity football tournament, 1st edition')}
+                  </h3>
+                  <p className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                    {T('Inscrire une équipe', 'Register a team')} <ArrowIcon />
+                  </p>
+                </div>
+              </Link>
+            </Reveal>
+
+            {/* Cartes secondaires */}
+            <div className="flex flex-col gap-5">
+              {[
+                { href: '/equipe',  img: '/moodboard/cercle-solidaire.webp', Icon: UsersIcon, tagFr: "L'équipe",  tagEn: 'The team',     fr: 'Les 9 membres fondateurs, élus en assemblée générale', en: 'The 9 founding members, elected at the general assembly' },
+                { href: '/contact', img: '/moodboard/mains-liens.webp',      Icon: MailIcon,  tagFr: 'Bénévolat', tagEn: 'Volunteering', fr: 'Envie de vous engager ? Écrivez-nous',               en: 'Want to get involved? Write to us' },
+              ].map(({ href, img, Icon, tagFr, tagEn, fr, en }, i) => (
+                <Reveal key={href} delay={0.08 + i * 0.06} className="flex-1">
+                  <Link href={href}
+                    className="group flex h-full items-center gap-4 rounded-2xl border border-[#E5E7EB] dark:border-[#1F3329] bg-white dark:bg-[#12211A] p-3 pr-5 transition-shadow hover:shadow-[0_12px_32px_rgba(18,33,26,0.08)]">
+                    <div className="relative h-24 w-28 flex-shrink-0 overflow-hidden rounded-xl">
+                      <Image src={img} alt="" fill sizes="112px" className="object-cover" />
+                    </div>
+                    <div>
+                      <p className="flex items-center gap-1.5 text-xs text-[#6B7280] dark:text-[#9CA3AF]"><Icon /> {T(tagFr, tagEn)}</p>
+                      <p className="mt-1 font-semibold leading-snug">{T(fr, en)}</p>
+                      <p className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-[#2E7D44] dark:text-[#5DB876]">
+                        {T('Découvrir', 'Discover')} <ArrowIcon className="w-3.5 h-3.5" />
+                      </p>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* ══ VALEURS (bandeau discret) ══════════════════════════════════════════ */}
+      <section aria-labelledby="values-title" className="py-16 px-4">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 id="values-title" className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6B7280]">
+            {T('Les valeurs qui nous guident', 'The values that guide us')}
+          </h2>
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {VALUES.map(({ fr, en }) => (
+              <li key={fr} className="text-xl sm:text-2xl font-semibold text-[#9CA3AF] hover:text-[#2E7D44] dark:text-[#6B7280] dark:hover:text-[#5DB876] transition-colors">
+                {T(fr, en)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ══ APPEL À L'ACTION FINAL ═════════════════════════════════════════════ */}
+      <section aria-labelledby="cta-title" className="py-24 px-4 text-center" style={{ background: NIGHT }}>
+        <Reveal className="max-w-3xl mx-auto">
+          <h2 id="cta-title" className="text-3xl sm:text-5xl font-bold text-white">
+            {T('Prêt à changer des vies avec nous ?', 'Ready to change lives with us?')}
+          </h2>
+          <p className="mt-5 text-lg text-[#9CA3AF]">
+            {T("Donateur, bénévole ou partenaire : rejoignez celles et ceux qui s'engagent entre la France et le Cameroun.",
+               'Donor, volunteer or partner: join the people taking action between France and Cameroon.')}
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/don" className={pillPrimary}>{T('Faire un don', 'Donate')} <ArrowIcon /></Link>
+            <Link href="/contact" className={pillGhost}>{T('Nous contacter', 'Contact us')}</Link>
+          </div>
+        </Reveal>
       </section>
     </div>
   );

@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const B = '#6B3E2E';
-const BEIGE = '#FDF9F7';
-const BORDER = '#EBDDD4';
+const B = '#2E7D44';
+const BEIGE = '#F7F9F7';
+const BORDER = '#E5E7EB';
 
 interface DonationThanksProps {
   /** Paiement confirmé par le prestataire */
@@ -21,23 +21,23 @@ export function DonationThanks({ paid, amountCents }: DonationThanksProps) {
 
   return (
     <section aria-labelledby="thanks-title" className="py-24"
-      style={{ background: 'linear-gradient(to bottom, #FDF9F7, #FFFFFF)', minHeight: '70vh' }}>
+      style={{ background: 'linear-gradient(to bottom, #F7F9F7, #FFFFFF)', minHeight: '70vh' }}>
       <div className="mx-auto max-w-xl px-4 sm:px-6">
         <div role="status" className="rounded-2xl border p-8 sm:p-10 text-center shadow-md"
           style={{ background: '#fff', borderColor: BORDER }}>
           <div className="text-5xl mb-5" aria-hidden="true">{paid ? '🎉' : '⏳'}</div>
-          <h1 id="thanks-title" className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#24140E' }}>
+          <h1 id="thanks-title" className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#1A1A1A' }}>
             {t(paid ? 'donation.thanksTitle' : 'donation.pendingTitle')}
           </h1>
 
           {paid && amount && (
-            <p className="mb-5 inline-block rounded-xl px-5 py-3" style={{ background: '#FBF4EF' }}>
-              <span className="block text-sm" style={{ color: '#86655A' }}>{t('donation.thanksAmount')}</span>
+            <p className="mb-5 inline-block rounded-xl px-5 py-3" style={{ background: '#F7F9F7' }}>
+              <span className="block text-sm" style={{ color: '#6B7280' }}>{t('donation.thanksAmount')}</span>
               <span className="block text-2xl font-bold" style={{ color: B }}>{amount}</span>
             </p>
           )}
 
-          <p className="leading-relaxed mb-8" style={{ color: '#4A2B20' }}>
+          <p className="leading-relaxed mb-8" style={{ color: '#374151' }}>
             {t(paid ? 'donation.thanksMessage' : 'donation.pendingMessage')}
           </p>
 

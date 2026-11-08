@@ -21,12 +21,12 @@ interface ContactFormErrors {
 
 // ── Constantes de style ───────────────────────────────────────────────────────
 
-const B      = '#6B3E2E';
-const BORDER = '#EBDDD4';
+const B      = '#2E7D44';
+const BORDER = '#E5E7EB';
 
 const inputBase: React.CSSProperties = {
   background: '#fff',
-  color: '#24140E',
+  color: '#1A1A1A',
   border: `1.5px solid ${BORDER}`,
   borderRadius: '0.5rem',
   padding: '0.625rem 1rem',
@@ -80,7 +80,7 @@ function Field({
 }: FieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-semibold" style={{ color: '#24140E' }}>
+      <label htmlFor={id} className="text-sm font-semibold" style={{ color: '#1A1A1A' }}>
         {label}{' '}
         <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
       </label>
@@ -151,7 +151,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div role="status" aria-live="polite" className="rounded-xl border p-8 text-center"
-        style={{ background: '#FBF4EF', borderColor: BORDER }}>
+        style={{ background: '#F7F9F7', borderColor: BORDER }}>
         <div className="mb-3 text-4xl" aria-hidden="true">✅</div>
         <p className="text-lg font-semibold" style={{ color: B }}>
           {t('contact.successMessage')}
@@ -204,7 +204,7 @@ export function ContactForm() {
 
       {/* Message */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="c-message" className="text-sm font-semibold" style={{ color: '#24140E' }}>
+        <label htmlFor="c-message" className="text-sm font-semibold" style={{ color: '#1A1A1A' }}>
           {t('contact.fields.message')}{' '}
           <span aria-hidden="true" style={{ color: '#dc2626' }}>*</span>
         </label>
@@ -236,8 +236,8 @@ export function ContactForm() {
       <button
         type="submit"
         className="mt-2 w-full rounded-xl font-semibold py-3 px-6 transition-colors duration-200"
-        style={{ background: B, color: '#FDF9F7' }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#5A3426'; }}
+        style={{ background: B, color: '#F7F9F7' }}
+        onMouseEnter={e => { e.currentTarget.style.background = '#256B39'; }}
         onMouseLeave={e => { e.currentTarget.style.background = B; }}
       >
         {t('contact.submitButton')}

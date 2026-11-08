@@ -4,8 +4,8 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { DonationForm } from '@/components/ui/DonationForm';
 import { useI18nContext } from '@/components/providers/I18nProvider';
 
-const IMPACT_ICONS = ['📚', '🏠', '🌍'] as const;
-const IMPACT_ITEM_COUNT = 3;
+const IMPACT_ICONS = ['📚', '💼', '🤝', '🌍'] as const;
+const IMPACT_ITEM_COUNT = 4;
 
 export function DonationSection() {
   const { t } = useI18nContext();
@@ -14,17 +14,17 @@ export function DonationSection() {
   return (
     <section id="donate" aria-labelledby="donation-title"
       className="py-20"
-      style={{ background: 'linear-gradient(to bottom, #FDF9F7, #FFFFFF)' }}>
+      style={{ background: 'linear-gradient(to bottom, #F7F9F7, #FFFFFF)' }}>
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection animation="slideUp" threshold={0.1}>
 
           {/* En-tête */}
           <div className="mb-12 text-center">
-            <h2 id="donation-title" className="mb-3 text-3xl sm:text-4xl font-bold" style={{ color: '#24140E' }}>
+            <h2 id="donation-title" className="mb-3 text-3xl sm:text-4xl font-bold" style={{ color: '#1A1A1A' }}>
               {t('donation.sectionTitle')}
             </h2>
-            <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: '#6B3E2E' }} />
-            <p className="mx-auto max-w-2xl text-lg" style={{ color: '#86655A' }}>
+            <div aria-hidden="true" className="mx-auto w-16 h-1 rounded-full mb-4" style={{ background: '#2E7D44' }} />
+            <p className="mx-auto max-w-2xl text-lg" style={{ color: '#6B7280' }}>
               {t('donation.description')}
             </p>
           </div>
@@ -33,24 +33,24 @@ export function DonationSection() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
             {/* Impacts */}
             <div>
-              <h3 className="mb-6 text-xl font-semibold" style={{ color: '#24140E' }}>
+              <h3 className="mb-6 text-xl font-semibold" style={{ color: '#1A1A1A' }}>
                 {t('donation.impactTitle')}
               </h3>
               <ul className="space-y-4" aria-label={t('donation.impactTitle')}>
                 {impactItems.map((item, index) => (
                   <li key={item} className="flex items-start gap-4 rounded-2xl p-5 shadow-sm border"
-                    style={{ background: '#fff', borderColor: '#EBDDD4' }}>
+                    style={{ background: '#fff', borderColor: '#E5E7EB' }}>
                     <span className="flex-shrink-0 text-2xl" aria-hidden="true">
-                      {IMPACT_ICONS[index as 0 | 1 | 2] ?? '✅'}
+                      {IMPACT_ICONS[index as 0 | 1 | 2 | 3] ?? '✅'}
                     </span>
-                    <span className="leading-relaxed" style={{ color: '#4A2B20' }}>{item}</span>
+                    <span className="leading-relaxed" style={{ color: '#374151' }}>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Formulaire */}
-            <div className="rounded-2xl p-6 shadow-md border" style={{ background: '#fff', borderColor: '#EBDDD4' }}>
+            <div className="rounded-2xl p-6 shadow-md border" style={{ background: '#fff', borderColor: '#E5E7EB' }}>
               <DonationForm />
             </div>
           </div>

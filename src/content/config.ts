@@ -31,10 +31,7 @@ export interface SiteConfig {
     ess?: boolean;
     foundationDate: string; // ISO 8601: "YYYY-MM-DD"
     registrationDate?: string; // ISO 8601 — immatriculation au répertoire SIRENE
-    address: string;
-    addressComplement?: string;
     city: string;
-    postalCode: string;
   };
   team: TeamMember[];
   events: SiteEvent[];
@@ -43,6 +40,8 @@ export interface SiteConfig {
     instagram?: string;
     linkedin?: string;
     twitter?: string;
+    tiktok?: string;
+    helloasso?: string;
     youtube?: string;
   };
   donationPresets: number[];
@@ -63,12 +62,14 @@ export const teamMembers: TeamMember[] = [
     firstName: 'Florent Landry',
     lastName: 'NWALL',
     role: 'Président & Resp. Communication et Partenariats',
+    photoUrl: '/equipe/president-florent-nwall-avatar.webp',
   },
   {
     id: 'atoko-marcel',
     firstName: 'Marcel Parfait',
     lastName: 'ATOKO À NDEM',
     role: 'Vice-Président & Resp. Projets',
+    photoUrl: '/equipe/marcel-atoko-a-ndem-avatar.webp',
   },
   {
     id: 'edimo-will',
@@ -87,6 +88,7 @@ export const teamMembers: TeamMember[] = [
     firstName: 'Léonidas',
     lastName: 'KOUAHOU YANKEP',
     role: 'Trésorier',
+    photoUrl: '/equipe/leonidas-kouahou-yankep-avatar.webp',
   },
   {
     id: 'mfouapon-aboubakar',
@@ -129,10 +131,7 @@ export const siteConfig: SiteConfig = {
     ess: true,
     foundationDate: '2025-09-14',
     registrationDate: '2026-05-28',
-    address: '89 rue de la Fosse aux Bergers',
-    addressComplement: 'Étage 1, appartement 3',
     city: 'Villemomble',
-    postalCode: '93250',
   },
 
   // Requirement 7.1, 7.2 — all 9 founding members
@@ -145,10 +144,15 @@ export const siteConfig: SiteConfig = {
   donationPresets: [10, 25, 50, 100],
 
   // Requirement 11.3 — social links hidden when not configured
-  socialLinks: {},
+  socialLinks: {
+    linkedin: 'https://www.linkedin.com/company/solidarity-impact/',
+    instagram: 'https://www.instagram.com/solidarity.impact/',
+    helloasso: 'https://www.helloasso.com/associations/solidarity-impact',
+    // tiktok: 'https://www.tiktok.com/@…', // à renseigner dès que le compte est disponible
+  },
 
   // Requirement 10.6, 11.1 — contact info (empty until configured)
   contactInfo: {
-    phone: '+33 7 54 39 89 71',
+    phone: '07 51 07 57 50',
   },
 };
